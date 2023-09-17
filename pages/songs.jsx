@@ -4,29 +4,29 @@ import axios from 'axios';
 
 export default function Songs() {
     const [songs,setSongs ] = useState([])
-
+    
     useEffect(() => {
         // fetch('/api/songs')
         //   .then((response) => response.json())
         //   .then((data) => setSong(data))
         //   .catch((error) => {
-        //     console.error('Error fetching songs:', error);
-        //   });
-        const fetchData = async () => {
-            try {
-              const response = await axios.get('/api/songs');
-              const data = response.data;
-              setSongs(data);
-            } catch (error) {
-              console.error('Error fetching songs:', error);
-            }
-          };
-      
-          fetchData();
-      }, []);
-
-    return (
-        <div>
+            //     console.error('Error fetching songs:', error);
+            //   });
+            const fetchData = async () => {
+                try {
+                    const response = await axios.get('/api/songs');
+                    const data = response.data;
+                    setSongs(data);
+                } catch (error) {
+                    console.error('Error fetching songs:', error);
+                }
+            };
+            
+            fetchData();
+        }, []);
+        
+        return (
+            <div>
             <h1>Top 20 Songs of All Time</h1>
             <p>
                 <small>(According to title)</small>
@@ -43,3 +43,4 @@ export default function Songs() {
         </div>
     );
 }
+Songs.title = "Songs"
