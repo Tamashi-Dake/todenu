@@ -2,6 +2,7 @@ import Head from "next/head";
 import Navbar from "./navbar";
 import Footer from "./footer";
 
+
 // lấy children từ _app.jsx được bao trong Layout làm props
 const Layout = ({ children, title = "Default title" }) => {
   return (

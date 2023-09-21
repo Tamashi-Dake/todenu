@@ -1,6 +1,6 @@
 // import '../styles/globals.css'
 import Layout from "../components/Layout"
-
+import '../style/global.css';
 function App({ Component, pageProps }) {
   const { title } = Component;
   return (
