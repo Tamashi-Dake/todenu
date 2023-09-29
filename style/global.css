@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+footer {
+  position: fixed;
+  width: 95%;
+  bottom: 0;
+}
+
 /* @layer base {
   :root {
     --background: 0 0% 100%;
