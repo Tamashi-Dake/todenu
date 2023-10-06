@@ -22,7 +22,10 @@ export default function Time() {
     }
   };
   return (
-    <section id="input-time" className="m-auto text-center text-2xl font-bold">
+    <section
+      id="input-time"
+      className="m-auto text-center text-2xl font-bold text-slate-2 00"
+    >
       <h2>How much time do you have left?</h2>
       <div id="time" className="">
         <input
