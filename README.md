@@ -1,15 +1,16 @@
-The thing is... this still connect to MongoDB atlas, not MongoDB in local
-i just can't make it work at the moment
+The thing is... this still connect to MongoDB atlas, not MongoDB in local <br/>
+i just can't make it work at the moment<br/>
 so i'm gonna stick with only one project for the time being ig
 
-trying &nbsp; for spacing in md file
+trying ${`&nbsp;`} for spacing in md file
 
 Main feature:  
-    CRUD custom menu (if logged in)  
-    choose job to do  
-    update bill with total job and price(time)  
-    checkout to start timecounter(sẽ xem xét cho từng job)  
-    random to randomize job within freetime (require fill freetime first)  
+- [ ]Authentication with Google account
+- [ ]CRUD custom menu (if logged in)  
+- [ ]choose job to do  
+- [ ]update bill with total job and price(time)  
+- [ ]checkout to start timecounter(sẽ xem xét cho từng job)  
+- [ ]random to randomize job within freetime (require fill freetime first)  
 
 Luồng:
     Guess:  select, start sample job menu
@@ -20,16 +21,8 @@ Luồng:
 
 trying this structure:
 \_ /.next/  
-  \_ /components/  
-      \_ Component/  
-  \_ /constants/  
-      \_ theme.js  
-      \_ page.js  
-  \_ /contexts/  
-      \_ Locale/  
-         \_ index.js  
-      \_ Page/  
-         \_ index.js  
+&nbsp;\_ /components/  
+&nbsp;&nbsp;\_ Component/  
   \_ /pages/  
       \_ _app.jsx  
       \_ _document.jsx  
@@ -43,9 +36,9 @@ trying this structure:
          \_ index.js  
       \_ Page/  
          \_ index.js  
-  \_ /public/  
-      \_ favicon.ico  
-      \_ header.png  
+&nbsp;\_ /public/  
+&nbsp;&nbsp;\_ favicon.ico  
+&nbsp;&nbsp;\_ header.png  
   \_ /redux/  
       \_ actions/  
          \_ users/  
@@ -76,7 +69,6 @@ trying this structure:
   \_ .eslintrc  
   \_ .env  
   \_ babel.config.js  
-  \_ Dockerfile  
   \_ jest.config.js  
   \_ next.config.js  
   \_ package.json  

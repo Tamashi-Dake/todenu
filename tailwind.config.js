@@ -9,6 +9,17 @@ module.exports = {
   ],
 
   theme: {
+    fontFamily: {
+      title: ["Georgia", '"Times New Roman"', "Times", "serif"],
+      body: [
+        '"Trebuchet MS"',
+        '"Lucida Sans Unicode"',
+        '"Lucida Grande"',
+        '"Lucida Sans"',
+        "Arial",
+        "sans-serif",
+      ],
+    },
     extend: {
       backgroundImage: {
         bgImage: "url('/testBg.jpg')",

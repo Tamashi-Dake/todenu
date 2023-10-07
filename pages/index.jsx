@@ -9,7 +9,7 @@ export default function Home() {
       <div className="bg-image"></div>
       <main>
         <Time></Time>
-        <div className="grid md:grid-cols-4 sm:grid-cols-1 gap-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <Menu></Menu>
           <Bill></Bill>
         </div>
@@ -17,6 +17,6 @@ export default function Home() {
     </>
   );
 }
-// i think this is bad practice, but i don't know what best practice is
+// i think this is bad practice, but i don't know how to do best practice anyway
 // set static title
 Home.title = "Home";
