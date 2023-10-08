@@ -11,9 +11,9 @@ const handler = nc().use((req, res, next) => {
     case "GET":
       handleGet(req, res);
       break;
-    case "PUT":
-      handlePut(req, res);
-      break;
+    // case "PUT":
+    //   handlePut(req, res);
+    //   break;
     case "DELETE":
       handleDelete(req, res);
       break;
@@ -44,13 +44,13 @@ async function handleGet(req, res) {
     return res.json({ jobs });
   }
 }
-async function handlePut(req, res) {
-  const id = req.query.id;
-  const { name, description, time } = req.body;
-  await connectMongo();
-  await Job.findByIdAndUpdate(id, { name, description, time });
-  return NextResponse.json({ message: "Job updated" }, { status: 200 });
-}
+// async function handlePut(req, res) {
+//   const id = req.query.id;
+//   const { name, description, time } = req.body;
+//   await connectMongo();
+//   await Job.findByIdAndUpdate(id, { name, description, time });
+//   return NextResponse.json({ message: "Job updated" }, { status: 200 });
+// }
 async function handleDelete(req, res) {
   const id = req.query.id;
   await connectMongo();

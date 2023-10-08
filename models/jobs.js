@@ -4,6 +4,7 @@ const jobSchema = new Schema({
   name: { type: String },
   description: { type: String },
   time: { type: Number },
+  // user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 let Job;
