@@ -7,6 +7,7 @@ const jobSchema = new Schema({
 });
 
 let Job;
+// if model exists, use it, else create it
 try {
   Job = mongoose.model("Job");
 } catch {

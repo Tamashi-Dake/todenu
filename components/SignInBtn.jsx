@@ -13,14 +13,17 @@ const SignInBtn = () => {
     <>
       {status === "authenticated" ? (
         <Popover className="relative">
-          <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+          <Popover.Button
+            className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+            title={session?.user?.name}
+          >
             <img
               src={session?.user?.image}
               alt="Google Image"
               width={40}
               height={40}
-              title={session?.user?.name}
             />
+            {session?.user?.name}
             <ChevronDownIcon
               className="h-5 w-5 flex-none text-gray-400"
               aria-hidden="true"

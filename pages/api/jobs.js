@@ -43,8 +43,6 @@ async function handleGet(req, res) {
     const jobs = await Job.find();
     return res.json({ jobs });
   }
-  // const jobs = await Job.find();
-  // return res.json({ jobs });
 }
 async function handlePut(req, res) {
   const id = req.query.id;
