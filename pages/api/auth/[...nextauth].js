@@ -41,6 +41,10 @@ export default NextAuth({
       }
     },
   },
+  session: {
+    jwt: true,
+    maxAge: 30 * 60, // 30 minutes
+  },
 });
 
 // const authOptions = {

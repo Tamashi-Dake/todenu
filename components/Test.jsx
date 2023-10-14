@@ -37,8 +37,8 @@ export default function Example() {
   });
 
   return (
-    <div className="w-full max-w-md px-2 py-16 sm:px-0">
-      <Tab.Group>
+    <div className="w-full max-w-md px-2 py-16 sm:px-0 bg-slate-400 m-auto">
+      {/* <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
           {Object.keys(categories).map((category) => (
             <Tab
@@ -97,7 +97,22 @@ export default function Example() {
             </Tab.Panel>
           ))}
         </Tab.Panels>
-      </Tab.Group>
+      </Tab.Group> */}
+      <div className="grid grid-cols-3 text-center font-extrabold text-2xl">
+        <div className="">
+          <input type="checkbox" />
+          <span>ALL</span>
+        </div>
+        <span>JOBS</span>
+        <span>Time</span>
+      </div>
+      <div className="grid grid-cols-3 text-center ">
+        <>
+          <input type="checkbox" />
+          <span>Something</span>
+          <span>something</span>
+        </>
+      </div>
     </div>
   );
 }
