@@ -5,6 +5,14 @@
 body {
   height: 100%;
 }
+main {
+  background-image: linear-gradient(
+    135deg,
+    #cacaca,
+    #8f8e8d 40%,
+    rgba(88, 88, 87, 0.69) 60%
+  );
+}
 footer {
   /* position: fixed; */
   width: 95%;
@@ -18,4 +26,25 @@ footer {
   filter: blur(3px);
   overflow: hidden;
   background: url("/testBg.jpg") center center;
+}
+
+#bill {
+  height: 80%;
+}
+.billContainer {
+  height: 60%;
+  /* overflow-x: auto; */
+}
+
+.billContainer::-webkit-scrollbar {
+  height: 5px;
+}
+
+.billContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.billContainer::-webkit-scrollbar-track {
+  background-color: transparent;
 }

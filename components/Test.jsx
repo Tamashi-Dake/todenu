@@ -98,21 +98,6 @@ export default function Example() {
           ))}
         </Tab.Panels>
       </Tab.Group> */}
-      <div className="grid grid-cols-3 text-center font-extrabold text-2xl">
-        <div className="">
-          <input type="checkbox" />
-          <span>ALL</span>
-        </div>
-        <span>JOBS</span>
-        <span>Time</span>
-      </div>
-      <div className="grid grid-cols-3 text-center ">
-        <>
-          <input type="checkbox" />
-          <span>Something</span>
-          <span>something</span>
-        </>
-      </div>
     </div>
   );
 }

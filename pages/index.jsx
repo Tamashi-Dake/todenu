@@ -8,11 +8,11 @@ export default function Home() {
   // const { data: session, status } = useSession();
   return (
     <>
-      <div className="bg-image"></div>
+      {/* <div className="bg-image"></div> */}
       <main>
         {/* <button onClick={()=>console.log(session)}>log session</button> */}
         <Time></Time>
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="grid md:grid-cols-7 sm:grid-cols-2 gap-4">
           <Menu></Menu>
           <Bill></Bill>
         </div>
