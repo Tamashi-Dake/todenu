@@ -29,10 +29,10 @@ footer {
 }
 
 #bill {
-  height: 80%;
+  height: 100%;
 }
 .billContainer {
-  height: 60%;
+  height: 70%;
   /* overflow-x: auto; */
 }
 

@@ -22,7 +22,7 @@ const Menu = () => {
   };
 
   return (
-    <div className="col-span-4 min-w-[30%] max-w-[75%] bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 m-auto">
+    <div className="col-span-4 w-5/6 h-full bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 m-auto">
       <h1 className="font-title text-5xl font-bold m-8">MENU</h1>
 
       <div className="border-b-2 border-sky-950 mx-2"></div>

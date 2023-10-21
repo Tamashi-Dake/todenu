@@ -62,7 +62,7 @@ const Bill = () => {
       setBillData(newBillData);
     }
   };
-  console.log("Bill data:", billData);
+  // console.log("Bill data:", billData);
 
   return (
     <div
@@ -111,6 +111,17 @@ const Bill = () => {
         ) : (
           <p className="text-center">No jobs in the bill.</p>
         )}
+      </div>
+      <div
+        id="total"
+        className="flex justify-around m-5 items-center text-3xl font-bold"
+      >
+        <span className="">Total</span>
+        <p>Calculate total time </p>
+      </div>
+      <div id="checkout" className=" flex justify-between m-5 text-gray-50">
+        <button className="bg-orange-500 p-5 rounded-lg">Checkout</button>
+        <button className="bg-blue-500 p-5 rounded-lg">Randomize</button>
       </div>
     </div>
   );
