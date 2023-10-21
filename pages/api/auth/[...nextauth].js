@@ -23,7 +23,7 @@ export default NextAuth({
 
           if (!userExist) {
             // if user does not exist, create user in DB
-            const response = await fetch("http://localhost:3000/api/users", {
+            const response = await fetch("/api/users", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -46,48 +46,3 @@ export default NextAuth({
     maxAge: 30 * 60, // 30 minutes
   },
 });
-
-// const authOptions = {
-//   providers: [
-//     GoogleProvider({
-//       clientId: process.env.GOOGLE_CLIENT_ID,
-//       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-//     }),
-//   ],
-//   callbacks: {
-//     async signIn({ user, account }) {
-//       if (account.provider === "google") {
-//         const { name, email } = user;
-//         try {
-//           await connectMongo();
-//           const userExists = await User.findOne({ email });
-
-//           if (!userExists) {
-//             const res = await fetch("http://localhost:3000/api/users", {
-//               method: "POST",
-//               headers: {
-//                 "Content-Type": "application/json",
-//               },
-//               body: JSON.stringify({
-//                 name,
-//                 email,
-//               }),
-//             });
-
-//             if (res.ok) {
-//               return user;
-//             }
-//           }
-//         } catch (error) {
-//           console.log(error);
-//         }
-//       }
-
-//       return user;
-//     },
-//   },
-// };
-
-// const handler = NextAuth(authOptions);
-
-// export default handler;

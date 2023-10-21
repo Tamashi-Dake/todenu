@@ -6,7 +6,7 @@ const Menu = () => {
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/jobs");
+        const response = await fetch("/api/jobs");
         const data = await response.json();
         setMenuData(data.jobs);
       } catch (error) {

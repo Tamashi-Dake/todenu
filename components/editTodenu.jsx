@@ -15,7 +15,7 @@ export default function EditJobForm({ id: jobId, name, description, time }) {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:3000/api/${jobId}`, {
+      const res = await fetch(`/api/${jobId}`, {
         // Sử dụng jobId thay vì id
         method: "PUT",
         headers: {

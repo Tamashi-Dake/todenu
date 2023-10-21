@@ -28,7 +28,7 @@ export default function EditJob() {
     e.preventDefault();
 
     try {
-      const res = await fetch(`http://localhost:3000/api/${id}`, {
+      const res = await fetch(`/api/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

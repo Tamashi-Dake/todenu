@@ -15,6 +15,9 @@ Some features are not available yet, but i'm gonna list them here anyway:
 - [ ] Store job statistics for each user
 - [ ] Responsive for small screen
 - [ ] Remove all unused dependencies + refactor project structure
+- [ ] Loading screen
+- [ ] Optimize performance (Link, refactor client component)
+- [ ] Deploy to Vercel
 
 Flow:  
   - Guess:  

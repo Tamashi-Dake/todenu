@@ -19,7 +19,7 @@ export default function AddTodenu() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/jobs", {
+      const res = await fetch("/api/jobs", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
