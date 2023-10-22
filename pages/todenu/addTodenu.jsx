@@ -1,20 +1,22 @@
 "use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { useSession } from "next-auth/react";
+import User from "../../models/users";
 export default function AddTodenu() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState();
+
+  const { status, data: session } = useSession();
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !description) {
-      alert("Title and description are required.");
+    if (!name || !description || !time) {
+      alert("All infomations are required.");
       return;
     }
 
@@ -24,7 +26,12 @@ export default function AddTodenu() {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ name, description, time }),
+        body: JSON.stringify({
+          name,
+          description,
+          time,
+          email: session?.user?.email,
+        }),
       });
       if (res.ok) {
         router.push("/todenu");
@@ -39,24 +46,24 @@ export default function AddTodenu() {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <input
-        onChange={(e) => setName(e.target.value)}
         value={name}
+        onChange={(e) => setName(e.target.value)}
         className="border border-slate-500 px-8 py-2"
         type="text"
         placeholder="Todenu Title"
       />
 
       <input
-        onChange={(e) => setDescription(e.target.value)}
         value={description}
+        onChange={(e) => setDescription(e.target.value)}
         className="border border-slate-500 px-8 py-2"
         type="text"
         placeholder="Todenu Description"
       />
 
       <input
-        onChange={(e) => setTime(e.target.value)}
         value={time}
+        onChange={(e) => setTime(e.target.value)}
         className="border border-slate-500 px-8 py-2"
         type="number"
         placeholder="Todenu Time"

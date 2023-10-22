@@ -10,14 +10,14 @@ Some features are not available yet, but i'm gonna list them here anyway:
 - [ ] Pagination with selected tabs
 - [ ] Choose job to do  
 - [ ] Update bill with total job and price(time)  
-- [ ] Checkout to start timecounter(sẽ xem xét cho từng job)  
+- [ ] Checkout to start timecounter (sẽ xem xét cho từng job)  
 - [ ] Random to randomize job within freetime (require fill freetime first)  
 - [ ] Store job statistics for each user
 - [ ] Responsive for small screen
 - [ ] Remove all unused dependencies + refactor project structure
 - [ ] Loading screen
 - [ ] Optimize performance (Link, refactor client component)
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel
 
 Flow:  
   - Guess:  

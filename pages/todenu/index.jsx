@@ -13,14 +13,18 @@ export default function Todenu() {
       try {
         const response = await fetch("/api/jobs");
         const data = await response.json();
-        setMenuData(data.jobs);
+        // Lọc chỉ lấy các mục có email trùng khớp với email đang đăng nhập
+        const filteredData = data.jobs.filter(
+          (item) => item.email === session.user.email
+        );
+        setMenuData(filteredData);
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
     };
 
     fetchMenuData();
-  }, []);
+  }, [session]);
 
   if (status === "authenticated") {
     return (

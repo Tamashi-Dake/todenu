@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       {/* <div className="bg-image"></div> */}
-      <main className="p-10">
+      <main className="p-10 ">
         {/* <button onClick={()=>console.log(session)}>log session</button> */}
         <Time></Time>
         <div className="grid md:grid-cols-7 sm:grid-cols-2 gap-4">

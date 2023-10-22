@@ -12,6 +12,7 @@ main {
     #8f8e8d 40%,
     rgba(88, 88, 87, 0.69) 60%
   );
+  height: 100vh;
 }
 footer {
   /* position: fixed; */

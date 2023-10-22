@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const Menu = () => {
   const [menuData, setMenuData] = useState(null);
+  const { data: session } = useSession();
+  const userEmail = session?.user?.email;
 
   useEffect(() => {
     const fetchMenuData = async () => {
@@ -28,22 +31,24 @@ const Menu = () => {
       <div className="border-b-2 border-sky-950 mx-2"></div>
       <div className="menu-wrapper flex flex-col gap-4 p-5">
         {menuData && menuData.length > 0 ? (
-          menuData.map((item) => (
-            <div
-              draggable="true"
-              onDragStart={(event) => handleDragStart(event, item)}
-              key={item._id}
-              className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 border-sky-950 p-3"
-            >
-              <h2 className="text-xl font-bold col-span-2 uppercase font-title">
-                {item.name}
-              </h2>
-              <p className="text-left font-body">{item.description}</p>
-              <p className="text-right font-body font-bold">
-                {item.time} minutes
-              </p>
-            </div>
-          ))
+          menuData.map((item) =>
+            (userEmail && item.email) || (!userEmail && !item.email) ? (
+              <div
+                draggable="true"
+                onDragStart={(event) => handleDragStart(event, item)}
+                key={item._id}
+                className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 border-sky-950 p-3"
+              >
+                <h2 className="text-xl font-bold col-span-2 uppercase font-title">
+                  {item.name}
+                </h2>
+                <p className="text-left font-body">{item.description}</p>
+                <p className="text-right font-body font-bold">
+                  {item.time} minutes
+                </p>
+              </div>
+            ) : null
+          )
         ) : (
           <p>No jobs found.</p>
         )}
