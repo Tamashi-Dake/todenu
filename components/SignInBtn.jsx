@@ -8,6 +8,10 @@ import { Fragment } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const SignInBtn = () => {
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    signIn("google");
+  };
   const { status, data: session } = useSession();
   return (
     <>
@@ -71,7 +75,7 @@ const SignInBtn = () => {
         </Popover>
       ) : (
         <button
-          onClick={() => signIn("google")}
+          onClick={handleSignIn}
           className="text-sm font-semibold leading-6 text-gray-900"
         >
           Log in <span aria-hidden="true">&rarr;</span>
