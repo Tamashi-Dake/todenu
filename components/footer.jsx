@@ -1,7 +1,7 @@
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-white rounded-lg w-full relative">
+    <footer className="bg-white rounded-lg w-full ">
       <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div className="sm:flex sm:items-center sm:justify-between">
           <a
@@ -11,7 +11,7 @@ const Footer = () => {
             <img
               src="https://img.freepik.com/premium-vector/wall-clock-logo-icon_414847-367.jpg"
               className="h-8 mr-3"
-              alt="Flowbite Logo"
+              alt="Todenu Logo"
             />
             <span className="self-center text-2xl whitespace-nowrap font-bold">
               TODENU

@@ -1,7 +1,9 @@
+import Time from "../components/Time";
 import Test from "../components/Test";
 export default function Home() {
   return (
     <>
+      {/* <Time /> */}
       <Test />
     </>
   );

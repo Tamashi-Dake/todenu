@@ -2,7 +2,7 @@ import Head from "next/head";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import { NextAuthProvider } from "./Provider";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 // lấy children từ _app.jsx được bao trong Layout làm props
 const Layout = ({ children, title = "Default title", session }) => {
@@ -28,6 +28,23 @@ const Layout = ({ children, title = "Default title", session }) => {
   //   };
   // }, [sessionData]);
 
+  const [hasEnoughContent, setHasEnoughContent] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const windowHeight = window.innerHeight;
+      const contentHeight = document.getElementById("content").offsetHeight;
+      setHasEnoughContent(contentHeight >= windowHeight);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <>
       <Head>
@@ -36,9 +53,22 @@ const Layout = ({ children, title = "Default title", session }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NextAuthProvider>
-        <Navbar />
-        <>{children}</>
-        <Footer />
+        <div
+          className={`flex flex-col min-h-screen ${
+            hasEnoughContent ? "flex-grow" : ""
+          }`}
+        >
+          <Navbar />
+          <main
+            id="content"
+            className={`content ${
+              hasEnoughContent ? "flex-1" : ""
+            } mb-3.5 sm:mb-0`}
+          >
+            {children}
+          </main>
+          <Footer />
+        </div>
       </NextAuthProvider>
     </>
   );
