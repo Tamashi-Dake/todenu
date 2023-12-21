@@ -67,16 +67,17 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="col-span-3 min-w-[90%] bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 m-auto sm:h-auto"
+      className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto min-h-[500px]"
     >
-      <h1 className="font-title text-5xl font-bold m-8">Bill</h1>
-      <div className="border-b-2 border-sky-950 mx-2"></div>
+      <h1 className="font-title text-5xl font-bold m-5">Bill</h1>
       <div className="grid grid-cols-5 text-center font-extrabold text-2xl my-5">
         <span className="col-span-3">JOBS</span>
         <span className="col-span-2">Time</span>
       </div>
+      <div className="border-b-2 border-sky-950 mx-2"></div>
+
       <div
-        className="billContainer bg-slate-400 overflow-auto flex flex-col gap-1 p-2"
+        className="grow billContainer bg-slate-400 overflow-auto flex flex-col gap-1 p-2"
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
@@ -109,7 +110,7 @@ const Bill = () => {
             </SortableContext>
           </DndContext>
         ) : (
-          <p className="text-center">No jobs in the bill.</p>
+          <p className="text-center">Drop Todenus from Menu in here</p>
         )}
       </div>
       <div

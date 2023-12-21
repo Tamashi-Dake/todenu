@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Navbar from "./navbar";
+import Header from "./Header";
 import Footer from "./footer";
 import { NextAuthProvider } from "./Provider";
 import { useEffect, useState } from "react";
@@ -28,23 +28,23 @@ const Layout = ({ children, title = "Default title", session }) => {
   //   };
   // }, [sessionData]);
 
-  const [hasEnoughContent, setHasEnoughContent] = useState(false);
+  // const [hasEnoughContent, setHasEnoughContent] = useState(false);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const windowHeight = window.innerHeight;
-      const contentHeight = document.getElementById("content").offsetHeight;
-      setHasEnoughContent(contentHeight >= windowHeight);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const windowHeight = window.innerHeight;
+  //     const contentHeight = document.getElementById("content").offsetHeight;
+  //     setHasEnoughContent(contentHeight >= windowHeight);
+  //   };
 
-    handleResize();
+  //   handleResize();
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
   return (
     <>
       <Head>
@@ -53,22 +53,9 @@ const Layout = ({ children, title = "Default title", session }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <NextAuthProvider>
-        <div
-          className={`flex flex-col min-h-screen ${
-            hasEnoughContent ? "flex-grow" : ""
-          }`}
-        >
-          <Navbar />
-          <main
-            id="content"
-            className={`content ${
-              hasEnoughContent ? "flex-1" : ""
-            } mb-3.5 sm:mb-0`}
-          >
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <Header />
+        <div className="min-h-screen p-10">{children}</div>
+        <Footer />
       </NextAuthProvider>
     </>
   );

@@ -1,10 +1,10 @@
-import Time from "../components/Time";
 import Test from "../components/Test";
+import ComboBox from "../components/todenu/ComboBox";
 export default function Home() {
   return (
     <>
-      {/* <Time /> */}
-      <Test />
+      {/* <Test /> */}
+      <ComboBox />
     </>
   );
 }

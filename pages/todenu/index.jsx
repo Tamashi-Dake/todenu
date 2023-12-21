@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import RemoveBtn from "../../components/DeleteJobBtn";
+import RemoveBtn from "../../components/todenu/DeleteJobBtn";
 import { Edit, BadgePlus } from "lucide-react";
 import { useSession } from "next-auth/react";
+import ComboBox from "../../components/todenu/ComboBox";
+import Search from "../../components/todenu/Search";
 
 export default function Todenu() {
   const { data: session, status } = useSession({ required: true });
@@ -26,48 +28,49 @@ export default function Todenu() {
     fetchMenuData();
   }, [session]);
 
-  if (status === "authenticated") {
-    return (
-      <>
-        <div className="flex items-center">
-          <h1 className="font-title text-5xl font-bold m-8">Your Todenu</h1>
-          <Link
-            className="ml-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 h-max rounded flex gap-1 px-2 m-2"
-            href="/todenu/addTodenu"
-          >
-            <BadgePlus />
-            Add Todenu
-          </Link>
+  if (status === "loading") return <p>Loading...</p>;
+  return (
+    <>
+      <div className="flex justify-between items-center">
+        <div className="flex">
+          <Search />
+          <ComboBox />
         </div>
 
-        {menuData && menuData.length > 0 ? (
-          menuData.map((item) => (
-            <div
-              key={item._id}
-              className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-            >
-              <div>
-                <h2 className="font-bold text-2xl">{item.name}</h2>
-                <div>{item.description}</div>
-                <p className="text-right font-body font-bold">
-                  {item.time} minutes
-                </p>
-              </div>
+        <Link
+          className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 h-max rounded flex gap-1 px-2 m-2"
+          href="/todenu/addTodenu"
+        >
+          <BadgePlus />
+          Add Todenu
+        </Link>
+      </div>
 
-              <div className="flex gap-2">
-                <Link href={`/todenu/editTodenu/${item._id}`}>
-                  <Edit size={24} />
-                </Link>
-                <RemoveBtn id={item._id} />
-              </div>
+      {menuData && menuData.length > 0 ? (
+        menuData.map((item) => (
+          <div
+            key={item._id}
+            className="p-4 border border-slate-300 my-3 mx-auto flex justify-between gap-5 items-start xl:w-[50%] lg:w-[80%] md:w-[80%]"
+          >
+            <div>
+              <h2 className="font-bold text-2xl">{item.name}</h2>
+              <div>{item.description}</div>
+              <p className="text-right font-body font-bold">
+                {item.time} minutes
+              </p>
             </div>
-          ))
-        ) : (
-          <p>No jobs found.</p>
-        )}
-      </>
-    );
-  } else if (status === "loading") {
-    return <p>Loading...</p>;
-  }
+
+            <div className="flex gap-2">
+              <Link href={`/todenu/editTodenu/${item._id}`}>
+                <Edit size={24} />
+              </Link>
+              <RemoveBtn id={item._id} />
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>No jobs found.</p>
+      )}
+    </>
+  );
 }

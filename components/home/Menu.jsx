@@ -19,6 +19,9 @@ const Menu = () => {
     };
 
     fetchMenuData();
+
+    const defaultTab = document.querySelector("#default-tab");
+    defaultTab.click();
   }, []);
 
   const handleDragStart = (event, item) => {
@@ -50,49 +53,50 @@ const Menu = () => {
     );
 
   return (
-    <div className="col-span-4 w-5/6 h-full bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 m-auto">
+    <div className=" w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto min-h-[500px]">
       <h1 className="font-title text-5xl font-bold m-8">MENU</h1>
 
-      <div className="border-b-2 border-sky-950 mx-2"></div>
-      <div className="menu-wrapper flex flex-col gap-4 p-5">
-        <Tabs className="bg-slate-300">
-          <TabsList className="">
-            <TabsTrigger
-              id="default-tab"
-              value="shortTodenu"
-              className="focus:bg-gray-50"
-            >
-              Short
-            </TabsTrigger>
-            <TabsTrigger value="mediumTodenu" className="focus:bg-gray-50">
-              Medium
-            </TabsTrigger>
-            <TabsTrigger value="longTodenu" className="focus:bg-gray-50">
-              Long
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value="shortTodenu">
+      <Tabs className="bg-[#cbc5b4] rounded-3xl">
+        <TabsList className="">
+          <TabsTrigger
+            id="default-tab"
+            value="shortTodenu"
+            className="focus:bg-gray-50"
+          >
+            Short
+          </TabsTrigger>
+          <TabsTrigger value="mediumTodenu" className="focus:bg-gray-50">
+            Medium
+          </TabsTrigger>
+          <TabsTrigger value="longTodenu" className="focus:bg-gray-50">
+            Long
+          </TabsTrigger>
+        </TabsList>
+        <div className="border-b-2 border-sky-950 mx-2"></div>
+
+        <TabsContent value="shortTodenu">
+          <div className="menu-wrapper flex flex-col gap-4 p-5">
             {renderMenuItems(
-              menuData && menuData.filter((item) => item.time <= 30)
+              menuData && menuData.filter((item) => item.time < 30)
             )}
-          </TabsContent>
-          <TabsContent value="mediumTodenu">
-            <div className="menu-wrapper flex flex-col gap-4 p-5">
-              {renderMenuItems(
-                menuData &&
-                  menuData.filter((item) => item.time > 30 && item.time <= 60)
-              )}
-            </div>
-          </TabsContent>
-          <TabsContent value="longTodenu">
-            <div className="menu-wrapper flex flex-col gap-4 p-5">
-              {renderMenuItems(
-                menuData && menuData.filter((item) => item.time > 60)
-              )}
-            </div>
-          </TabsContent>
-        </Tabs>
-      </div>
+          </div>
+        </TabsContent>
+        <TabsContent value="mediumTodenu">
+          <div className="menu-wrapper flex flex-col gap-4 p-5">
+            {renderMenuItems(
+              menuData &&
+                menuData.filter((item) => item.time > 30 && item.time <= 60)
+            )}
+          </div>
+        </TabsContent>
+        <TabsContent value="longTodenu">
+          <div className="menu-wrapper flex flex-col gap-4 p-5">
+            {renderMenuItems(
+              menuData && menuData.filter((item) => item.time > 60)
+            )}
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };

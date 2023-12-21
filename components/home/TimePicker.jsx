@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useReducer } from "react";
-import { inputTime, inputFilled } from "../style/component/Time";
+import { inputTime, inputFilled } from "../../style/component/Time";
 
 export default function Time() {
   const [freeTime, setFreeTime] = useState("");
@@ -27,8 +27,8 @@ export default function Time() {
 
   return (
     <>
-      <section className="flex flex-col gap-5 sm:flex-row justify-between max-w-screen-lg m-auto ">
-        <div className="m-auto text-center text-2xl font-bold">
+      <section className=" flex flex-col gap-5 sm:flex-row justify-between m-auto my-5">
+        <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
           <h2>Your Freetime</h2>
           <div
             className="relative"
@@ -66,7 +66,7 @@ export default function Time() {
             </label>
           </div>
         </div>
-        <div className="m-auto text-center text-2xl font-bold">
+        <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
           <h2>Breaktime</h2>
           <div
             className="relative"
@@ -105,7 +105,6 @@ export default function Time() {
           </div>
         </div>
       </section>
-      <button className="bg-orange-500 p-5 rounded-lg">Checkout</button>
     </>
   );
 }

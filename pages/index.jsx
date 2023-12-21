@@ -1,6 +1,6 @@
-import Time from "../components/Time";
-import Menu from "../components/Menu";
-import Bill from "../components/Bill";
+import Time from "../components/home/TimePicker";
+import Menu from "../components/home/Menu";
+import Bill from "../components/home/Bill";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
     <>
       {/* <button onClick={()=>console.log(session)}>log session</button> */}
       <Time></Time>
-      <div className="grid md:grid-cols-7 sm:grid-cols-2 gap-4">
+      <div className="flex justify-between items-start ">
         <Menu></Menu>
         <Bill></Bill>
       </div>
