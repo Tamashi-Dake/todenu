@@ -1,7 +1,5 @@
 # Project Name: Todenu
 
-currently working on an Android project so this project is on hold atm
-
 Project description:
 - [ ] Home (Todenu workspace)
 - [ ] Your Todenu (user's Todenu)

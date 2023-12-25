@@ -13,10 +13,11 @@ import {
   sortableKeyboardCoordinates,
   useSortable,
 } from "@dnd-kit/sortable";
+import { format } from "path";
 
 const Bill = () => {
   const [billData, setBillData] = useState([]);
-
+  const [totalTime, setTotalTime] = useState("");
   // can't make this work right now
   // const [isDragging, setIsDragging] = useState(false);
   const sensors = useSensors(
@@ -62,7 +63,30 @@ const Bill = () => {
       setBillData(newBillData);
     }
   };
-  // console.log("Bill data:", billData);
+  useEffect(() => {
+    if (billData.length === 0) {
+      setTotalTime("");
+      return;
+    }
+    const newTotalTime = billData.reduce((acc, item) => {
+      return acc + item.time;
+    }, 0);
+    setTotalTime(formatTime(newTotalTime));
+  }, [billData]);
+
+  const formatTime = (time) => {
+    const hours = Math.floor(time / 60);
+    const minutes = time % 60;
+    return `${formatHours(hours)} ${formatMinutes(minutes)}`;
+  };
+  const formatHours = (hours) => {
+    if (hours === 0) return "";
+    return hours < 2 ? `${hours} hour` : `${hours} hours`;
+  };
+  const formatMinutes = (minutes) => {
+    if (minutes === 0) return "";
+    return minutes < 2 ? `${minutes} minute` : `${minutes} minutes`;
+  };
 
   return (
     <div
@@ -115,10 +139,10 @@ const Bill = () => {
       </div>
       <div
         id="total"
-        className="flex justify-around m-5 items-center text-3xl font-bold"
+        className="flex justify-between m-5 items-center text-3xl font-bold"
       >
-        <span className="">Total</span>
-        <p>Calculate total time </p>
+        <span className="">Total time</span>
+        <p id="totalTime">{totalTime}</p>
       </div>
       <div id="checkout" className=" flex justify-between m-5 text-gray-50">
         <button className="bg-orange-500 p-5 rounded-lg">Checkout</button>

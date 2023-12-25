@@ -38,7 +38,7 @@ const Menu = () => {
             key={item._id}
             className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 border-sky-950 p-3"
           >
-            <h2 className="text-xl font-bold col-span-2 uppercase font-title">
+            <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title">
               {item.name}
             </h2>
             <p className="text-left font-body">{item.description}</p>
