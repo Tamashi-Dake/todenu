@@ -1,4 +1,4 @@
-import Time from "../components/home/TimePicker";
+import Time from "../components/home/TimeInput";
 import Menu from "../components/home/Menu";
 import Bill from "../components/home/Bill";
 import Image from "next/image";
