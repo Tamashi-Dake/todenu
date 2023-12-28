@@ -1,21 +1,17 @@
 "use client";
-import { useState, useEffect, useReducer } from "react";
-import { inputTime, inputFilled } from "../../style/component/Time";
-
+import { useState, useEffect, useRef, useReducer } from "react";
+import { format } from "path";
+import { useDispatch, useSelector } from "react-redux";
+import { setFreeTime, setBreakTime } from "../../lib/redux/timeSlice";
 export default function Time() {
-  const [freeTime, setFreeTime] = useState("");
-  const [breakTime, setBreakTime] = useState("");
-  console.log(freeTime);
-  const handleFreeTimeChange = (event) => {
-    const time = event.target.value;
-    setFreeTime(time);
-  };
+  const dispatch = useDispatch();
+  const { freeTime, breakTime } = useSelector((state) => state.time);
 
-  const handleBreakTimeChange = (event) => {
-    const time = event.target.value;
-    setBreakTime(time);
-  };
+  // Reminder: useRef will NOT cause re-render -> combine with useState to rerender when value changes
+  const prevFreeTime = useRef();
+  const prevBreakTime = useRef();
 
+  // gọi hàm initTE() để khởi tạo Timepicker
   useEffect(() => {
     const _initTE = async () => {
       const use = (await import("tw-elements")).initTE;
@@ -24,21 +20,34 @@ export default function Time() {
     };
     _initTE();
   }, []);
+  useEffect(() => {
+    prevFreeTime.current = freeTime;
+    prevBreakTime.current = breakTime;
+  }, [freeTime, breakTime]);
 
+  const handleFreeTimeChange = (event) => {
+    dispatch(setFreeTime(formatTime(event.target.value)));
+  };
+
+  const handleBreakTimeChange = (event) => {
+    dispatch(setBreakTime(formatTime(event.target.value)));
+  };
+  const formatTime = (input) => {
+    let formattedTime = input.replace(/[^0-9]/g, ""); // Loại bỏ tất cả các ký tự không phải số
+    if (formattedTime.length > 2) {
+      // Thêm dấu ":" sau 2 số đầu tiên
+      formattedTime = formattedTime.slice(0, 2) + ":" + formattedTime.slice(2);
+    }
+    // Giới hạn độ dài chuỗi giờ:phút thành 5 ký tự
+    formattedTime = formattedTime.slice(0, 5);
+    return formattedTime;
+  };
   return (
     <>
       <section className=" flex flex-col gap-5 sm:flex-row justify-between m-auto my-5">
         <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
           <h2>Your Freetime</h2>
-          <div
-            className="relative"
-            data-te-with-icon="false"
-            data-te-timepicker-init
-            data-te-input-wrapper-init
-            id="timepicker-just-input"
-            data-te-format24="true"
-            onSelect={handleFreeTimeChange}
-          >
+          <div className="relative">
             <input
               type="text"
               value={freeTime}
@@ -51,32 +60,24 @@ export default function Time() {
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100"
               data-te-toggle="timepicker-just-input"
-              id="timepicker"
-              readOnly
+              id="timepickerFreetime"
+              onChange={handleFreeTimeChange}
             />
             <label
-              htmlFor="timepicker"
+              htmlFor="timepickerFreetime"
               className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out ${
                 freeTime !== ""
                   ? "-translate-y-[0.9rem] scale-[0.8] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
                   : ""
               }`}
             >
-              Select a time
+              Type a time
             </label>
           </div>
         </div>
         <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
-          <h2>Breaktime</h2>
-          <div
-            className="relative"
-            data-te-with-icon="false"
-            data-te-timepicker-init
-            data-te-input-wrapper-init
-            id="timepicker-just-input"
-            data-te-format24="true"
-            onSelect={handleBreakTimeChange}
-          >
+          <h2>Your Breaktime</h2>
+          <div className="relative">
             <input
               type="text"
               value={breakTime}
@@ -89,18 +90,18 @@ export default function Time() {
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100"
               data-te-toggle="timepicker-just-input"
-              id="timepicker"
-              readOnly
+              id="timepickerBreaktime"
+              onChange={handleBreakTimeChange}
             />
             <label
-              htmlFor="timepicker"
+              htmlFor="timepickerBreaktime"
               className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out ${
-                freeTime !== ""
+                breakTime !== ""
                   ? "-translate-y-[0.9rem] scale-[0.8] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
                   : ""
               }`}
             >
-              Select a time
+              Type a time
             </label>
           </div>
         </div>

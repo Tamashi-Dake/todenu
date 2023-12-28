@@ -14,10 +14,20 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { format } from "path";
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalTime } from "../../lib/redux/timeSlice";
 
 const Bill = () => {
   const [billData, setBillData] = useState([]);
-  const [totalTime, setTotalTime] = useState("");
+  const dispatch = useDispatch();
+  // const [totalTime, setTotalTime] = useState("");
+  const { freeTime, breakTime, totalTime } = useSelector((state) => state.time);
+
+  if (breakTime > "22:00") {
+    alert("Your Freetime is not enough");
+    // dispatch(setFreeTime(prevFreeTime.current));
+    // dispatch(setTotalTime(prevTotalTime.current));
+  }
   // can't make this work right now
   // const [isDragging, setIsDragging] = useState(false);
   const sensors = useSensors(
@@ -49,6 +59,7 @@ const Bill = () => {
   const handleDragOver = (event) => {
     event.preventDefault();
   };
+
   const handleDragEnd = (event) => {
     // setIsDragging(false);
     const { active, over } = event;
@@ -63,15 +74,16 @@ const Bill = () => {
       setBillData(newBillData);
     }
   };
+
   useEffect(() => {
     if (billData.length === 0) {
-      setTotalTime("");
+      dispatch(setTotalTime(""));
       return;
     }
     const newTotalTime = billData.reduce((acc, item) => {
       return acc + item.time;
     }, 0);
-    setTotalTime(formatTime(newTotalTime));
+    dispatch(setTotalTime(formatTime(newTotalTime)));
   }, [billData]);
 
   const formatTime = (time) => {
