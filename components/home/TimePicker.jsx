@@ -1,21 +1,20 @@
 "use client";
-import { useState, useEffect, useReducer } from "react";
-import { inputTime, inputFilled } from "../../style/component/Time";
-
+import { useState, useEffect, useRef, useReducer } from "react";
+import { format } from "path";
+import { useDispatch, useSelector } from "react-redux";
+import { setFreeTime, setBreakTime } from "../../lib/redux/timeSlice";
 export default function Time() {
-  const [freeTime, setFreeTime] = useState("");
-  const [breakTime, setBreakTime] = useState("");
-  console.log(freeTime);
-  const handleFreeTimeChange = (event) => {
-    const time = event.target.value;
-    setFreeTime(time);
-  };
+  const dispatch = useDispatch();
+  const { freeTime, breakTime } = useSelector((state) => state.time);
+  const [freeTimeInput, setFreeTimeInput] = useState(freeTime);
+  const [breakTimeInput, setBreakTimeInput] = useState(breakTime);
+  console.log(freeTime, breakTime);
 
-  const handleBreakTimeChange = (event) => {
-    const time = event.target.value;
-    setBreakTime(time);
-  };
+  // Reminder: useRef will NOT cause re-render -> combine with useState to rerender when value changes
+  const prevFreeTime = useRef("00:00");
+  const prevBreakTime = useRef("00:00");
 
+  // gọi hàm initTE() để khởi tạo Timepicker
   useEffect(() => {
     const _initTE = async () => {
       const use = (await import("tw-elements")).initTE;
@@ -24,6 +23,41 @@ export default function Time() {
     };
     _initTE();
   }, []);
+
+  // Update the previous freeTime and breakTime values when they change
+  useEffect(() => {
+    prevFreeTime.current = freeTime;
+    prevBreakTime.current = breakTime;
+  }, [freeTime, breakTime]);
+
+  const handleFreeTimeChange = (event) => {
+    if (event.target.value < breakTime) {
+      alert("Your Breaktime can't be more than your Freetime");
+      dispatch(setFreeTime(prevFreeTime.current));
+      setFreeTimeInput(freeTime);
+    } else dispatch(setFreeTime(event.target.value));
+  };
+
+  const handleBreakTimeChange = (event) => {
+    if (freeTime !== "" && event.target.value > freeTime) {
+      alert("Your Breaktime can't be more than your Freetime");
+      dispatch(setBreakTime(prevBreakTime.current));
+      setBreakTimeInput(breakTime);
+    } else dispatch(setBreakTime(event.target.value));
+  };
+
+  // const formatTime = (time) => {
+  //   const [hours, minutes] = time.split(":");
+  //   return `${formatHours(hours)} ${formatMinutes(minutes)}`;
+  // };
+  // const formatHours = (hours) => {
+  //   if (hours === "00") return "";
+  //   return hours < 2 ? `${hours} hour` : `${hours} hours`;
+  // };
+  // const formatMinutes = (minutes) => {
+  //   if (minutes === "00") return "";
+  //   return minutes < 2 ? `${minutes} minute` : `${minutes} minutes`;
+  // };
 
   return (
     <>
@@ -41,7 +75,7 @@ export default function Time() {
           >
             <input
               type="text"
-              value={freeTime}
+              value={freeTimeInput ? freeTimeInput : freeTime}
               className="peer 
           min-h-[auto] w-full 
           rounded border-0 
@@ -51,11 +85,11 @@ export default function Time() {
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100"
               data-te-toggle="timepicker-just-input"
-              id="timepicker"
+              id="timepickerFreetime"
               readOnly
             />
             <label
-              htmlFor="timepicker"
+              htmlFor="timepickerFreetime"
               className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out ${
                 freeTime !== ""
                   ? "-translate-y-[0.9rem] scale-[0.8] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
@@ -67,7 +101,7 @@ export default function Time() {
           </div>
         </div>
         <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
-          <h2>Breaktime</h2>
+          <h2>Your Breaktime</h2>
           <div
             className="relative"
             data-te-with-icon="false"
@@ -79,7 +113,7 @@ export default function Time() {
           >
             <input
               type="text"
-              value={breakTime}
+              value={breakTimeInput ? breakTimeInput : breakTime}
               className="peer 
           min-h-[auto] w-full 
           rounded border-0 
@@ -89,13 +123,13 @@ export default function Time() {
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100"
               data-te-toggle="timepicker-just-input"
-              id="timepicker"
+              id="timepickerBreaktime"
               readOnly
             />
             <label
-              htmlFor="timepicker"
+              htmlFor="timepickerBreaktime"
               className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out ${
-                freeTime !== ""
+                breakTime !== ""
                   ? "-translate-y-[0.9rem] scale-[0.8] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
                   : ""
               }`}
