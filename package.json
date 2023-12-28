@@ -31,6 +31,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.46.1",
     "react-redux": "^9.0.4",
+    "react-tabs": "^6.0.2",
     "redux": "^5.0.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
