@@ -12,9 +12,9 @@ Main Objective (development version):
 
 Working features:  
 - [ ] Deal with time input + Pomodoro timer
-- [ ] Update bill with total job and price(time)  
+- [x] Update bill with total job and price(time)  
 - [ ] Checkout to start timecounter (sẽ xem xét cho từng job)  
-- [ ] Random to randomize job within freetime (require fill freetime first)  
+- [ ] Random to randomize job within freetime (require fill time input first)  
 - [ ] Store job statistics for each user
 - [ ] Responsive for small screen
 - [ ] Remove all unused dependencies + refactor project structure

@@ -2,10 +2,14 @@
 import { useState, useEffect, useRef, useReducer } from "react";
 import { format } from "path";
 import { useDispatch, useSelector } from "react-redux";
-import { setFreeTime, setBreakTime } from "../../lib/redux/timeSlice";
+import {
+  setFreeTime,
+  setBreakTime,
+  setPomodoro,
+} from "../../lib/redux/timeSlice";
 export default function Time() {
   const dispatch = useDispatch();
-  const { freeTime, breakTime } = useSelector((state) => state.time);
+  const { freeTime, breakTime, pomodoro } = useSelector((state) => state.time);
 
   // Reminder: useRef will NOT cause re-render -> combine with useState to rerender when value changes
   const prevFreeTime = useRef();
@@ -62,6 +66,7 @@ export default function Time() {
               data-te-toggle="timepicker-just-input"
               id="timepickerFreetime"
               onChange={handleFreeTimeChange}
+              maxLength={5}
             />
             <label
               htmlFor="timepickerFreetime"
@@ -92,6 +97,7 @@ export default function Time() {
               data-te-toggle="timepicker-just-input"
               id="timepickerBreaktime"
               onChange={handleBreakTimeChange}
+              maxLength={5}
             />
             <label
               htmlFor="timepickerBreaktime"
@@ -105,6 +111,24 @@ export default function Time() {
             </label>
           </div>
         </div>
+        <button
+          onClick={() => {
+            dispatch(setPomodoro(!pomodoro));
+          }}
+          className={
+            "w-[180px] font-bold text-2xl rounded-lg p-5 m-auto transition-all duration-200 ease-linear text-neutral-100 " +
+            (pomodoro
+              ? "bg-orange-500 hover:bg-white hover:text-black"
+              : "bg-primary hover:bg-white hover:text-black")
+          }
+          title={
+            pomodoro
+              ? "Take a 5 min break after 25 min working!"
+              : "Only start breaktime when each Todenu is done!"
+          }
+        >
+          {pomodoro ? "Pomodoro" : "Focus"}
+        </button>
       </section>
     </>
   );

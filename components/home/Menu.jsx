@@ -12,7 +12,7 @@ const styles = {
 };
 const Menu = () => {
   const [menuData, setMenuData] = useState(null);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const userEmail = session?.user?.email;
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Menu = () => {
             draggable="true"
             onDragStart={(event) => handleDragStart(event, item)}
             key={item._id}
-            className="subMenu w-[90%] grid grid-cols-2  m-auto border-dotted border-2 border-sky-950 p-3"
+            className="subMenu w-full grid grid-cols-2  m-auto border-dotted border-2 border-sky-950 p-3"
           >
             <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title">
               {item.name}
@@ -58,106 +58,57 @@ const Menu = () => {
     );
 
   return (
-    <div className=" w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto min-h-[500px]">
+    <div className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px]">
       <h1 className="font-title text-5xl font-bold m-8">MENU</h1>
 
-      {/* <div className="m-auto w-[90%] text-lg font-semibold text-center text-black  ">
-        <div className="flex flex-wrap -mb-px justify-center">
-          <div className="me-2 inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-white hover:bg-cyan-600 active-tabs">
-            
-          </div>
-          <div className="me-2 inline-block p-4  border-b-2 border-blue-600 rounded-t-lg  hover:text-white hover:bg-cyan-600">
-            Short
-          </div>
-          <div className="me-2 inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-white hover:bg-cyan-600">
-            Medium
-          </div>
-          <div className="me-2 inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-white hover:bg-cyan-600">
-            Long
-          </div>
-        </div>
-      </div>
-      <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg active-content">
-        {renderMenuItems(
-          menuData && menuData.filter((item) => userEmail === item.email)
-        )}
-      </div>
-
-      <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
-        {renderMenuItems(
-          menuData &&
-            menuData.filter((item) =>
-              userEmail === item.email ? item.time < 30 : null
-            )
-        )}
-      </div>
-
-      <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
-        {renderMenuItems(
-          menuData &&
-            menuData.filter((item) =>
-              userEmail === item.email
-                ? item.time > 30 && item.time <= 60
-                : null
-            )
-        )}
-      </div>
-      <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
-        {renderMenuItems(
-          menuData &&
-            menuData.filter((item) =>
-              userEmail === item.email ? item.time > 60 : null
-            )
-        )}
-      </div> */}
-
-      <Tabs className={"h-full m-5"}>
+      <Tabs className={"grow m-5"}>
         <TabList className={"mb-0"}>
           <Tab>All</Tab>
           <Tab>Short</Tab>
           <Tab>Medium</Tab>
           <Tab>Long</Tab>
         </TabList>
-
-        <TabPanel>
-          <div className="menu-wrapper w-11/12 m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-lg active-content">
-            {renderMenuItems(
-              menuData && menuData.filter((item) => userEmail === item.email)
-            )}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
-            {renderMenuItems(
-              menuData &&
-                menuData.filter((item) =>
-                  userEmail === item.email ? item.time < 30 : null
-                )
-            )}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
-            {renderMenuItems(
-              menuData &&
-                menuData.filter((item) =>
-                  userEmail === item.email
-                    ? item.time > 30 && item.time <= 60
-                    : null
-                )
-            )}
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="menu-wrapper w-11/12 m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
-            {renderMenuItems(
-              menuData &&
-                menuData.filter((item) =>
-                  userEmail === item.email ? item.time > 60 : null
-                )
-            )}
-          </div>
-        </TabPanel>
+        <div className="h-[600px] overflow-auto">
+          <TabPanel>
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-lg active-content overflow-hidden">
+              {renderMenuItems(
+                menuData && menuData.filter((item) => userEmail === item.email)
+              )}
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
+              {renderMenuItems(
+                menuData &&
+                  menuData.filter((item) =>
+                    userEmail === item.email ? item.time < 30 : null
+                  )
+              )}
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
+              {renderMenuItems(
+                menuData &&
+                  menuData.filter((item) =>
+                    userEmail === item.email
+                      ? item.time > 30 && item.time <= 60
+                      : null
+                  )
+              )}
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
+              {renderMenuItems(
+                menuData &&
+                  menuData.filter((item) =>
+                    userEmail === item.email ? item.time > 60 : null
+                  )
+              )}
+            </div>
+          </TabPanel>
+        </div>
       </Tabs>
     </div>
   );

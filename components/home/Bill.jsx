@@ -15,19 +15,16 @@ import {
 } from "@dnd-kit/sortable";
 import { format } from "path";
 import { useDispatch, useSelector } from "react-redux";
-import { setTotalTime } from "../../lib/redux/timeSlice";
-
+import { setCounter, setTotalTime } from "../../lib/redux/timeSlice";
+import { get } from "http";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Bill = () => {
   const [billData, setBillData] = useState([]);
   const dispatch = useDispatch();
-  // const [totalTime, setTotalTime] = useState("");
   const { freeTime, breakTime, totalTime } = useSelector((state) => state.time);
+  const pomodoroMode = false;
 
-  if (breakTime > "22:00") {
-    alert("Your Freetime is not enough");
-    // dispatch(setFreeTime(prevFreeTime.current));
-    // dispatch(setTotalTime(prevTotalTime.current));
-  }
   // can't make this work right now
   // const [isDragging, setIsDragging] = useState(false);
   const sensors = useSensors(
@@ -75,16 +72,35 @@ const Bill = () => {
     }
   };
 
+  const getMinutes = (time) => {
+    const [hours, minutes] = time.split(":");
+    return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+  };
+  const breaktime = getMinutes(breakTime) || 0;
+  const freetime = getMinutes(freeTime) || 0;
   useEffect(() => {
-    if (billData.length === 0) {
-      dispatch(setTotalTime(""));
-      return;
-    }
-    const newTotalTime = billData.reduce((acc, item) => {
+    let newTotalTime = billData.reduce((acc, item) => {
       return acc + item.time;
     }, 0);
-    dispatch(setTotalTime(formatTime(newTotalTime)));
-  }, [billData]);
+    billData.length >= 2
+      ? (newTotalTime += breaktime * (billData.length - 1))
+      : newTotalTime;
+    dispatch(setTotalTime(newTotalTime));
+    if (freetime >= 0 && breaktime >= 0) {
+      if (freetime < breaktime) {
+        toast.error("Your breaktime is more than your freetime");
+      }
+      if (totalTime > freetime) {
+        toast.error("Your total time is less than your freetime");
+      }
+    }
+    // console.log(totalTime, freetime, breaktime);
+  }, [billData, breaktime, freetime]);
+
+  const handleStart = () => {
+    dispatch(setCounter(true));
+  };
+  const handleRandom = () => {};
 
   const formatTime = (time) => {
     const hours = Math.floor(time / 60);
@@ -103,7 +119,7 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto min-h-[500px]"
+      className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
       <h1 className="font-title text-5xl font-bold m-5">Bill</h1>
       <div className="grid grid-cols-5 text-center font-extrabold text-2xl my-5">
@@ -151,14 +167,41 @@ const Bill = () => {
       </div>
       <div
         id="total"
-        className="flex justify-between m-5 items-center text-3xl font-bold"
+        className={
+          "flex justify-between m-5 items-center text-3xl font-bold " +
+          (totalTime === 0 ? "hidden" : "")
+        }
       >
         <span className="">Total time</span>
-        <p id="totalTime">{totalTime}</p>
+        <p
+          id="totalTime"
+          className={
+            totalTime > freetime && freeTime !== "" ? "text-red-500" : ""
+          }
+        >
+          {formatTime(totalTime)}
+        </p>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        limit={3}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div id="checkout" className=" flex justify-between m-5 text-gray-50">
-        <button className="bg-orange-500 p-5 rounded-lg">Checkout</button>
-        <button className="bg-blue-500 p-5 rounded-lg">Randomize</button>
+        <button className="bg-orange-500 p-5 rounded-lg" onClick={handleStart}>
+          Start
+        </button>
+        <button className="bg-blue-500 p-5 rounded-lg" onClick={handleRandom}>
+          Randomize
+        </button>
       </div>
     </div>
   );
