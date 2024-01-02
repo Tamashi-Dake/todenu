@@ -15,15 +15,22 @@ import {
 } from "@dnd-kit/sortable";
 import { format } from "path";
 import { useDispatch, useSelector } from "react-redux";
-import { setCounter, setTotalTime } from "../../lib/redux/timeSlice";
+import {
+  setBillData,
+  setCounter,
+  setTotalTime,
+} from "../../lib/redux/timeSlice";
 import { get } from "http";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getMinutes, formatTime } from "../../lib/timeUtils";
 const Bill = () => {
-  const [billData, setBillData] = useState([]);
   const dispatch = useDispatch();
-  const { freeTime, breakTime, totalTime } = useSelector((state) => state.time);
-  const pomodoroMode = false;
+  const { freeTime, breakTime, totalTime, billData } = useSelector(
+    (state) => state.time
+  );
+  const breaktime = getMinutes(breakTime) || 0;
+  const freetime = getMinutes(freeTime) || 0;
 
   // can't make this work right now
   // const [isDragging, setIsDragging] = useState(false);
@@ -36,20 +43,21 @@ const Bill = () => {
 
   const handleDeleteItem = (itemId) => {
     const updatedBillData = billData.filter((item) => item.key !== itemId);
-    setBillData(updatedBillData);
+    dispatch(setBillData(updatedBillData));
   };
 
   const handleDrop = (event) => {
     event.preventDefault();
     const data = event.dataTransfer.getData("application/json");
     // Kiểm tra loại dữ liệu của dữ liệu kéo thả
-    if (!data || typeof data !== "string") {
-      return; // Bỏ qua nếu loại dữ liệu không phù hợp
-    }
+    if (!data || typeof data !== "string") return;
+
+    // Chuyển dữ liệu từ JSON sang Object
     const item = JSON.parse(data);
     if (item) {
       const newItem = { ...item, key: Date.now() };
-      setBillData((prevData) => [...prevData, newItem]);
+      const updatedData = [...billData, newItem];
+      dispatch(setBillData(updatedData));
     }
   };
 
@@ -61,6 +69,7 @@ const Bill = () => {
     // setIsDragging(false);
     const { active, over } = event;
 
+    // Nếu phần tử được khác vị trí ban đầu
     if (active.id !== over.id) {
       const newBillData = [...billData];
       const draggedItem = newBillData.find((item) => item.key === active.id);
@@ -68,16 +77,10 @@ const Bill = () => {
       newBillData.splice(newBillData.indexOf(draggedItem), 1);
       newBillData.splice(overIndex, 0, draggedItem);
 
-      setBillData(newBillData);
+      dispatch(setBillData(newBillData));
     }
   };
 
-  const getMinutes = (time) => {
-    const [hours, minutes] = time.split(":");
-    return parseInt(hours, 10) * 60 + parseInt(minutes, 10);
-  };
-  const breaktime = getMinutes(breakTime) || 0;
-  const freetime = getMinutes(freeTime) || 0;
   useEffect(() => {
     let newTotalTime = billData.reduce((acc, item) => {
       return acc + item.time;
@@ -94,27 +97,12 @@ const Bill = () => {
         toast.error("Your total time is less than your freetime");
       }
     }
-    // console.log(totalTime, freetime, breaktime);
   }, [billData, breaktime, freetime]);
 
   const handleStart = () => {
     dispatch(setCounter(true));
   };
   const handleRandom = () => {};
-
-  const formatTime = (time) => {
-    const hours = Math.floor(time / 60);
-    const minutes = time % 60;
-    return `${formatHours(hours)} ${formatMinutes(minutes)}`;
-  };
-  const formatHours = (hours) => {
-    if (hours === 0) return "";
-    return hours < 2 ? `${hours} hour` : `${hours} hours`;
-  };
-  const formatMinutes = (minutes) => {
-    if (minutes === 0) return "";
-    return minutes < 2 ? `${minutes} minute` : `${minutes} minutes`;
-  };
 
   return (
     <div

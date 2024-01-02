@@ -22,7 +22,7 @@ export default function Home() {
         className={counter ? "hidden" : ""}
       >
         <Time></Time>
-        <div className="flex justify-between items-start grow">
+        <div className="flex flex-col md:flex-row justify-between items-start grow">
           <Menu></Menu>
           <Bill></Bill>
         </div>
@@ -34,7 +34,7 @@ export default function Home() {
         transition={{ duration: 0.3 }}
         className={counter ? "" : "hidden"}
       >
-        <Counter counter={counter} />
+        <Counter />
       </motion.div>
     </>
   );

@@ -6,7 +6,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white sticky top-0 z-10 m-8 rounded-sm">
+    <header className="bg-white  md:sticky top-0 z-10 m-8 rounded-sm">
       <nav
         className=" flex w-full items-center justify-between py-6 px-4 sm:px-6 lg:px-8"
         aria-label="Global"
@@ -41,9 +41,9 @@ const Header = () => {
             Your Todenu
           </a>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Profile
-          </a>
+          </a> */}
           <a
             href="/about"
             className="text-sm font-semibold leading-6 text-gray-900"
@@ -98,12 +98,12 @@ const Header = () => {
                 >
                   Your Todenu
                 </a>
-                <a
+                {/* <a
                   href="/profile"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Profile
-                </a>
+                </a> */}
                 <a
                   href="/about"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
