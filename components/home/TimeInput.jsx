@@ -41,9 +41,12 @@ export default function Time() {
     if (formattedTime.length > 2) {
       // Thêm dấu ":" sau 2 số đầu tiên
       formattedTime = formattedTime.slice(0, 2) + ":" + formattedTime.slice(2);
+    } else if (formattedTime.length > 5) {
+      // Thêm dấu ":" sau 2 số tiếp theo
+      formattedTime = formattedTime.slice(0, 5) + ":" + formattedTime.slice(5);
     }
     // Giới hạn độ dài chuỗi giờ:phút thành 5 ký tự
-    formattedTime = formattedTime.slice(0, 5);
+    formattedTime = formattedTime.slice(0, 7);
     return formattedTime;
   };
   return (
@@ -80,7 +83,7 @@ export default function Time() {
             </label>
           </div>
         </div>
-        <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
+        {/* <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
           <h2>Your Breaktime</h2>
           <div className="relative">
             <input
@@ -110,8 +113,8 @@ export default function Time() {
               Type a time
             </label>
           </div>
-        </div>
-        <button
+        </div> */}
+        {/* <button
           onClick={() => {
             dispatch(setPomodoro(!pomodoro));
           }}
@@ -128,7 +131,7 @@ export default function Time() {
           }
         >
           {pomodoro ? "Pomodoro" : "Focus"}
-        </button>
+        </button> */}
       </section>
     </>
   );

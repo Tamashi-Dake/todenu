@@ -23,14 +23,14 @@ import {
 import { get } from "http";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getMinutes, formatTime } from "../../lib/timeUtils";
+import { getSeconds, formatTime } from "../../lib/timeUtils";
 const Bill = () => {
   const dispatch = useDispatch();
-  const { freeTime, breakTime, totalTime, billData } = useSelector(
+  const { freeTime, breakTime, totalTime, billData, counter } = useSelector(
     (state) => state.time
   );
-  const breaktime = getMinutes(breakTime) || 0;
-  const freetime = getMinutes(freeTime) || 0;
+  const breaktime = getSeconds(breakTime) || 0;
+  const freetime = getSeconds(freeTime) || 0;
 
   // can't make this work right now
   // const [isDragging, setIsDragging] = useState(false);
@@ -100,9 +100,17 @@ const Bill = () => {
   }, [billData, breaktime, freetime]);
 
   const handleStart = () => {
-    dispatch(setCounter(true));
+    if (billData.length > 0) {
+      if (totalTime < freetime) {
+        dispatch(setCounter(!counter));
+      } else {
+        toast.error("Your total time is less than your freetime");
+      }
+    } else {
+      toast.error("Your bill is empty");
+    }
   };
-  const handleRandom = () => {};
+  // const handleRandom = () => {};
 
   return (
     <div
@@ -110,10 +118,10 @@ const Bill = () => {
       className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
       <h1 className="font-title text-5xl font-bold m-5">Bill</h1>
-      <div className="grid grid-cols-5 text-center font-extrabold text-2xl my-5">
-        <span className="col-span-3">JOBS</span>
-        <span className="col-span-2">Time</span>
-      </div>
+      <span className="text-lg font-bold m-4">
+        Tips: Double click to delete item from Bill
+      </span>
+
       <div className="border-b-2 border-sky-950 mx-2"></div>
 
       <div
@@ -184,12 +192,15 @@ const Bill = () => {
         theme="light"
       />
       <div id="checkout" className=" flex justify-between m-5 text-gray-50">
-        <button className="bg-orange-500 p-5 rounded-lg" onClick={handleStart}>
+        <button
+          className="grow bg-orange-500 p-5 rounded-lg"
+          onClick={handleStart}
+        >
           Start
         </button>
-        <button className="bg-blue-500 p-5 rounded-lg" onClick={handleRandom}>
+        {/* <button className="bg-blue-500 p-5 rounded-lg" onClick={handleRandom}>
           Randomize
-        </button>
+        </button> */}
       </div>
     </div>
   );

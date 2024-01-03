@@ -59,7 +59,7 @@ const Menu = () => {
 
   return (
     <div className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px]">
-      <h1 className="font-title text-5xl font-bold m-8">MENU</h1>
+      <h1 className="font-title text-5xl font-bold m-5">MENU</h1>
 
       <Tabs className={"grow m-5"}>
         <TabList className={"mb-0"}>
