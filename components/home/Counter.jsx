@@ -38,7 +38,7 @@ const Counter = () => {
   };
   const animationsBreak = {
     initial: { opacity: 0, x: 100 },
-    animate: { opacity: 1, x: 200 },
+    animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -100 },
   };
   useEffect(() => {
@@ -161,10 +161,10 @@ const Counter = () => {
   };
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row  w-full lg:h-[600px] bg-[#cbc5b4] rounded-t-md overflow-x-hidden ">
+      <div className="flex flex-col-reverse lg:flex-row  w-full lg:h-[600px] bg-[#8ccce2] rounded-t-md overflow-x-hidden ">
         <div
           className={
-            "flex flex-col w-full justify-center items-center " +
+            "flex flex-col w-full lg:w-1/2 justify-center items-center " +
             (isBreakActive ? "opacity-60 " : "opacity-100")
           }
         >
@@ -173,25 +173,25 @@ const Counter = () => {
               {index === 0 ? (
                 <motion.div
                   key={item.id}
-                  className="item-wrapper flex flex-col transition-all h-[84px] ml-8 mr-14 ease-linear rounded-sm max-w-[800px]"
+                  className="w-[620px] lg:w-4/5 item-wrapper flex flex-col transition-all h-[84px] mr-[20px]  ease-linear  max-w-[800px]"
                   whileHover={{ height: "150px" }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
                   // transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="item flex items-center justify-between p-4  bg-slate-200 ">
+                  <div className="item flex items-center justify-between p-4  bg-slate-200 rounded-t-sm">
                     <div className="text-black">
                       <h2 className="text-xl font-bold">{item.name}</h2>
                       <p className="text-gray-500">{item.description}</p>
                     </div>
-                    <div className="text-black text-4xl font-bold">
+                    <div className="countdownTimer text-black text-4xl font-bold">
                       {/* Countdown logic here */}
                       {formatSeconds(currentCountdown)}
                     </div>
                   </div>
                   <div
                     className={
-                      "flex justify-around items-center  p-[15px] transition-all " +
+                      "flex justify-around items-center rounded-b-sm p-[15px] transition-all " +
                       (hoveredItems[index]
                         ? "opacity-1 bg-slate-200"
                         : "opacity-0")
@@ -220,25 +220,25 @@ const Counter = () => {
               ) : (
                 <motion.div
                   key={item.id}
-                  className="item-wrapper flex transition-all h-[84px] ml-8 ease-linear rounded-sm "
+                  className="w-[620px] lg:w-5/6 item-wrapper flex transition-all h-[84px] ml-8 ease-linear  "
                   whileHover={{ x: -10 }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
                   // transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="item flex w-full items-center justify-between p-4  bg-slate-300 max-w-[800px]">
+                  <div className="item flex w-full items-center justify-between p-4  bg-slate-300 max-w-[800px] rounded-l-sm">
                     <div className="text-black">
                       <h2 className="text-xl font-bold">{item.name}</h2>
                       <p className="text-gray-500">{item.description}</p>
                     </div>
-                    <div className="text-black text-4xl font-bold">
+                    <div className="countdownTimer text-black text-4xl font-bold">
                       {/* Countdown logic here */}
                       {formatSeconds(item.time * 60)}
                     </div>
                   </div>
                   <div
                     className={
-                      "flex justify-center items-center transition-all duration-500 ease-linear bg-red-500 px-4 z-[-1] " +
+                      "flex justify-center items-center transition-all duration-500 ease-linear bg-red-500 px-4 z-[-1] rounded-r-sm" +
                       (hoveredItems[index] ? "opacity-1" : "opacity-0")
                     }
                   >
@@ -255,42 +255,46 @@ const Counter = () => {
             </>
           ))}
         </div>
-        <motion.div
-          variants={animations}
-          initial={isBreakActive ? "exit" : "initial"}
-          animate={isBreakActive ? "exit" : "animate"}
-          className={
-            "flex flex-col justify-center items-center lg:w-1/2" +
-            " " +
-            (isBreakActive ? "hidden" : "")
-          }
-        >
-          <div className="text-3xl text-white">Time remaining</div>
-          <div className="text-9xl md:5xl text-white">
-            {formatSeconds(remainingTotalTime)}
-          </div>
-        </motion.div>
-        <motion.div
-          variants={animationsBreak}
-          initial={isBreakActive ? "initial" : "exit"}
-          animate={isBreakActive ? "animate" : "ecit"}
-          className={
-            "flex flex-col justify-center items-center md:w-1/2" +
-            " " +
-            (isBreakActive ? "" : "hidden")
-          }
-        >
-          <div className="text-3xl text-green-500">Break time!</div>
-          <div className="text-9xl text-green-400">
-            {formatSeconds(remainingBreakTime)}
-          </div>
-        </motion.div>
+        <div className="flex flex-col justify-center items-center p-5 lg:w-1/2">
+          <motion.div
+            variants={animations}
+            initial={isBreakActive ? "exit" : "initial"}
+            animate={isBreakActive ? "exit" : "animate"}
+            className={isBreakActive ? "hidden" : ""}
+          >
+            <div className="countdownTimer text-3xl text-white">
+              Time remaining
+            </div>
+            <div className="countdownTimer text-7xl md:5xl text-white">
+              {formatSeconds(remainingTotalTime)}
+            </div>
+          </motion.div>
+          <motion.div
+            variants={animationsBreak}
+            initial={isBreakActive ? "initial" : "exit"}
+            animate={isBreakActive ? "animate" : "ecit"}
+            className={isBreakActive ? "" : "hidden"}
+          >
+            <div className="countdownTimer text-3xl text-green-300">
+              Break time!
+            </div>
+            <div className="countdownTimer text-7xl text-green-200 lg:translate-x-[0px]">
+              {formatSeconds(remainingBreakTime)}
+            </div>
+          </motion.div>
+        </div>
       </div>
-      <div className="flex justify-around items-center bg-[#cbc5b4] rounded-b-md p-6 ">
-        <button className="bg-orange-500 p-5 rounded-lg" onClick={handleStop}>
+      <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 ">
+        <button
+          className="bg-teal-500 p-5 rounded-lg text-white"
+          onClick={handleStop}
+        >
           Go back
         </button>
-        <button className="bg-blue-500 p-5 rounded-lg" onClick={handleSkip}>
+        <button
+          className="bg-blue-500 p-5 rounded-lg text-white"
+          onClick={handleSkip}
+        >
           Skip
         </button>
       </div>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Orbitron");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -26,4 +28,8 @@ html {
 div[disabled] {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.countdownTimer {
+  font-family: "Orbitron", sans-serif;
 }
