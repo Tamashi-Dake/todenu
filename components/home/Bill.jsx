@@ -23,7 +23,7 @@ import {
 import { get } from "http";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getSeconds, formatTime } from "../../lib/timeUtils";
+import { getSeconds, formatTime, formatSeconds } from "../../lib/timeUtils";
 const Bill = () => {
   const dispatch = useDispatch();
   const { freeTime, breakTime, totalTime, billData, counter } = useSelector(
@@ -82,9 +82,10 @@ const Bill = () => {
   };
 
   useEffect(() => {
-    let newTotalTime = billData.reduce((acc, item) => {
-      return acc + item.time;
-    }, 0);
+    let newTotalTime =
+      billData.reduce((acc, item) => {
+        return acc + item.time;
+      }, 0) * 60;
     billData.length >= 2
       ? (newTotalTime += breaktime * (billData.length - 1))
       : newTotalTime;
@@ -97,18 +98,30 @@ const Bill = () => {
         toast.error("Your total time is less than your freetime");
       }
     }
-  }, [billData, breaktime, freetime]);
+  }, [billData, breakTime, freeTime, breaktime, freetime, totalTime]);
 
   const handleStart = () => {
-    if (billData.length > 0) {
-      if (totalTime < freetime) {
-        dispatch(setCounter(!counter));
-      } else {
-        toast.error("Your total time is less than your freetime");
-      }
-    } else {
+    if (billData.length === 0) {
       toast.error("Your bill is empty");
+      return;
     }
+
+    if (totalTime > freetime) {
+      toast.error("Your total time is less than your freetime");
+      return;
+    }
+
+    if (freetime <= 0 || breaktime <= 0) {
+      toast.error("Your breaktime and freetime must be greater than 0");
+      return;
+    }
+
+    if (freetime <= breaktime) {
+      toast.error("Your breaktime is more than your freetime");
+      return;
+    }
+
+    dispatch(setCounter(!counter));
   };
   // const handleRandom = () => {};
 
@@ -125,7 +138,10 @@ const Bill = () => {
       <div className="border-b-2 border-sky-950 mx-2"></div>
 
       <div
-        className="grow billContainer bg-slate-400 overflow-auto flex flex-col gap-1 p-2"
+        className={
+          "grow billContainer bg-slate-400 overflow-auto flex flex-col gap-1 p-2 " +
+          (billData.length > 0 ? " " : " justify-center")
+        }
         onDrop={handleDrop}
         onDragOver={handleDragOver}
       >
@@ -143,7 +159,7 @@ const Bill = () => {
                       {item.name}
                     </h2>
                     <p className="text-right font-body font-bold">
-                      {item.time} minutes
+                      {formatTime(item.time)}
                     </p>
                     <p className="text-left font-body">{item.description}</p>
                     <button
@@ -158,7 +174,7 @@ const Bill = () => {
             </SortableContext>
           </DndContext>
         ) : (
-          <p className="text-center">Drop Todenus from Menu in here</p>
+          <p className="">Drop Todenus from Menu in here</p>
         )}
       </div>
       <div
@@ -175,7 +191,7 @@ const Bill = () => {
             totalTime > freetime && freeTime !== "" ? "text-red-500" : ""
           }
         >
-          {formatTime(totalTime)}
+          {formatSeconds(totalTime)}
         </p>
       </div>
       <ToastContainer

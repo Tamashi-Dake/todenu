@@ -22,3 +22,8 @@ html {
 .billContainer::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+div[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}

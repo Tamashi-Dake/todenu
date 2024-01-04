@@ -13,9 +13,7 @@ export default function Home() {
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -100 },
   };
-  useEffect(() => {
-    console.log("use effect");
-  }, [counter]);
+
   return (
     <>
       <motion.div
@@ -26,7 +24,7 @@ export default function Home() {
         className={counter ? "hidden" : ""}
       >
         <Time></Time>
-        <div className="flex flex-col md:flex-row justify-between items-start grow">
+        <div className="flex flex-col lg:flex-row justify-between items-start grow gap-4">
           <Menu></Menu>
           <Bill></Bill>
         </div>

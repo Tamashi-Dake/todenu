@@ -7,6 +7,7 @@ import {
   setBreakTime,
   setPomodoro,
 } from "../../lib/redux/timeSlice";
+import { validateTime } from "../../lib/timeUtils";
 export default function Time() {
   const dispatch = useDispatch();
   const { freeTime, breakTime, pomodoro } = useSelector((state) => state.time);
@@ -30,22 +31,13 @@ export default function Time() {
   // }, [freeTime, breakTime]);
 
   const handleFreeTimeChange = (event) => {
-    dispatch(setFreeTime(formatTime(event.target.value)));
+    dispatch(setFreeTime(validateTime(event.target.value)));
   };
 
   const handleBreakTimeChange = (event) => {
-    dispatch(setBreakTime(formatTime(event.target.value)));
+    dispatch(setBreakTime(validateTime(event.target.value)));
   };
-  const formatTime = (input) => {
-    let formattedTime = input.replace(/[^0-9]/g, ""); // Loại bỏ tất cả các ký tự không phải số
-    if (formattedTime.length > 2) {
-      // Thêm dấu ":" sau 2 số đầu tiên
-      formattedTime = formattedTime.slice(0, 2) + ":" + formattedTime.slice(2);
-    }
-    // Giới hạn độ dài chuỗi giờ:phút thành 5 ký tự
-    formattedTime = formattedTime.slice(0, 5);
-    return formattedTime;
-  };
+
   return (
     <>
       <section className=" flex flex-col gap-5 sm:flex-row justify-between m-auto my-5">
@@ -59,7 +51,7 @@ export default function Time() {
           min-h-[auto] w-full 
           rounded border-0 
           bg-transparent 
-          px-3 py-[0.32rem] leading-[1.6]
+          px-3 py-[0.35rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100"
@@ -70,9 +62,9 @@ export default function Time() {
             />
             <label
               htmlFor="timepickerFreetime"
-              className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out ${
+              className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.35rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
                 freeTime !== ""
-                  ? "-translate-y-[0.9rem] scale-[0.8] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
+                  ? "-translate-y-[0.9rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
                   : ""
               }`}
             >
@@ -80,7 +72,7 @@ export default function Time() {
             </label>
           </div>
         </div>
-        {/* <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
+        <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
           <h2>Your Breaktime</h2>
           <div className="relative">
             <input
@@ -110,7 +102,7 @@ export default function Time() {
               Type a time
             </label>
           </div>
-        </div> */}
+        </div>
         {/* <button
           onClick={() => {
             dispatch(setPomodoro(!pomodoro));

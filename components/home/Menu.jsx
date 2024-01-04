@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { formatTime } from "../../lib/timeUtils";
 import "react-tabs/style/react-tabs.css";
 
 const styles = {
@@ -39,6 +40,7 @@ const Menu = () => {
         (userEmail && item.email) || (!userEmail && !item.email) ? (
           <div
             draggable="true"
+            onClick={() => console.log("clicked")}
             onDragStart={(event) => handleDragStart(event, item)}
             key={item._id}
             className="subMenu w-full grid grid-cols-2  m-auto border-dotted border-2 border-sky-950 p-3"
@@ -48,7 +50,7 @@ const Menu = () => {
             </h2>
             <p className="text-left font-body">{item.description}</p>
             <p className="text-right font-body font-bold">
-              {item.time} minutes
+              {formatTime(item.time)}
             </p>
           </div>
         ) : null
