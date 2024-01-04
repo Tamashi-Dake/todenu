@@ -24,6 +24,40 @@ import { get } from "http";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getSeconds, formatTime, formatSeconds } from "../../lib/timeUtils";
+class MyPointerSensor extends PointerSensor {
+  static activators = [
+    {
+      eventName: "onPointerDown",
+      handler: ({ nativeEvent: event }) => {
+        if (
+          !event.isPrimary ||
+          event.button !== 0 ||
+          isInteractiveElement(event.target)
+        ) {
+          return false;
+        }
+
+        return true;
+      },
+    },
+  ];
+}
+
+function isInteractiveElement(element) {
+  const interactiveElements = [
+    "button",
+    "input",
+    "textarea",
+    "select",
+    "option",
+  ];
+
+  if (interactiveElements.includes(element.tagName.toLowerCase())) {
+    return true;
+  }
+
+  return false;
+}
 const Bill = () => {
   const dispatch = useDispatch();
   const { freeTime, breakTime, totalTime, billData, counter } = useSelector(
@@ -35,7 +69,7 @@ const Bill = () => {
   // can't make this work right now
   // const [isDragging, setIsDragging] = useState(false);
   const sensors = useSensors(
-    useSensor(PointerSensor),
+    useSensor(MyPointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })
@@ -128,18 +162,14 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
+      className="flex flex-col w-4/5 lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
-      <h1 className="font-title text-5xl font-bold m-5">Bill</h1>
-      <span className="text-lg font-bold m-4">
-        Tips: Double click to delete item from Bill
-      </span>
-
-      <div className="border-b-2 border-sky-950 mx-2"></div>
+      <h1 className="font-sans text-5xl font-extrabold m-5">TODO LIST</h1>
+      <span className="text-lg font-bold m-4"></span>
 
       <div
         className={
-          "grow billContainer bg-slate-400 overflow-auto flex flex-col gap-1 p-2 " +
+          "grow billContainer bg-[#BCD6ED] overflow-auto flex flex-col gap-1 p-2 " +
           (billData.length > 0 ? " " : " justify-center")
         }
         onDrop={handleDrop}
@@ -154,8 +184,11 @@ const Bill = () => {
             <SortableContext items={billData.map((item) => item.key)}>
               {billData.map((item, index) => (
                 <SortableItem key={item.key} id={item.key} index={index}>
-                  <div className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 border-sky-950 p-3">
-                    <h2 className="text-xl font-bold col-span uppercase font-title text-left">
+                  <div className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 border-sky-950 p-3 bg-[#F5F8FF]">
+                    <h2
+                      className="text-xl font-bold col-span uppercase font-title text-left"
+                      onClick={() => console.log("clicked")}
+                    >
                       {item.name}
                     </h2>
                     <p className="text-right font-body font-bold">
@@ -209,7 +242,7 @@ const Bill = () => {
       />
       <div id="checkout" className=" flex justify-between m-5 text-gray-50">
         <button
-          className="grow bg-orange-500 p-5 rounded-lg"
+          className="grow bg-cyan-500 p-5 rounded-lg"
           onClick={handleStart}
         >
           Start

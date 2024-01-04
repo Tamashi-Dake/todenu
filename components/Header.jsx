@@ -6,19 +6,19 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white  md:sticky top-0 z-10 m-8 rounded-sm">
+    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-10 m-8 rounded-sm ">
       <nav
-        className=" flex w-full items-center justify-between py-6 px-4 sm:px-6 lg:px-8"
+        className=" flex w-full items-center justify-between px-4 sm:px-6 lg:px-8 "
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1 py-4">
           <a href="/" className="flex items-center">
             <img
-              className="h-10 w-auto"
-              src="https://img.freepik.com/premium-vector/wall-clock-logo-icon_414847-367.jpg"
-              alt=""
+              className="h-10 w-auto bg-inherit"
+              src="https://www.vhv.rs/dpng/d/504-5044927_white-clock-png-time-icon-png-white-transparent.png"
+              alt="logo"
             />
-            <span className=" font-bold font-logo text-2xl">TODENU</span>
+            <span className=" font-bold font-logo text-2xl ">TODENU</span>
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -30,25 +30,28 @@ const Header = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
-            Home
+        <Popover.Group className="hidden lg:flex lg:gap-x-12 lg:h-full ">
+          <a
+            href="/"
+            className="w-[100px] text-center text-base leading-6 py-6 font-extrabold hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+          >
+            HOME
           </a>
           <a
             href="/todenu"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className=" w-[100px] text-center text-base font-extrabold leading-6 py-6 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
-            Your Todenu
+            TODENUS
           </a>
 
-          {/* <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          {/* <a href="#" className="text-lg font-extrabold leading-6 ">
             Profile
           </a> */}
           <a
             href="/about"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className=" w-[100px] text-center text-base font-extrabold leading-6 py-6 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
-            About us
+            ABOUT US
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -88,27 +91,27 @@ const Header = () => {
               <div className="space-y-2 py-6">
                 <a
                   href="/"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-extrabold leading-7  hover:bg-gray-50"
                 >
-                  Home
+                  HOME
                 </a>
                 <a
                   href="/todenu"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-extrabold leading-7  hover:bg-gray-50"
                 >
-                  Your Todenu
+                  YOUR TODENU
                 </a>
                 {/* <a
                   href="/profile"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-extrabold leading-7  hover:bg-gray-50"
                 >
                   Profile
                 </a> */}
                 <a
                   href="/about"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-extrabold leading-7  hover:bg-gray-50"
                 >
-                  About us
+                  ABOUT US
                 </a>
               </div>
               <div className="py-6">

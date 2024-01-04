@@ -32,8 +32,13 @@ const Counter = () => {
     billData.length > 0 ? billData[0].time * 60 : null
   );
   const animations = {
-    initial: { opacity: 0, XMLHttpRequest: 100 },
+    initial: { opacity: 0, x: 100 },
     animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -100 },
+  };
+  const animationsBreak = {
+    initial: { opacity: 0, x: 100 },
+    animate: { opacity: 1, x: 200 },
     exit: { opacity: 0, x: -100 },
   };
   useEffect(() => {
@@ -44,6 +49,7 @@ const Counter = () => {
     setRemainingTotalTime(getSeconds(freeTime));
     setRemainingBreakTime(getSeconds(breakTime));
   }, [freeTime, breakTime]);
+
   // Đếm ngược thời gian rảnh
   useEffect(() => {
     let intervalTotal;
@@ -52,7 +58,7 @@ const Counter = () => {
         setRemainingTotalTime((prevTime) => prevTime - 1);
       }, 1000);
     }
-    if (remainingTotalTime === 0) {
+    if (remainingTotalTime === 0 && counter) {
       dispatch(setCounter(!counter));
       toast.success("You've working hard! But the time is up!");
     }
@@ -134,6 +140,8 @@ const Counter = () => {
     dispatch(setCounter(!counter));
     setRemainingTotalTime(getSeconds(freeTime) || 0);
     setRemainingBreakTime(getSeconds(breakTime) || 0);
+    setIsBreakActive(false);
+    setIsCurrentActive(true);
     setCurrentCountdown(billData[0].time * 60);
   };
 
@@ -263,9 +271,9 @@ const Counter = () => {
           </div>
         </motion.div>
         <motion.div
-          variants={animations}
+          variants={animationsBreak}
           initial={isBreakActive ? "initial" : "exit"}
-          animate={isBreakActive ? "animate" : "exit"}
+          animate={isBreakActive ? "animate" : "ecit"}
           className={
             "flex flex-col justify-center items-center md:w-1/2" +
             " " +

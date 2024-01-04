@@ -24,7 +24,7 @@ export default function Home() {
         className={counter ? "hidden" : ""}
       >
         <Time></Time>
-        <div className="flex flex-col lg:flex-row justify-between items-start grow gap-4">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-4">
           <Menu></Menu>
           <Bill></Bill>
         </div>

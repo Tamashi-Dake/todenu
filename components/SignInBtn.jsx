@@ -18,7 +18,7 @@ const SignInBtn = () => {
       {status === "authenticated" ? (
         <Popover className="relative">
           <Popover.Button
-            className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+            className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 hover:bg-[#f5f8ff] transition-all duration-300 ease-linears"
             title={session?.user?.name}
           >
             <img
@@ -29,7 +29,8 @@ const SignInBtn = () => {
             />
             {session?.user?.name}
             <ChevronDownIcon
-              className="h-5 w-5 flex-none text-gray-400"
+              className="h-5 w-5 "
+              color="[#76ACFD]"
               aria-hidden="true"
             />
           </Popover.Button>
@@ -43,7 +44,7 @@ const SignInBtn = () => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute -right-8 top-full z-5 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+            <Popover.Panel className="absolute -right-8 top-full z-5 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 ">
               <div className="p-4">
                 <div className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                   <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -76,9 +77,9 @@ const SignInBtn = () => {
       ) : (
         <button
           onClick={handleSignIn}
-          className="text-sm font-semibold leading-6 text-gray-900"
+          className="text-lg font-extrabold leading-6 py-6 px-4 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
         >
-          Log in <span aria-hidden="true">&rarr;</span>
+          LOG IN <span aria-hidden="true">&rarr;</span>
         </button>
       )}
     </>

@@ -40,21 +40,23 @@ export default function Time() {
 
   return (
     <>
-      <section className=" flex flex-col gap-5 sm:flex-row justify-between m-auto my-5">
-        <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
-          <h2>Your Freetime</h2>
+      <section className=" flex flex-col gap-5 lg:flex-row justify-between m-auto my-5">
+        <div className="w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
+          <h2 className="font-extrabold">YOUR FREETIME</h2>
           <div className="relative">
             <input
               type="text"
               value={freeTime}
-              className="peer 
+              className={`peer 
           min-h-[auto] w-full 
-          rounded border-0 
+          rounded 
           bg-transparent 
           px-3 py-[0.35rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100 
-          data-[te-input-state-active]:placeholder:opacity-100"
+          data-[te-input-state-active]:placeholder:opacity-100 border-2 border-primary ${
+            freeTime !== "" ? "border-transparent" : ""
+          }`}
               data-te-toggle="timepicker-just-input"
               id="timepickerFreetime"
               onChange={handleFreeTimeChange}
@@ -72,20 +74,22 @@ export default function Time() {
             </label>
           </div>
         </div>
-        <div className="bg-neutral-100 m-auto text-center text-2xl font-bold rounded-lg">
-          <h2>Your Breaktime</h2>
+        <div className="w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
+          <h2 className="font-extrabold">YOUR BREAKTIME</h2>
           <div className="relative">
             <input
               type="text"
               value={breakTime}
-              className="peer 
+              className={`peer 
           min-h-[auto] w-full 
-          rounded border-0 
+          rounded  
           bg-transparent 
           px-3 py-[0.32rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100 
-          data-[te-input-state-active]:placeholder:opacity-100"
+          data-[te-input-state-active]:placeholder:opacity-100 border-2 border-primary ${
+            breakTime !== "" ? "border-transparent" : ""
+          }`}
               data-te-toggle="timepicker-just-input"
               id="timepickerBreaktime"
               onChange={handleBreakTimeChange}

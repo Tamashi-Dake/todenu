@@ -4,13 +4,6 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatTime } from "../../lib/timeUtils";
 import "react-tabs/style/react-tabs.css";
 
-const styles = {
-  tabs: "flex flex-wrap -mb-px justify-center",
-  tab: "me-2 inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-white hover:bg-cyan-600",
-  tabActive:
-    "me-2 inline-block p-4  border-b-2 border-blue-600 rounded-t-lg  hover:text-white hover:bg-cyan-600 active-tabs",
-  tabContent: "bg-slate-50 rounded-lg active-content",
-};
 const Menu = () => {
   const [menuData, setMenuData] = useState(null);
   const { data: session, status } = useSession();
@@ -60,19 +53,19 @@ const Menu = () => {
     );
 
   return (
-    <div className="flex flex-col w-2/5 bg-[#cbc5b4] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px]">
-      <h1 className="font-title text-5xl font-bold m-5">MENU</h1>
+    <div className="flex flex-col w-4/5 lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px]">
+      <h1 className=" text-5xl font-extrabold m-5 font-sans">MENU</h1>
 
-      <Tabs className={"grow m-5"}>
-        <TabList className={"mb-0"}>
-          <Tab>All</Tab>
-          <Tab>Short</Tab>
-          <Tab>Medium</Tab>
-          <Tab>Long</Tab>
+      <Tabs className={"grow m-3"}>
+        <TabList className={"flex mb-0"}>
+          <Tab className={"grow p-1 hover:cursor-pointer"}>All</Tab>
+          <Tab className={"grow p-1 hover:cursor-pointer"}>Short</Tab>
+          <Tab className={"grow p-1 hover:cursor-pointer"}>Medium</Tab>
+          <Tab className={"grow p-1 hover:cursor-pointer"}>Long</Tab>
         </TabList>
         <div className="h-[600px] overflow-auto">
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-lg active-content overflow-hidden">
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData && menuData.filter((item) => userEmail === item.email)
               )}
@@ -101,7 +94,7 @@ const Menu = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
+            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-b-lg rounded-l-lg">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
