@@ -4,6 +4,7 @@ import Bill from "../components/home/Bill";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import Counter from "../components/home/Counter";
+import { use, useEffect } from "react";
 export default function Home() {
   const counter = useSelector((state) => state.time.counter);
 
@@ -12,6 +13,9 @@ export default function Home() {
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -100 },
   };
+  useEffect(() => {
+    console.log("use effect");
+  }, [counter]);
   return (
     <>
       <motion.div

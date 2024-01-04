@@ -12,8 +12,8 @@ export default function Time() {
   const { freeTime, breakTime, pomodoro } = useSelector((state) => state.time);
 
   // Reminder: useRef will NOT cause re-render -> combine with useState to rerender when value changes
-  const prevFreeTime = useRef();
-  const prevBreakTime = useRef();
+  // const prevFreeTime = useRef();
+  // const prevBreakTime = useRef();
 
   // gọi hàm initTE() để khởi tạo Timepicker
   useEffect(() => {
@@ -24,10 +24,10 @@ export default function Time() {
     };
     _initTE();
   }, []);
-  useEffect(() => {
-    prevFreeTime.current = freeTime;
-    prevBreakTime.current = breakTime;
-  }, [freeTime, breakTime]);
+  // useEffect(() => {
+  //   prevFreeTime.current = freeTime;
+  //   prevBreakTime.current = breakTime;
+  // }, [freeTime, breakTime]);
 
   const handleFreeTimeChange = (event) => {
     dispatch(setFreeTime(formatTime(event.target.value)));
@@ -41,12 +41,9 @@ export default function Time() {
     if (formattedTime.length > 2) {
       // Thêm dấu ":" sau 2 số đầu tiên
       formattedTime = formattedTime.slice(0, 2) + ":" + formattedTime.slice(2);
-    } else if (formattedTime.length > 5) {
-      // Thêm dấu ":" sau 2 số tiếp theo
-      formattedTime = formattedTime.slice(0, 5) + ":" + formattedTime.slice(5);
     }
     // Giới hạn độ dài chuỗi giờ:phút thành 5 ký tự
-    formattedTime = formattedTime.slice(0, 7);
+    formattedTime = formattedTime.slice(0, 5);
     return formattedTime;
   };
   return (

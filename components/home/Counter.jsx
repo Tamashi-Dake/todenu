@@ -17,12 +17,11 @@ const Counter = () => {
   );
   const breaktime = getSeconds(breakTime) || 0;
   const [remainingTotalTime, setRemainingTotalTime] = useState(
-    getSeconds(freeTime) * 60 || 0
+    getSeconds(freeTime)
   );
 
   const [hoveredItems, setHoveredItems] = useState([]);
 
-  const [isActive, setIsActive] = useState(true);
   const [isBreakActive, setIsBreakActive] = useState(false);
   const [isCurrentActive, setIsCurrentActive] = useState(true);
   const [isCounterLoaded, setIsCounterLoaded] = useState(false);
@@ -36,13 +35,16 @@ const Counter = () => {
   };
   useEffect(() => {
     setCurrentCountdown(billData.length > 0 ? billData[0].time * 60 : null);
-    setRemainingTotalTime(getSeconds(freeTime) || 0);
-  }, [billData, freeTime]);
-
+  }, [billData]);
+  useEffect(() => {
+    setRemainingTotalTime(getSeconds(freeTime));
+  }, [freeTime]);
   // Đếm ngược thời gian rảnh
   useEffect(() => {
+    console.log("remainingTotalTime", remainingTotalTime);
+    console.log("freeTime", freeTime);
     let interval;
-    if (remainingTotalTime > 0 && isActive) {
+    if (remainingTotalTime > 0 && counter) {
       interval = setInterval(() => {
         setRemainingTotalTime((prevTime) => prevTime - 1);
       }, 1000);
@@ -50,12 +52,17 @@ const Counter = () => {
     // setCurrentCountdown(billData[0].time);
     setIsCounterLoaded(true);
     return () => clearInterval(interval);
-  }, [remainingTotalTime, freeTime]);
+  }, [remainingTotalTime, freeTime, counter]);
 
   // Đếm ngược thời gian của mỗi item
   useEffect(() => {
     let interval;
-    if (isCounterLoaded) {
+    // console.log("currentCountdown", currentCountdown);
+    // console.log(counter);
+    // console.log("remainingTotalTime", remainingTotalTime);
+    // console.log(getSeconds(freeTime));
+    // console.log("freeTime", freeTime);
+    if (counter) {
       if (currentCountdown > 0 && isCurrentActive) {
         interval = setInterval(() => {
           setCurrentCountdown((prevTime) => prevTime - 1);
@@ -75,7 +82,7 @@ const Counter = () => {
       }
       return () => clearInterval(interval);
     }
-  }, [currentCountdown, isCurrentActive]);
+  }, [currentCountdown, isCurrentActive, counter]);
   // useEffect(() => {
   //   if (isBreakActive) {
   //     let interval;
@@ -144,7 +151,7 @@ const Counter = () => {
   };
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row  w-full md:h-[700px] bg-[#cbc5b4] rounded-md">
+      <div className="flex flex-col-reverse md:flex-row  w-full md:h-[700px] bg-[#cbc5b4] rounded-t-md">
         <div className="flex flex-col justify-center items-center md:w-3/4 ">
           <div className="flex flex-col justify-between w-full">
             {billData.map((item, index) => (
@@ -252,7 +259,7 @@ const Counter = () => {
           <div className="text-9xl text-white">{formatSeconds(breaktime)}</div>
         </motion.div> */}
       </div>
-      <div className="flex justify-around items-center bg-[#cbc5b4]">
+      <div className="flex justify-around items-center bg-[#cbc5b4] rounded-b-md">
         <button className="bg-orange-500 p-5 rounded-lg" onClick={handleStop}>
           Go back
         </button>
