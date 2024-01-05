@@ -1,8 +1,8 @@
 const Loading = () => {
   return (
-    <main className="text-center">
+    <div className="text-center">
       <h2 className="text-primary">Loading...</h2>
-    </main>
+    </div>
   );
 };
 

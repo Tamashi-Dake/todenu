@@ -6,7 +6,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-10 m-8 rounded-sm ">
+    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 m-8 rounded-sm ">
       <nav
         className=" flex w-full items-center justify-between px-4 sm:px-6 lg:px-8 "
         aria-label="Global"
@@ -30,16 +30,16 @@ const Header = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12 lg:h-full ">
+        <Popover.Group className="hidden lg:flex lg:w-[600px] lg:h-full ">
           <a
             href="/"
-            className="w-[100px] text-center text-base leading-6 py-6 font-extrabold hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+            className="grow w-[100px] text-center text-base leading-6 py-6 px-10 font-extrabold hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
             HOME
           </a>
           <a
             href="/todenu"
-            className=" w-[100px] text-center text-base font-extrabold leading-6 py-6 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+            className="grow w-[100px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
             TODENUS
           </a>
@@ -49,7 +49,7 @@ const Header = () => {
           </a> */}
           <a
             href="/about"
-            className=" w-[100px] text-center text-base font-extrabold leading-6 py-6 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+            className="grow w-[100px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
             ABOUT US
           </a>

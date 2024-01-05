@@ -28,10 +28,17 @@ export default function Todenu() {
     fetchMenuData();
   }, [session]);
 
-  if (status === "loading") return <p>Loading...</p>;
+  if (status === "loading")
+    return (
+      <>
+        <div className="skeleton mx-auto">
+          <h1>Loading...</h1>
+        </div>
+      </>
+    );
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between mx-auto w-full xl:w-[50%] lg:w-[80%] md:w-[80%]">
         <div className="flex">
           <Search />
           <ComboBox />
@@ -50,7 +57,7 @@ export default function Todenu() {
         menuData.map((item) => (
           <div
             key={item._id}
-            className="p-4 border border-slate-300 my-3 mx-auto flex justify-between gap-5 items-start xl:w-[50%] lg:w-[80%] md:w-[80%]"
+            className="p-4 border w-full border-slate-300 my-3 mx-auto flex justify-between gap-5 items-start xl:w-[50%] lg:w-[80%] md:w-[80%]"
           >
             <div>
               <h2 className="font-bold text-2xl">{item.name}</h2>
@@ -69,7 +76,7 @@ export default function Todenu() {
           </div>
         ))
       ) : (
-        <p>No jobs found.</p>
+        <p>No jobs found. Click Add Todenu to add some works</p>
       )}
     </>
   );

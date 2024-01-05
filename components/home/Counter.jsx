@@ -11,6 +11,7 @@ import { Check, Pause, Play, Redo, RotateCw, Trash } from "lucide-react";
 import { toast } from "react-toastify";
 import { set } from "date-fns";
 import is from "date-fns/locale/is";
+import { useMediaQuery } from "react-responsive";
 
 const Counter = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ const Counter = () => {
   const [remainingBreakTime, setRemainingBreakTime] = useState(
     getSeconds(breakTime)
   );
-
+  const isMobile = useMediaQuery({ maxWidth: 767 }); // Điều kiện cho điện thoại di động
   const [hoveredItems, setHoveredItems] = useState([]);
 
   const [isBreakActive, setIsBreakActive] = useState(false);
@@ -134,6 +135,7 @@ const Counter = () => {
     dispatch(setBillData(updatedBillData));
     if (billData.length === 1) {
       dispatch(setCounter(!counter));
+      toast.success("You've finished your works");
     }
   };
   const handleStop = () => {
@@ -161,11 +163,12 @@ const Counter = () => {
   };
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row  w-full lg:h-[600px] bg-[#8ccce2] rounded-t-md overflow-x-hidden ">
+      <div className="flex flex-col-reverse lg:flex-row  w-full lg:h-[600px] bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
         <div
           className={
-            "flex flex-col w-full lg:w-1/2 justify-center items-center " +
-            (isBreakActive ? "opacity-60 " : "opacity-100")
+            "flex flex-col w-full lg:w-1/2  items-center " +
+            (isBreakActive ? "opacity-60 " : "opacity-100") +
+            (billData.length > 7 ? " justify-start" : " justify-center")
           }
         >
           {billData.map((item, index) => (
@@ -173,27 +176,28 @@ const Counter = () => {
               {index === 0 ? (
                 <motion.div
                   key={item.id}
-                  className="w-[620px] lg:w-4/5 item-wrapper flex flex-col transition-all h-[84px] mr-[20px]  ease-linear  max-w-[800px]"
+                  className="md:w-[620px] w-10/12 h-[150px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[20px]  ease-linear  max-w-[800px] "
                   whileHover={{ height: "150px" }}
+                  initial={isMobile ? { height: "150px" } : { height: "84px" }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
                   // transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="item flex items-center justify-between p-4  bg-slate-200 rounded-t-sm">
+                  <div className="item flex items-center justify-between p-4  bg-slate-200 rounded-t-sm z-20 ">
                     <div className="text-black">
                       <h2 className="text-xl font-bold">{item.name}</h2>
                       <p className="text-gray-500">{item.description}</p>
                     </div>
-                    <div className="countdownTimer text-black text-4xl font-bold">
+                    <div className="countdownTimer text-black text-2xl font-semibold">
                       {/* Countdown logic here */}
                       {formatSeconds(currentCountdown)}
                     </div>
                   </div>
                   <div
                     className={
-                      "flex justify-around items-center rounded-b-sm p-[15px] transition-all " +
+                      "flex justify-around items-center rounded-b-sm p-[15px] transition-all duration-200 " +
                       (hoveredItems[index]
-                        ? "opacity-1 bg-slate-200"
+                        ? "opacity-1 bg-slate-200 z-10"
                         : "opacity-0")
                     }
                   >
@@ -220,35 +224,35 @@ const Counter = () => {
               ) : (
                 <motion.div
                   key={item.id}
-                  className="w-[620px] lg:w-5/6 item-wrapper flex transition-all h-[84px] ml-8 ease-linear  "
+                  className="md:w-[620px] w-11/12 lg:w-5/6 max-w-[650px]   item-wrapper flex transition-all duration-100 h-[84px] ml-8  ease-linear "
                   whileHover={{ x: -10 }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
-                  // transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="item flex w-full items-center justify-between p-4  bg-slate-300 max-w-[800px] rounded-l-sm">
+                  <div className="item flex w-full items-center justify-between p-4  bg-slate-300 max-w-[800px] rounded-l-sm z-20 ">
                     <div className="text-black">
-                      <h2 className="text-xl font-bold">{item.name}</h2>
-                      <p className="text-gray-500">{item.description}</p>
+                      <h2 className="text-base md:text-xl font-bold">
+                        {item.name}
+                      </h2>
+                      <p className="text-gray-500 text-sm md:text-base">
+                        {item.description}
+                      </p>
                     </div>
-                    <div className="countdownTimer text-black text-4xl font-bold">
+                    <div className="countdownTimer text-black text-base md:text-2xl font-semibold">
                       {/* Countdown logic here */}
                       {formatSeconds(item.time * 60)}
                     </div>
                   </div>
                   <div
                     className={
-                      "flex justify-center items-center transition-all duration-500 ease-linear bg-red-500 px-4 z-[-1] rounded-r-sm" +
-                      (hoveredItems[index] ? "opacity-1" : "opacity-0")
+                      "flex justify-center items-center transition-all  ease-linear bg-red-500 z-10 md:z-[-1] px-4 rounded-r-sm" +
+                      (hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0")
                     }
+                    onClick={() => handleDelete(item.key)}
                   >
                     {/* <Check className="text-white font-size" /> */}
-                    <Trash
-                      className="text-white font-size"
-                      onClick={
-                        isBreakActive ? null : () => handleDelete(item.key)
-                      }
-                    />
+                    <Trash className="text-white font-size" />
                   </div>
                 </motion.div>
               )}
@@ -291,6 +295,17 @@ const Counter = () => {
         >
           Go back
         </button>
+        {isCurrentActive ? (
+          <Pause
+            className="lg:opacity-0 opacity-1 w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full"
+            onClick={handlePauseClick}
+          />
+        ) : (
+          <Play
+            className="lg:opacity-0 opacity-1  w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full"
+            onClick={isBreakActive ? null : handlePlayClick}
+          />
+        )}
         <button
           className="bg-blue-500 p-5 rounded-lg text-white"
           onClick={handleSkip}

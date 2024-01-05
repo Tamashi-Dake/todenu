@@ -33,7 +33,6 @@ const Menu = () => {
         (userEmail && item.email) || (!userEmail && !item.email) ? (
           <div
             draggable="true"
-            onClick={() => console.log("clicked")}
             onDragStart={(event) => handleDragStart(event, item)}
             key={item._id}
             className="subMenu w-full grid grid-cols-2  m-auto border-dotted border-2 border-sky-950 p-3"
@@ -53,7 +52,7 @@ const Menu = () => {
     );
 
   return (
-    <div className="flex flex-col w-4/5 lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px]">
+    <div className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px] ">
       <h1 className=" text-5xl font-extrabold m-5 font-sans">MENU</h1>
 
       <Tabs className={"grow m-3"}>
@@ -63,7 +62,7 @@ const Menu = () => {
           <Tab className={"grow p-1 hover:cursor-pointer"}>Medium</Tab>
           <Tab className={"grow p-1 hover:cursor-pointer"}>Long</Tab>
         </TabList>
-        <div className="h-[600px] overflow-auto">
+        <div className="h-[600px] overflow-auto styleScroll">
           <TabPanel>
             <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(

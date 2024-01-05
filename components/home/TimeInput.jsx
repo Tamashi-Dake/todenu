@@ -70,7 +70,7 @@ export default function Time() {
                   : ""
               }`}
             >
-              Type a time
+              Type a time (hh:mm)
             </label>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function Time() {
           min-h-[auto] w-full 
           rounded  
           bg-transparent 
-          px-3 py-[0.32rem] leading-[1.6]
+          px-3 py-[0.35rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100 border-2 border-primary ${
@@ -97,13 +97,13 @@ export default function Time() {
             />
             <label
               htmlFor="timepickerBreaktime"
-              className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out ${
+              className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.35rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
                 breakTime !== ""
-                  ? "-translate-y-[0.9rem] scale-[0.8] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
+                  ? "-translate-y-[0.9rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
                   : ""
               }`}
             >
-              Type a time
+              Type a time (hh:mm)
             </label>
           </div>
         </div>

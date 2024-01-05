@@ -124,14 +124,14 @@ const Bill = () => {
       ? (newTotalTime += breaktime * (billData.length - 1))
       : newTotalTime;
     dispatch(setTotalTime(newTotalTime));
-    if (freetime >= 0 && breaktime >= 0) {
-      if (freetime < breaktime) {
-        toast.error("Your breaktime is more than your freetime");
-      }
-      if (totalTime > freetime) {
-        toast.error("Your total time is less than your freetime");
-      }
-    }
+    // if (freetime >= 0 && breaktime >= 0) {
+    //   if (freetime < breaktime) {
+    //     // toast.error("Your breaktime is more than your freetime");
+    //   }
+    //   if (totalTime > freetime) {
+    //     // toast.error("Your total time is less than your freetime");
+    //   }
+    // }
   }, [billData, breakTime, freeTime, breaktime, freetime, totalTime]);
 
   const handleStart = () => {
@@ -162,14 +162,14 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="flex flex-col w-4/5 lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
+      className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
       <h1 className="font-sans text-5xl font-extrabold m-5">TODO LIST</h1>
       <span className="text-lg font-bold m-4"></span>
 
       <div
         className={
-          "grow billContainer bg-[#BCD6ED] overflow-auto flex flex-col gap-1 p-2 " +
+          "grow styleScroll bg-[#BCD6ED] overflow-auto flex flex-col gap-1 p-2 " +
           (billData.length > 0 ? " " : " justify-center")
         }
         onDrop={handleDrop}
@@ -276,6 +276,7 @@ const SortableItem = (props) => {
       : "",
     transition,
     opacity: isDragging ? 0.6 : 1,
+    touchAction: "none",
   };
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
