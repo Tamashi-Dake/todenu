@@ -6,7 +6,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 m-8 rounded-sm ">
+    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 m-10 rounded-sm ">
       <nav
         className=" flex w-full items-center justify-between px-4 sm:px-6 lg:px-8 "
         aria-label="Global"

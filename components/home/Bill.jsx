@@ -132,8 +132,12 @@ const Bill = () => {
       toast.error("Your bill is empty");
       return;
     }
-    if (freetime == "" || breaktime == "") {
-      toast.error("You must fill in freetime and breaktime first");
+    if (freetime == "") {
+      toast.error("You must fill in freetime ");
+      return;
+    }
+    if (breaktime == "" && billData.length > 1) {
+      toast.error("You must fill in breaktime ");
       return;
     }
     if (totalTime > freetime) {
@@ -154,14 +158,14 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
+      className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
       <h1 className="font-sans text-5xl font-extrabold m-5">TODO LIST</h1>
       <span className="text-lg font-bold m-4"></span>
 
       <div
         className={
-          "grow styleScroll bg-[#BCD6ED] overflow-auto flex flex-col gap-1 p-2 " +
+          "grow styleScroll bg-[#DEEBF7] overflow-auto flex flex-col gap-1 p-2 " +
           (billData.length > 0 ? " " : " justify-center")
         }
         onDrop={handleDrop}

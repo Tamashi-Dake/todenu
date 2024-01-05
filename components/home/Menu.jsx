@@ -50,7 +50,7 @@ const Menu = () => {
               handleClick(item);
             }}
             key={item._id}
-            className="subMenu w-full grid grid-cols-2  m-auto border-dotted border-2 border-sky-950 p-3"
+            className="subMenu w-full grid grid-cols-2 border-dotted border-2 border-sky-950 bg-slate-50 rounded-md p-3 hover:cursor-pointer"
           >
             <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title">
               {item.name}
@@ -67,26 +67,42 @@ const Menu = () => {
     );
 
   return (
-    <div className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] md:min-h-[800px] ">
+    <div className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] md:min-h-[800px] ">
       <h1 className=" text-5xl font-extrabold m-5 font-sans">MENU</h1>
 
       <Tabs className={"grow m-3"}>
         <TabList className={"flex mb-0"}>
-          <Tab className={"grow p-1 hover:cursor-pointer"}>All</Tab>
-          <Tab className={"grow p-1 hover:cursor-pointer"}>Short</Tab>
-          <Tab className={"grow p-1 hover:cursor-pointer"}>Medium</Tab>
-          <Tab className={"grow p-1 hover:cursor-pointer"}>Long</Tab>
+          <Tab
+            className={"grow p-1 hover:cursor-pointer md:text-xl text-base "}
+          >
+            All
+          </Tab>
+          <Tab
+            className={"grow p-1 hover:cursor-pointer md:text-xl text-base "}
+          >
+            Short
+          </Tab>
+          <Tab
+            className={"grow p-1 hover:cursor-pointer md:text-xl text-base "}
+          >
+            Medium
+          </Tab>
+          <Tab
+            className={"grow p-1 hover:cursor-pointer md:text-xl text-base "}
+          >
+            Long
+          </Tab>
         </TabList>
         <div className="md:h-[600px] overflow-auto styleScroll">
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-b-sm active-content overflow-hidden">
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData && menuData.filter((item) => userEmail === item.email)
               )}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
@@ -96,7 +112,7 @@ const Menu = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-lg">
+            <div className="menu-wrapper m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
@@ -108,7 +124,7 @@ const Menu = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col gap-4 p-5 bg-slate-50 rounded-b-lg rounded-l-lg">
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>

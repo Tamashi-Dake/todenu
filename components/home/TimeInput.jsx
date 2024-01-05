@@ -41,21 +41,23 @@ export default function Time() {
   return (
     <>
       <section className=" flex flex-col gap-5 lg:flex-row justify-between m-auto my-5">
-        <div className="w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
-          <h2 className="font-extrabold">YOUR FREETIME</h2>
+        <div className="flex flex-row justify-between lg:flex-col w-[85%] md:w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
+          <p className="text-base md:text-3xl font-extrabold mb-5">
+            YOUR FREETIME
+          </p>
           <div className="relative">
             <input
               type="text"
               value={freeTime}
               className={`peer 
-          min-h-[auto] w-full 
+          min-h-[auto] w-[100px] md:w-full 
           rounded 
           bg-transparent 
           px-3 py-[0.35rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100 
-          data-[te-input-state-active]:placeholder:opacity-100 border-2 border-primary ${
-            freeTime !== "" ? "border-transparent" : ""
+          data-[te-input-state-active]:placeholder:opacity-100 border-2  ${
+            freeTime !== "" ? " border-primary-400" : " border-primary"
           }`}
               data-te-toggle="timepicker-just-input"
               id="timepickerFreetime"
@@ -65,30 +67,30 @@ export default function Time() {
             <label
               htmlFor="timepickerFreetime"
               className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.35rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
-                freeTime !== ""
-                  ? "-translate-y-[0.9rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
-                  : ""
+                freeTime !== "" ? "hidden" : ""
               }`}
             >
               Type a time (hh:mm)
             </label>
           </div>
         </div>
-        <div className="w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
-          <h2 className="font-extrabold">YOUR BREAKTIME</h2>
+        <div className="flex flex-row justify-between lg:flex-col w-[85%] md:w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
+          <p className="text-base md:text-3xl font-extrabold mb-5">
+            YOUR BREAKTIME
+          </p>
           <div className="relative">
             <input
               type="text"
               value={breakTime}
               className={`peer 
-          min-h-[auto] w-full 
+          min-h-[auto] w-[100px] md:w-full  
           rounded  
           bg-transparent 
           px-3 py-[0.35rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100 
           data-[te-input-state-active]:placeholder:opacity-100 border-2 border-primary ${
-            breakTime !== "" ? "border-transparent" : ""
+            breakTime !== "" ? " border-primary-400" : " border-primary"
           }`}
               data-te-toggle="timepicker-just-input"
               id="timepickerBreaktime"
@@ -98,9 +100,7 @@ export default function Time() {
             <label
               htmlFor="timepickerBreaktime"
               className={`absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.35rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
-                breakTime !== ""
-                  ? "-translate-y-[0.9rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8]"
-                  : ""
+                breakTime !== "" ? "hidden" : ""
               }`}
             >
               Type a time (hh:mm)
