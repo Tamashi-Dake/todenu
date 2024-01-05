@@ -8,7 +8,7 @@ import { setBillData } from "../../lib/redux/timeSlice";
 import { get } from "http";
 import { getSeconds, formatSeconds } from "../../lib/timeUtils";
 import { Check, Pause, Play, Redo, RotateCw, Trash } from "lucide-react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { set } from "date-fns";
 import is from "date-fns/locale/is";
 import { useMediaQuery } from "react-responsive";
@@ -32,6 +32,7 @@ const Counter = () => {
   const [currentCountdown, setCurrentCountdown] = useState(
     billData.length > 0 ? billData[0].time * 60 : null
   );
+  const [previousCountdown, setPreviousCountdown] = useState(null);
   const animations = {
     initial: { opacity: 0, x: 100 },
     animate: { opacity: 1, x: 0 },
@@ -43,6 +44,11 @@ const Counter = () => {
     exit: { opacity: 0, x: -100 },
   };
   useEffect(() => {
+    if (previousCountdown !== null) {
+      setCurrentCountdown(previousCountdown);
+      setPreviousCountdown(null);
+      return;
+    }
     setCurrentCountdown(billData.length > 0 ? billData[0].time * 60 : null);
   }, [billData]);
 
@@ -131,11 +137,18 @@ const Counter = () => {
     setIsCurrentActive(!isCurrentActive);
   };
   const handleDelete = (itemId) => {
+    setPreviousCountdown(currentCountdown);
     const updatedBillData = billData.filter((item) => item.key !== itemId);
     dispatch(setBillData(updatedBillData));
     if (billData.length === 1) {
       dispatch(setCounter(!counter));
-      toast.success("You've finished your works");
+    }
+  };
+  const handleFirstDelete = (itemId) => {
+    const updatedBillData = billData.filter((item) => item.key !== itemId);
+    dispatch(setBillData(updatedBillData));
+    if (billData.length === 1) {
+      dispatch(setCounter(!counter));
     }
   };
   const handleStop = () => {
@@ -145,29 +158,34 @@ const Counter = () => {
     setIsBreakActive(false);
     setIsCurrentActive(true);
     setCurrentCountdown(billData[0].time * 60);
+    window.scrollTo(0, 0);
   };
 
   const handleSkip = () => {
+    if (isBreakActive) {
+      // Nếu đang nghỉ thì bỏ qua nghỉ
+      setIsBreakActive(false);
+      setIsCurrentActive(true);
+      setRemainingBreakTime(getSeconds(breakTime));
+      return;
+    }
     if (billData.length > 1) {
-      // setIsCurrentActive(false);
-      // setIsBreakActive(true);
       handleDelete(billData[0].key);
       setCurrentCountdown(billData[0].time * 60);
       toast.success("Skipped!");
     } else {
       handleDelete(billData[0].key);
-
       toast.success("You've finished your works");
       handleStop();
     }
   };
   return (
     <>
-      <div className="flex flex-col-reverse lg:flex-row  w-full lg:h-[600px] bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
+      <div className="flex flex-col-reverse justify-center items-center  w-full lg:h-[600px] bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
         <div
           className={
-            "flex flex-col w-full lg:w-1/2  items-center " +
-            (isBreakActive ? "opacity-60 " : "opacity-100") +
+            "flex flex-col w-full lg:w-1/2 ml-5 items-center " +
+            (isBreakActive ? " opacity-60 " : " opacity-100 ") +
             (billData.length > 7 ? " justify-start" : " justify-center")
           }
         >
@@ -176,12 +194,11 @@ const Counter = () => {
               {index === 0 ? (
                 <motion.div
                   key={item.id}
-                  className="md:w-[620px] w-10/12 h-[150px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[20px]  ease-linear  max-w-[800px] "
+                  className="md:w-[620px] w-10/12 h-[84px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[20px]  ease-linear  max-w-[800px] "
                   whileHover={{ height: "150px" }}
-                  initial={isMobile ? { height: "150px" } : { height: "84px" }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
-                  // transition={{ type: "spring", stiffness: 300 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   <div className="item flex items-center justify-between p-4  bg-slate-200 rounded-t-sm z-20 ">
                     <div className="text-black">
@@ -216,7 +233,7 @@ const Counter = () => {
                     <Trash
                       className="w-10 h-10 p-2 text-white font-size bg-red-500 rounded-full"
                       onClick={
-                        isBreakActive ? null : () => handleDelete(item.key)
+                        isBreakActive ? null : () => handleFirstDelete(item.key)
                       }
                     />
                   </div>
@@ -224,7 +241,7 @@ const Counter = () => {
               ) : (
                 <motion.div
                   key={item.id}
-                  className="md:w-[620px] w-11/12 lg:w-5/6 max-w-[650px]   item-wrapper flex transition-all duration-100 h-[84px] ml-8  ease-linear "
+                  className="md:w-[620px] w-11/12 lg:w-5/6 max-w-[650px] item-wrapper flex transition-all duration-100 h-[84px] ml-8  ease-linear "
                   whileHover={{ x: -10 }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
@@ -246,10 +263,12 @@ const Counter = () => {
                   </div>
                   <div
                     className={
-                      "flex justify-center items-center transition-all  ease-linear bg-red-500 z-10 md:z-[-1] px-4 rounded-r-sm" +
+                      "flex justify-center items-center transition-all  ease-linear bg-red-500 z-10 md:z-[-1] px-4 rounded-r-sm " +
                       (hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0")
                     }
-                    onClick={() => handleDelete(item.key)}
+                    onClick={
+                      isBreakActive ? null : () => handleDelete(item.key)
+                    }
                   >
                     {/* <Check className="text-white font-size" /> */}
                     <Trash className="text-white font-size" />
@@ -279,15 +298,16 @@ const Counter = () => {
             animate={isBreakActive ? "animate" : "ecit"}
             className={isBreakActive ? "" : "hidden"}
           >
-            <div className="countdownTimer text-3xl text-green-300">
+            <div className="countdownTimer text-3xl text-green-500">
               Break time!
             </div>
-            <div className="countdownTimer text-7xl text-green-200 lg:translate-x-[0px]">
+            <div className="countdownTimer text-7xl text-green-600  lg:translate-x-[0px]">
               {formatSeconds(remainingBreakTime)}
             </div>
           </motion.div>
         </div>
       </div>
+
       <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 ">
         <button
           className="bg-teal-500 p-5 rounded-lg text-white"

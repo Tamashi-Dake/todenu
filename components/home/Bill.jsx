@@ -78,6 +78,7 @@ const Bill = () => {
   const handleDeleteItem = (itemId) => {
     const updatedBillData = billData.filter((item) => item.key !== itemId);
     dispatch(setBillData(updatedBillData));
+    toast.success("Item deleted from Todo List!");
   };
 
   const handleDrop = (event) => {
@@ -124,14 +125,6 @@ const Bill = () => {
       ? (newTotalTime += breaktime * (billData.length - 1))
       : newTotalTime;
     dispatch(setTotalTime(newTotalTime));
-    // if (freetime >= 0 && breaktime >= 0) {
-    //   if (freetime < breaktime) {
-    //     // toast.error("Your breaktime is more than your freetime");
-    //   }
-    //   if (totalTime > freetime) {
-    //     // toast.error("Your total time is less than your freetime");
-    //   }
-    // }
   }, [billData, breakTime, freeTime, breaktime, freetime, totalTime]);
 
   const handleStart = () => {
@@ -139,14 +132,12 @@ const Bill = () => {
       toast.error("Your bill is empty");
       return;
     }
-
-    if (totalTime > freetime) {
-      toast.error("Your total time is less than your freetime");
+    if (freetime == "" || breaktime == "") {
+      toast.error("You must fill in freetime and breaktime first");
       return;
     }
-
-    if (freetime <= 0 || breaktime <= 0) {
-      toast.error("Your breaktime and freetime must be greater than 0");
+    if (totalTime > freetime) {
+      toast.error("Your total time is less than your freetime");
       return;
     }
 
@@ -156,6 +147,7 @@ const Bill = () => {
     }
 
     dispatch(setCounter(!counter));
+    window.scrollTo(0, 0);
   };
   // const handleRandom = () => {};
 
@@ -227,19 +219,7 @@ const Bill = () => {
           {formatSeconds(totalTime)}
         </p>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        limit={3}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+
       <div id="checkout" className=" flex justify-between m-5 text-gray-50">
         <button
           className="grow bg-cyan-500 p-5 rounded-lg"

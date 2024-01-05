@@ -3,8 +3,12 @@ import { useSession } from "next-auth/react";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { formatTime } from "../../lib/timeUtils";
 import "react-tabs/style/react-tabs.css";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setBillData } from "../../lib/redux/timeSlice";
+import { toast } from "react-toastify";
 const Menu = () => {
+  const dispatch = useDispatch();
+  const { billData } = useSelector((state) => state.time);
   const [menuData, setMenuData] = useState(null);
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email;
@@ -23,6 +27,14 @@ const Menu = () => {
     fetchMenuData();
   }, []);
 
+  const handleClick = (item) => {
+    if (item) {
+      const newItem = { ...item, key: Date.now() };
+      const updatedData = [...billData, newItem];
+      dispatch(setBillData(updatedData));
+    }
+    toast.success("Item added to Todo List!");
+  };
   const handleDragStart = (event, item) => {
     event.dataTransfer.setData("application/json", JSON.stringify(item));
   };
@@ -34,6 +46,9 @@ const Menu = () => {
           <div
             draggable="true"
             onDragStart={(event) => handleDragStart(event, item)}
+            onClick={() => {
+              handleClick(item);
+            }}
             key={item._id}
             className="subMenu w-full grid grid-cols-2  m-auto border-dotted border-2 border-sky-950 p-3"
           >
@@ -52,7 +67,7 @@ const Menu = () => {
     );
 
   return (
-    <div className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] min-h-[800px] ">
+    <div className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#bdf9ffc7] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] md:min-h-[800px] ">
       <h1 className=" text-5xl font-extrabold m-5 font-sans">MENU</h1>
 
       <Tabs className={"grow m-3"}>
@@ -62,7 +77,7 @@ const Menu = () => {
           <Tab className={"grow p-1 hover:cursor-pointer"}>Medium</Tab>
           <Tab className={"grow p-1 hover:cursor-pointer"}>Long</Tab>
         </TabList>
-        <div className="h-[600px] overflow-auto styleScroll">
+        <div className="md:h-[600px] overflow-auto styleScroll">
           <TabPanel>
             <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-slate-50 rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
