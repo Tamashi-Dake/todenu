@@ -78,7 +78,9 @@ const Bill = () => {
   const handleDeleteItem = (itemId) => {
     const updatedBillData = billData.filter((item) => item.key !== itemId);
     dispatch(setBillData(updatedBillData));
-    toast.success("Item deleted from Todo List!");
+    toast.success("Item deleted from Todo List!", {
+      icon: "🗑️",
+    });
   };
 
   const handleDrop = (event) => {
@@ -93,6 +95,9 @@ const Bill = () => {
       const newItem = { ...item, key: Date.now() };
       const updatedData = [...billData, newItem];
       dispatch(setBillData(updatedData));
+      toast.success("Item added to Todo List!", {
+        icon: "📝",
+      });
     }
   };
 
@@ -132,11 +137,11 @@ const Bill = () => {
       toast.error("Your bill is empty");
       return;
     }
-    if (freetime == "") {
+    if (freetime === "") {
       toast.error("You must fill in freetime ");
       return;
     }
-    if (breaktime == "" && billData.length > 1) {
+    if (breaktime === "" && billData.length > 1) {
       toast.error("You must fill in breaktime ");
       return;
     }
@@ -165,7 +170,7 @@ const Bill = () => {
 
       <div
         className={
-          "grow styleScroll bg-[#DEEBF7] overflow-auto flex flex-col gap-1 p-2 " +
+          "grow styleScroll bg-[#DEEBF7] overflow-auto flex flex-col gap-2 p-5 " +
           (billData.length > 0 ? " " : " justify-center")
         }
         onDrop={handleDrop}
@@ -180,7 +185,7 @@ const Bill = () => {
             <SortableContext items={billData.map((item) => item.key)}>
               {billData.map((item, index) => (
                 <SortableItem key={item.key} id={item.key} index={index}>
-                  <div className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 border-sky-950 p-3 bg-[#F5F8FF]">
+                  <div className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 rounded-md border-sky-950 p-3 bg-[#F5F8FF]">
                     <h2
                       className="text-xl font-bold col-span uppercase font-title text-left"
                       onClick={() => console.log("clicked")}

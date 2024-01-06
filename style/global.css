@@ -33,3 +33,32 @@ div[disabled] {
 .countdownTimer {
   font-family: "Orbitron", sans-serif;
 }
+.draging {
+  cursor: grabbing;
+  opacity: 1 !important;
+}
+/* .page-item {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  color: #374151;
+  background-color: #ffffff;
+}
+.page-item:hover {
+  background-color: #f3f4f6;
+}
+.page-item:active {
+  background-color: blue;
+} */
+/* .active {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.25rem;
+  font-weight: 700;
+  color: #000000;
+} */

@@ -12,7 +12,7 @@ const Menu = () => {
   const [menuData, setMenuData] = useState(null);
   const { data: session, status } = useSession();
   const userEmail = session?.user?.email;
-
+  const [isDraging, setIsDraging] = useState(false);
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
@@ -33,9 +33,12 @@ const Menu = () => {
       const updatedData = [...billData, newItem];
       dispatch(setBillData(updatedData));
     }
-    toast.success("Item added to Todo List!");
+    toast.success("Item added to Todo List!", {
+      icon: "📝",
+    });
   };
   const handleDragStart = (event, item) => {
+    setIsDraging(true);
     event.dataTransfer.setData("application/json", JSON.stringify(item));
   };
 
@@ -49,8 +52,12 @@ const Menu = () => {
             onClick={() => {
               handleClick(item);
             }}
+            // onDragEnd={() => {              setIsDraging(false);            }}
             key={item._id}
-            className="subMenu w-full grid grid-cols-2 border-dotted border-2 border-sky-950 bg-slate-50 rounded-md p-3 hover:cursor-pointer"
+            className={
+              "subMenu w-full grid grid-cols-2 border-dotted border-2 border-sky-950 bg-slate-50 rounded-md p-3 hover:cursor-pointer"
+              // + (isDraging ? " draging" : "")
+            }
           >
             <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title">
               {item.name}
@@ -93,9 +100,9 @@ const Menu = () => {
             Long
           </Tab>
         </TabList>
-        <div className="md:h-[600px] overflow-auto styleScroll">
+        <div className="md:h-[600px] h-[500px] overflow-auto styleScroll">
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
+            <div className="menu-wrapper m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData && menuData.filter((item) => userEmail === item.email)
               )}
