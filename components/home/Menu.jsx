@@ -55,14 +55,14 @@ const Menu = () => {
             // onDragEnd={() => {              setIsDraging(false);            }}
             key={item._id}
             className={
-              "subMenu w-full grid grid-cols-2 border-dotted border-2 border-sky-950 bg-slate-50 rounded-md p-3 hover:cursor-pointer"
+              "subMenu  w-full grid grid-cols-[2fr,1fr] border-dotted border-2 border-sky-950 bg-slate-50 rounded-md p-3 hover:cursor-pointer"
               // + (isDraging ? " draging" : "")
             }
           >
-            <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title">
+            <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title break-all">
               {item.name}
             </h2>
-            <p className="text-left font-body">{item.description}</p>
+            <p className="text-left font-body break-all">{item.description}</p>
             <p className="text-right font-body font-bold">
               {formatTime(item.time)}
             </p>

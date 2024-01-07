@@ -8,7 +8,7 @@ import Search from "../../components/todenu/Search";
 import ReactPaginate from "react-paginate";
 import { formatTime } from "../../lib/timeUtils";
 export default function Todenu() {
-  const pageSize = 5; // Số lượng mục trên mỗi trang
+  const pageSize = 10; // Số lượng mục trên mỗi trang
   const [currentPage, setCurrentPage] = useState(0); // Trang hiện tại
   const { data: session, status } = useSession({ required: true });
   const [menuData, setMenuData] = useState(null);

@@ -185,9 +185,9 @@ const Bill = () => {
             <SortableContext items={billData.map((item) => item.key)}>
               {billData.map((item, index) => (
                 <SortableItem key={item.key} id={item.key} index={index}>
-                  <div className="subMenu min-w-full grid grid-cols-2 border-dotted border-2 rounded-md border-sky-950 p-3 bg-[#F5F8FF]">
+                  <div className="subMenu  min-w-full grid grid-cols-[2fr,1fr] border-dotted border-2 rounded-md border-sky-950 p-3 bg-[#F5F8FF]">
                     <h2
-                      className="text-xl font-bold col-span uppercase font-title text-left"
+                      className="text-xl font-bold col-span uppercase font-title text-left break-all"
                       onClick={() => console.log("clicked")}
                     >
                       {item.name}
@@ -195,9 +195,11 @@ const Bill = () => {
                     <p className="text-right font-body font-bold">
                       {formatTime(item.time)}
                     </p>
-                    <p className="text-left font-body">{item.description}</p>
+                    <p className="text-left font-body break-all">
+                      {item.description}
+                    </p>
                     <button
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-2/4 ml-auto"
+                      className="bg-red-500 hover:bg-red-700 text-white  max-h-10 font-bold py-2 px-4 rounded w-[100px] ml-auto"
                       onClick={() => handleDeleteItem(item.key)}
                     >
                       Delete

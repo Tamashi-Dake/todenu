@@ -18,7 +18,7 @@ const Layout = ({ children, title = "Default title", session }) => {
       </Head>
       <NextAuthProvider>
         <Header />
-        <div className="min-h-screen md:p-10 p-2 flex flex-col grow mb-1">
+        <div className="min-h-screen md:p-10 p-2 flex flex-col grow mb-4">
           <ReduxProvider>{children}</ReduxProvider>
         </div>
         <Footer />

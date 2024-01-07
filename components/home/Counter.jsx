@@ -170,7 +170,7 @@ const Counter = () => {
       return;
     }
     if (billData.length > 1) {
-      handleDelete(billData[0].key);
+      handleFirstDelete(billData[0].key);
       setCurrentCountdown(billData[0].time * 60);
       toast.success("Skipped!");
     } else {
@@ -194,7 +194,7 @@ const Counter = () => {
               {index === 0 ? (
                 <motion.div
                   key={item.id}
-                  className="md:w-[620px] w-10/12 h-[84px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[20px]  ease-linear  max-w-[800px] "
+                  className="md:w-[620px] w-10/12 h-[84px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[22px]  ease-linear  max-w-[800px] "
                   whileHover={{ height: "150px" }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={() => handleMouseLeave(index)}
@@ -285,10 +285,10 @@ const Counter = () => {
             animate={isBreakActive ? "exit" : "animate"}
             className={isBreakActive ? "hidden" : ""}
           >
-            <div className="countdownTimer text-3xl text-white">
+            <div className="countdownTimer text-xl md:3xl text-white">
               Time remaining
             </div>
-            <div className="countdownTimer text-7xl md:5xl text-white">
+            <div className="countdownTimer text-5xl md:5xl text-white">
               {formatSeconds(remainingTotalTime)}
             </div>
           </motion.div>
@@ -310,7 +310,7 @@ const Counter = () => {
 
       <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 ">
         <button
-          className="bg-teal-500 p-5 rounded-lg text-white"
+          className="bg-teal-500 p-5 rounded-lg text-white sm:w-[100px]"
           onClick={handleStop}
         >
           Go back
@@ -327,7 +327,7 @@ const Counter = () => {
           />
         )}
         <button
-          className="bg-blue-500 p-5 rounded-lg text-white"
+          className="bg-blue-500 p-5 rounded-lg text-white w-[100px]"
           onClick={handleSkip}
         >
           Skip
