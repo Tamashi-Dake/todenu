@@ -35,11 +35,20 @@ async function handlePost(req, res) {
 async function handleGet(req, res) {
   await connectMongo();
   const id = req.query.id;
+  const searchParam = req.query.searchParam;
+  const session = await getSession({ req });
 
   if (id) {
     // Truy vấn bản ghi cụ thể dựa trên id
     const job = await Job.findById(id);
     return res.json({ job });
+  } else if (searchParam) {
+    // Truy vấn các bản ghi dựa trên tên
+    const jobs = await Job.find({
+      email: session.user.email,
+      name: { $regex: searchParam, $options: "i" },
+    });
+    return res.json({ jobs });
   } else {
     // Truy vấn tất cả các bản ghi
     const jobs = await Job.find();

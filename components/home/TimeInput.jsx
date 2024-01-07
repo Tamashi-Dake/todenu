@@ -43,7 +43,7 @@ export default function Time() {
   return (
     <>
       <section className=" flex flex-col gap-5 lg:flex-row justify-between m-auto my-5">
-        <div className="flex flex-row justify-between lg:flex-col w-[85%] md:w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
+        <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg">
           <p className="text-lg md:text-3xl font-extrabold mb-5">
             YOUR FREETIME
           </p>
@@ -72,12 +72,12 @@ export default function Time() {
                 freeTime !== "" ? "hidden" : ""
               }`}
             >
-              Type a time (hh:mm)
+              Type a time (hour:minute)
             </label>
           </div>
         </div>
-        <div className="flex flex-row justify-between lg:flex-col w-[85%] md:w-full lg:w-2/5 m-auto text-center text-2xl font-bold rounded-lg">
-          <p className="text-lg md:text-3xl font-extrabold mb-5">
+        <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg">
+          <p className="text-base md:text-3xl font-extrabold mb-5">
             YOUR BREAKTIME
           </p>
           <div className="relative">
@@ -105,7 +105,7 @@ export default function Time() {
                 breakTime !== "" ? "hidden" : ""
               }`}
             >
-              Type a time (hh:mm)
+              Type a time (hour:minute)
             </label>
           </div>
         </div>

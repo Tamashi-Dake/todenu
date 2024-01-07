@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import User from "../../models/users";
+import { getMinutes, validateTime } from "../../lib/timeUtils";
 export default function AddTodenu() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -29,7 +30,7 @@ export default function AddTodenu() {
         body: JSON.stringify({
           name,
           description,
-          time,
+          time: getMinutes(time),
           email: session?.user?.email,
         }),
       });
@@ -63,10 +64,11 @@ export default function AddTodenu() {
 
       <input
         value={time}
-        onChange={(e) => setTime(e.target.value)}
+        onChange={(e) => {
+          setTime(validateTime(e.target.value));
+        }}
         className="border border-slate-500 px-8 py-2"
-        type="number"
-        placeholder="Todenu Time"
+        placeholder="Todenu Time (hour:minute)"
       />
 
       <button

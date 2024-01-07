@@ -20,7 +20,11 @@ export default function RemoveBtn({ id }) {
   };
 
   return (
-    <button onClick={removeTopic} className="text-red-400">
+    <button
+      title="Delete this todenu"
+      onClick={removeTopic}
+      className="text-red-400"
+    >
       <Trash size={24} />
     </button>
   );
