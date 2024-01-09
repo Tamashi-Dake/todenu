@@ -156,7 +156,7 @@ const Bill = () => {
     }
 
     dispatch(setCounter(!counter));
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   };
   // const handleRandom = () => {};
 
@@ -166,7 +166,7 @@ const Bill = () => {
       className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
       <h1 className="font-sans text-5xl font-extrabold m-5">TODO LIST</h1>
-      <span className="text-lg font-bold m-4"></span>
+      <span className="text-lg font-bold m-6"></span>
 
       <div
         className={

@@ -37,28 +37,17 @@ div[disabled] {
   cursor: grabbing;
   opacity: 1 !important;
 }
-/* .page-item {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 0.25rem;
-  font-weight: 700;
-  color: #374151;
-  background-color: #ffffff;
+.fit-video {
+  padding-top: 56.25%;
+  position: relative;
+  width: 100%;
 }
-.page-item:hover {
-  background-color: #f3f4f6;
+
+.fit-video iframe,
+.fit-video video {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
-.page-item:active {
-  background-color: blue;
-} */
-/* .active {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 0.25rem;
-  font-weight: 700;
-  color: #000000;
-} */

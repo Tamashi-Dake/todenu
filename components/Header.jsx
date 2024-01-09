@@ -2,22 +2,19 @@ import { useState } from "react";
 import { Dialog, Popover } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import SignInBtn from "./SignInBtn";
+import { Clock } from "lucide-react";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 md:m-10 rounded-sm ">
+    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 md:m-2 lg:m-8  lg:mb-0 rounded-sm ">
       <nav
         className=" flex w-full items-center justify-between px-4 sm:px-6 lg:px-8 "
         aria-label="Global"
       >
         <div className="flex lg:flex-1 py-4">
           <a href="/" className="flex items-center">
-            <img
-              className="h-10 w-auto bg-inherit"
-              src="https://www.vhv.rs/dpng/d/504-5044927_white-clock-png-time-icon-png-white-transparent.png"
-              alt="logo"
-            />
+            <Clock />
             <span className=" font-bold font-logo text-2xl ">TODENU</span>
           </a>
         </div>
@@ -30,16 +27,16 @@ const Header = () => {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Popover.Group className="hidden lg:flex lg:w-[600px] lg:h-full ">
+        <Popover.Group className="hidden lg:flex lg:w-[580px] lg:h-full ">
           <a
             href="/"
-            className="grow w-[100px] text-center text-base leading-6 py-6 px-10 font-extrabold hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+            className="grow w-[80px] text-center text-base leading-6 py-6 px-10 font-extrabold hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
             HOME
           </a>
           <a
             href="/todenu"
-            className="grow w-[100px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+            className="grow w-[80px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
             TODENUS
           </a>
@@ -49,7 +46,7 @@ const Header = () => {
           </a> */}
           <a
             href="/about"
-            className="grow w-[100px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
+            className="grow w-[80px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
             ABOUT US
           </a>

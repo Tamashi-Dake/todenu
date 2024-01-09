@@ -47,7 +47,7 @@ export default function Time() {
           <p className="text-lg md:text-3xl font-extrabold mb-5">
             YOUR FREETIME
           </p>
-          <div className="relative">
+          <div className="relative lg:w-full">
             <input
               type="text"
               value={freeTime}
@@ -80,7 +80,7 @@ export default function Time() {
           <p className="text-base md:text-3xl font-extrabold mb-5">
             YOUR BREAKTIME
           </p>
-          <div className="relative">
+          <div className="relative lg:w-full">
             <input
               type="text"
               value={breakTime}

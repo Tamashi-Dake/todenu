@@ -8,6 +8,7 @@ module.exports = {
     "./src/**/*.{js,jsx}",
     "./node_modules/tw-elements/dist/js/**/*.js",
     "./@/**/*.{js,jsx}",
+    "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
 
   theme: {
@@ -97,5 +98,6 @@ module.exports = {
   plugins: [
     require("tw-elements/dist/plugin.cjs"),
     require("tailwindcss-animate"),
+    require("flowbite/plugin"),
   ],
 };

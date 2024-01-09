@@ -43,6 +43,7 @@ const Counter = () => {
     animate: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -100 },
   };
+
   useEffect(() => {
     if (previousCountdown !== null) {
       setCurrentCountdown(previousCountdown);
@@ -50,6 +51,7 @@ const Counter = () => {
       return;
     }
     setCurrentCountdown(billData.length > 0 ? billData[0].time * 60 : null);
+    // console.log(billData);
   }, [billData]);
 
   useEffect(() => {
@@ -98,13 +100,13 @@ const Counter = () => {
         }, 1000);
       } else if (currentCountdown === 0) {
         if (billData.length > 1) {
-          handleDelete(billData[0].key);
+          handleDelete(0);
           setIsCurrentActive(false);
           setIsBreakActive(true);
           // Countdown hoàn thành, chuyển đến item tiếp theo
           setCurrentCountdown(billData[0].time * 60);
         } else {
-          handleDelete(billData[0].key);
+          handleDelete(0);
           toast.success("Well done! You've finished your works!");
           dispatch(setCounter(!counter));
         }
@@ -136,16 +138,21 @@ const Counter = () => {
   const handlePauseClick = () => {
     setIsCurrentActive(!isCurrentActive);
   };
-  const handleDelete = (itemId) => {
+  const handleDelete = (index) => {
     setPreviousCountdown(currentCountdown);
-    const updatedBillData = billData.filter((item) => item.key !== itemId);
+    const updatedBillData = billData.filter(
+      (item, itemIndex) => itemIndex !== index
+    );
     dispatch(setBillData(updatedBillData));
     if (billData.length === 1) {
       dispatch(setCounter(!counter));
     }
   };
-  const handleFirstDelete = (itemId) => {
-    const updatedBillData = billData.filter((item) => item.key !== itemId);
+  const handleFirstDelete = () => {
+    const updatedBillData = billData.filter(
+      (item, itemIndex) => itemIndex !== 0
+    );
+    console.log(updatedBillData);
     dispatch(setBillData(updatedBillData));
     if (billData.length === 1) {
       dispatch(setCounter(!counter));
@@ -158,7 +165,7 @@ const Counter = () => {
     setIsBreakActive(false);
     setIsCurrentActive(true);
     setCurrentCountdown(billData[0].time * 60);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   };
 
   const handleSkip = () => {
@@ -193,7 +200,7 @@ const Counter = () => {
             <>
               {index === 0 ? (
                 <motion.div
-                  key={item.id}
+                  key={index}
                   className="md:w-[620px] w-10/12 h-[84px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[22px]  ease-linear  max-w-[800px] "
                   whileHover={{ height: "150px" }}
                   onMouseEnter={() => handleMouseEnter(index)}
@@ -232,15 +239,13 @@ const Counter = () => {
                     )}
                     <Trash
                       className="w-10 h-10 p-2 text-white font-size bg-red-500 rounded-full"
-                      onClick={
-                        isBreakActive ? null : () => handleFirstDelete(item.key)
-                      }
+                      onClick={isBreakActive ? null : () => handleFirstDelete()}
                     />
                   </div>
                 </motion.div>
               ) : (
                 <motion.div
-                  key={item.id}
+                  key={index}
                   className="md:w-[620px] w-11/12 lg:w-5/6 max-w-[650px] item-wrapper flex transition-all duration-100 h-[84px] ml-8  ease-linear "
                   whileHover={{ x: -10 }}
                   onMouseEnter={() => handleMouseEnter(index)}
@@ -249,7 +254,7 @@ const Counter = () => {
                 >
                   <div className="item flex w-full items-center justify-between p-4  bg-slate-300 max-w-[800px] rounded-l-sm z-20 ">
                     <div className="text-black">
-                      <h2 className="text-base md:text-xl font-bold">
+                      <h2 className="text-base md:text-xl font-bold w-[300px] h-10 text-ellipsis overflow-hidden whitespace-nowrap">
                         {item.name}
                       </h2>
                       <p className="text-gray-500 text-sm md:text-base">
@@ -266,9 +271,7 @@ const Counter = () => {
                       "flex justify-center items-center transition-all  ease-linear bg-red-500 z-10 md:z-[-1] px-4 rounded-r-sm " +
                       (hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0")
                     }
-                    onClick={
-                      isBreakActive ? null : () => handleDelete(item.key)
-                    }
+                    onClick={isBreakActive ? null : () => handleDelete(index)}
                   >
                     {/* <Check className="text-white font-size" /> */}
                     <Trash className="text-white font-size" />
