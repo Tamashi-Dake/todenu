@@ -176,19 +176,19 @@ const Counter = () => {
       setRemainingBreakTime(getSeconds(breakTime));
       return;
     }
+    handleFirstDelete();
+
     if (billData.length > 1) {
-      handleFirstDelete(billData[0].key);
       setCurrentCountdown(billData[0].time * 60);
       toast.success("Skipped!");
     } else {
-      handleDelete(billData[0].key);
       toast.success("You've finished your works");
       handleStop();
     }
   };
   return (
     <>
-      <div className="flex flex-col-reverse justify-center items-center  w-full lg:h-[600px] bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
+      <div className="flex flex-col-reverse justify-center items-center  w-full lg:h-[600px] lg:max-w-[2000px] m-auto bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
         <div
           className={
             "flex flex-col w-full lg:w-1/2 ml-5 items-center " +
@@ -197,88 +197,84 @@ const Counter = () => {
           }
         >
           {billData.map((item, index) => (
-            <>
-              {index === 0 ? (
-                <motion.div
-                  key={index}
-                  className="md:w-[620px] w-10/12 h-[84px] lg:w-4/5 item-wrapper flex flex-col transition-all mt-5 mr-[22px]  ease-linear  max-w-[800px] "
-                  whileHover={{ height: "150px" }}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={() => handleMouseLeave(index)}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="item flex items-center justify-between p-4  bg-slate-200 rounded-t-sm z-20 ">
-                    <div className="text-black">
-                      <h2 className="text-xl font-bold">{item.name}</h2>
-                      <p className="text-gray-500">{item.description}</p>
-                    </div>
-                    <div className="countdownTimer text-black text-2xl font-semibold">
-                      {/* Countdown logic here */}
-                      {formatSeconds(currentCountdown)}
-                    </div>
-                  </div>
-                  <div
-                    className={
-                      "flex justify-around items-center rounded-b-sm p-[15px] transition-all duration-200 " +
-                      (hoveredItems[index]
-                        ? "opacity-1 bg-slate-200 z-10"
-                        : "opacity-0")
-                    }
+            <motion.div
+              key={index}
+              className={`${
+                index === 0 ? "md:w-[620px]  w-10/12" : "md:w-[600px] w-9/12 "
+              } max-w-[650px] item-wrapper flex transition-all duration-100 ${
+                index === 0 ? "h-[84px]" : "h-[90px] ml-8"
+              } ease-linear`}
+              whileHover={{
+                x: index === 0 ? 0 : -10,
+                height: index === 0 ? 150 : undefined,
+              }}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div
+                className={`item flex w-full items-center justify-between p-5 ${
+                  index === 0
+                    ? "bg-slate-200 rounded-t-sm"
+                    : "bg-slate-300 max-w-[800px] rounded-l-sm tranform translate-x-2"
+                } z-20`}
+              >
+                <div className="text-black">
+                  <h2
+                    className={`${
+                      index === 0
+                        ? "text-xl leading-5"
+                        : "text-base md:text-xl leading-4"
+                    } font-bold max-w-[100px] lg:max-w-[300px]  text-ellipsis overflow-hidden whitespace-nowrap`}
                   >
-                    {/* <Check className="text-white font-size" /> */}
-                    {isCurrentActive ? (
-                      <Pause
-                        className="w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full"
-                        onClick={handlePauseClick}
-                      />
-                    ) : (
-                      <Play
-                        className="w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full"
-                        onClick={isBreakActive ? null : handlePlayClick}
-                      />
-                    )}
-                    <Trash
-                      className="w-10 h-10 p-2 text-white font-size bg-red-500 rounded-full"
-                      onClick={isBreakActive ? null : () => handleFirstDelete()}
+                    {item.name}
+                  </h2>
+                  <p
+                    className={`${
+                      index === 0 ? "h-8 pt-2" : " text-sm md:text-base h-10"
+                    } max-w-[100px] lg:max-w-[300px]  text-ellipsis overflow-hidden whitespace-nowrap text-gray-500`}
+                  >
+                    {item.description}
+                  </p>
+                </div>
+                <div className="countdownTimer text-black text-base md:text-2xl font-semibold">
+                  {formatSeconds(
+                    index === 0 ? currentCountdown : item.time * 60
+                  )}
+                </div>
+              </div>
+              <div
+                className={`flex justify-center items-center transition-all ease-linear z-10 p-4 ${
+                  index === 0
+                    ? "bg-slate-200 hidden lg:inline-flex "
+                    : `bg-red-500  md:z-[-1] px-4 rounded-r-sm translate-x-2 ${
+                        hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0"
+                      }`
+                }`}
+                onClick={
+                  index === 0
+                    ? isBreakActive
+                      ? null
+                      : handlePauseClick
+                    : isBreakActive
+                    ? null
+                    : () => handleDelete(index)
+                }
+              >
+                {index === 0 ? (
+                  isCurrentActive ? (
+                    <Pause className="w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full" />
+                  ) : (
+                    <Play
+                      className="w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full"
+                      onClick={isBreakActive ? null : handlePlayClick}
                     />
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key={index}
-                  className="md:w-[620px] w-11/12 lg:w-5/6 max-w-[650px] item-wrapper flex transition-all duration-100 h-[84px] ml-8  ease-linear "
-                  whileHover={{ x: -10 }}
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={() => handleMouseLeave(index)}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="item flex w-full items-center justify-between p-4  bg-slate-300 max-w-[800px] rounded-l-sm z-20 ">
-                    <div className="text-black">
-                      <h2 className="text-base md:text-xl font-bold w-[300px] h-10 text-ellipsis overflow-hidden whitespace-nowrap">
-                        {item.name}
-                      </h2>
-                      <p className="text-gray-500 text-sm md:text-base">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="countdownTimer text-black text-base md:text-2xl font-semibold">
-                      {/* Countdown logic here */}
-                      {formatSeconds(item.time * 60)}
-                    </div>
-                  </div>
-                  <div
-                    className={
-                      "flex justify-center items-center transition-all  ease-linear bg-red-500 z-10 md:z-[-1] px-4 rounded-r-sm " +
-                      (hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0")
-                    }
-                    onClick={isBreakActive ? null : () => handleDelete(index)}
-                  >
-                    {/* <Check className="text-white font-size" /> */}
-                    <Trash className="text-white font-size" />
-                  </div>
-                </motion.div>
-              )}
-            </>
+                  )
+                ) : (
+                  <Trash className="text-white font-size" />
+                )}
+              </div>
+            </motion.div>
           ))}
         </div>
         <div className="flex flex-col justify-center items-center p-5 lg:w-1/2">
@@ -311,7 +307,7 @@ const Counter = () => {
         </div>
       </div>
 
-      <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 ">
+      <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 lg:max-w-[2000px] m-auto">
         <button
           className="bg-teal-500 p-5 rounded-lg text-white sm:w-[100px]"
           onClick={handleStop}
