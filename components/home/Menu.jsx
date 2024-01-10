@@ -59,10 +59,12 @@ const Menu = () => {
               // + (isDraging ? " draging" : "")
             }
           >
-            <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title break-all">
+            <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title break-all text-ellipsis overflow-hidden">
               {item.name}
             </h2>
-            <p className="text-left font-body break-all">{item.description}</p>
+            <p className="text-left font-body break-all text-ellipsis overflow-hidden">
+              {item.description}
+            </p>
             <p className="text-right font-body font-bold">
               {formatTime(item.time)}
             </p>
@@ -74,7 +76,7 @@ const Menu = () => {
     );
 
   return (
-    <div className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 mx-auto max-h-[800px] md:min-h-[800px] ">
+    <div className="flex flex-col w-full  border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950  max-h-[800px] md:min-h-[800px] ">
       <h1 className=" text-5xl font-extrabold m-5 font-sans">MENU</h1>
 
       <Tabs className={"grow m-3"}>

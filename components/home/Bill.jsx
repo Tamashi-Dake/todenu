@@ -134,24 +134,24 @@ const Bill = () => {
 
   const handleStart = () => {
     if (billData.length === 0) {
-      toast.error("Your bill is empty");
+      toast.error("You don't have any task to do");
       return;
     }
     if (freetime === "") {
-      toast.error("You must fill in freetime ");
+      toast.error("You must fill in Free time ");
       return;
     }
     if (breaktime === "" && billData.length > 1) {
-      toast.error("You must fill in breaktime ");
+      toast.error("You must fill in Break time ");
       return;
     }
     if (totalTime > freetime) {
-      toast.error("Your freetime is less than your total time");
+      toast.error("Your Free time is less than your Total time");
       return;
     }
 
     if (freetime <= breaktime) {
-      toast.error("Your breaktime is more than your freetime");
+      toast.error("Your Break time is more than your Free time");
       return;
     }
 
@@ -163,9 +163,9 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="flex flex-col w-full lg:w-2/5 border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 mx-auto sm:h-auto max-h-[800px]  min-h-[800px]"
+      className="flex flex-col w-full border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 ml-auto sm:h-auto max-h-[800px]  min-h-[800px]"
     >
-      <h1 className="font-sans text-5xl font-extrabold m-5">TODO LIST</h1>
+      <h1 className="font-sans text-5xl font-extrabold m-5">BILL</h1>
       <span className="text-lg font-bold m-6"></span>
 
       <div
@@ -187,7 +187,7 @@ const Bill = () => {
                 <SortableItem key={item.key} id={item.key} index={index}>
                   <div className="subMenu  min-w-full grid grid-cols-[2fr,1fr] border-dotted border-2 rounded-md border-sky-950 p-3 bg-[#F5F8FF]">
                     <h2
-                      className="text-xl font-bold col-span uppercase font-title text-left break-all"
+                      className="text-xl font-bold col-span uppercase font-title text-left text-ellipsis overflow-hidden"
                       onClick={() => console.log("clicked")}
                     >
                       {item.name}
@@ -195,7 +195,7 @@ const Bill = () => {
                     <p className="text-right font-body font-bold">
                       {formatTime(item.time)}
                     </p>
-                    <p className="text-left font-body break-all">
+                    <p className="text-left font-body text-ellipsis overflow-hidden">
                       {item.description}
                     </p>
                     <button
@@ -236,7 +236,7 @@ const Bill = () => {
           className="grow bg-cyan-500 p-5 rounded-lg"
           onClick={handleStart}
         >
-          Start
+          Checkout
         </button>
         {/* <button className="bg-blue-500 p-5 rounded-lg" onClick={handleRandom}>
           Randomize

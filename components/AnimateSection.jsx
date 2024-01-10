@@ -5,11 +5,11 @@ const AnimateSection = ({ children }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     margin: "0px 200px -100px 0px",
-    // once: true,
+    once: true,
   });
   return (
     <section
-      className=" xl:max-w-2000px xl:m-auto"
+      className=" xl:max-w-2000px "
       ref={ref}
       style={{
         transform: isInView ? "none" : "",

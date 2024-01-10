@@ -42,8 +42,8 @@ export default function Time() {
 
   return (
     <>
-      <section className=" flex flex-col gap-5 lg:flex-row justify-between m-auto my-5">
-        <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg">
+      <section className=" flex flex-col gap-5 lg:flex-row justify-between  my-5 max-w-[80%] m-auto">
+        <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg ">
           <p className="text-lg md:text-3xl font-extrabold mb-5">
             YOUR FREETIME
           </p>
@@ -55,7 +55,7 @@ export default function Time() {
           min-h-[auto] w-[180px] md:w-full 
           rounded 
           bg-transparent 
-          px-3 py-[0.35rem] leading-[2]
+          px-3 py-[0.35rem] leading-[1.6]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100  
           data-[te-input-state-active]:placeholder:opacity-100 border-2  ${
@@ -77,7 +77,7 @@ export default function Time() {
           </div>
         </div>
         <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg">
-          <p className="text-base md:text-3xl font-extrabold mb-5">
+          <p className="text-lg md:text-3xl font-extrabold mb-5">
             YOUR BREAKTIME
           </p>
           <div className="relative lg:w-full">

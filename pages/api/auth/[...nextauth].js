@@ -42,7 +42,7 @@ const authOptions = {
   // },
   session: {
     jwt: true,
-    maxAge: 30 * 60, // 30 minutes
+    maxAge: 60 * 60 * 24, // 24 hours
     async getSession(session, user) {
       const email = session.user.email;
 

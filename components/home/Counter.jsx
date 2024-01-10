@@ -188,7 +188,7 @@ const Counter = () => {
   };
   return (
     <>
-      <div className="flex flex-col-reverse justify-center items-center  w-full lg:h-[600px] lg:max-w-[2000px] m-auto bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
+      <div className="flex flex-col-reverse justify-center items-center  w-full lg:max-w-[80%] lg:h-[600px]  m-auto bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
         <div
           className={
             "flex flex-col w-full lg:w-1/2 ml-5 items-center " +
@@ -307,7 +307,7 @@ const Counter = () => {
         </div>
       </div>
 
-      <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 lg:max-w-[2000px] m-auto">
+      <div className="flex justify-around items-center bg-[#8ccce2] rounded-b-md p-6 lg:max-w-[80%] m-auto ">
         <button
           className="bg-teal-500 p-5 rounded-lg text-white sm:w-[100px]"
           onClick={handleStop}

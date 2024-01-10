@@ -17,7 +17,7 @@ const buttonVariants = {
 const MyComponent = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className="flex flex-col gap-5 md:gap-20 md:flex-row justify-center items-center  h-[450px] md:h-[80vh] mt-5 mx-auto">
+    <div className="flex flex-col gap-5 md:gap-20 md:flex-row justify-around  items-center h-[450px] md:h-[80vh] md:max-h-[1000px] mt-5 mx-auto md:max-w-[80%] mb-4">
       {/* <motion.div
         className="absolute top-0 left-0 right-0 bottom-0 z-[-1]"
         initial={{ opacity: 0, y: 100 }}
@@ -50,7 +50,7 @@ const MyComponent = () => {
                 2000,
                 "Tasks",
                 2000,
-                "Projects",
+                "Progress",
                 2000,
                 "Workflow",
                 3000,
@@ -61,7 +61,7 @@ const MyComponent = () => {
             />
           </div>
         </h1>
-        <p className="text-center text-xl ml-4 pt-2">
+        <p className="text-center text-xl ml-4 pt-2 tracking-tight md:tracking-wider">
           Maintain your workflow with ease
         </p>
 
@@ -69,19 +69,19 @@ const MyComponent = () => {
           <Link
             href="#tutorial"
             className="
-          bg-gradient-to-bl from-purple-400 to-blue-400  text-white px-4 py-2 rounded-md font-semibold text-sm md:text-base"
+          bg-blue-400  text-white px-4 py-2 rounded-md font-semibold text-sm md:text-base"
           >
             How does it work?
           </Link>
 
           {/* scroll down animation */}
           <motion.div
-            className=" w-10 h-10 rounded-full cursor-pointer"
+            className=" w-10 h-10 rounded-full cursor-pointer hidden md:block"
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
           >
-            <Link href="#playground">
-              <Mouse size={30} title="Scroll to see more" />
+            <Link href="#playground" title="Scroll to see more">
+              <Mouse size={30} />
             </Link>
           </motion.div>
         </div>

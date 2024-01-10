@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Orbitron");
-
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,6 +34,9 @@ div[disabled] {
 
 .countdownTimer {
   font-family: "Orbitron", sans-serif;
+}
+.poppins {
+  font-family: "Poppins", sans-serif;
 }
 .draging {
   cursor: grabbing;

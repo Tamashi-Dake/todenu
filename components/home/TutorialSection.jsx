@@ -2,34 +2,49 @@ import React from "react";
 
 const TutorialSection = () => {
   return (
-    <div id="tutorial">
-      <h2>4-Step Tutorial</h2>
-      <div>
-        <h3>Step 1: Introduction</h3>
-        <p>
-          Welcome to our website! In this tutorial, we will guide you through
-          the process of using our platform.
-        </p>
+    <div
+      id="tutorial"
+      className=" flex flex-col md:flex-row-reverse justify-between bg-[#dce5f9] gap-4 p-4 pt-8 rounded-lg max-w-[80%] m-auto"
+    >
+      <div className="tutorialTitle flex flex-col  md:w-[50%] gap-5 md:px-4 ">
+        <h2 className="text-2xl md:text-3xl  font-extrabold text-cyan-500">
+          How Does it Work?
+        </h2>
+        <p className="poppins">Get your personalized workflow in 4 steps.</p>
       </div>
-      <div>
-        <h3>Step 2: Sign Up</h3>
-        <p>
-          To get started, click on the "Sign Up" button and create an account.
-        </p>
-      </div>
-      <div>
-        <h3>Step 3: Explore</h3>
-        <p>
-          Once you're signed in, take some time to explore the various features
-          and functionalities of our website.
-        </p>
-      </div>
-      <div>
-        <h3>Step 4: Get Started</h3>
-        <p>
-          Ready to dive in? Start using our platform and make the most out of
-          your experience!
-        </p>
+      <div className="tutorialSteps grid grid-cols-1 md:grid-cols-[0.5fr,0.5fr] gap-4 poppins md:max-w-[60%]">
+        <div className="flex flex-col gap-2 ">
+          <h3 className="text-2xl  font-extrabold text-cyan-500">Step 1</h3>
+          <p>
+            Log in and start adding your tasks in Todenu. When you are done,
+            head back to Home page.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-2xl  font-extrabold text-cyan-500">Step 2</h3>
+          <p>
+            Fill in your free time and break times according to your own
+            preferences. Just need to type 4 numbers for both hours and minutes
+            and you are good to go.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-2xl  font-extrabold text-cyan-500">Step 3</h3>
+          <p>
+            Select tasks from the Menu to add them to your workflow, reorder
+            tasks in Bill by dragging them.
+            <span className="opacity-0 hover:opacity-100 transition-all ease-in-out duration-1000">
+              You can even drag tasks from the Menu to the Bill section.
+            </span>
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-2xl  font-extrabold text-cyan-500">Step 4</h3>
+          <p>
+            Happy with the Bill? Press on “Checkout” and your workflow is ready
+            just for you.
+          </p>
+        </div>
       </div>
     </div>
   );
