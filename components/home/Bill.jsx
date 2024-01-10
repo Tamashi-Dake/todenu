@@ -146,7 +146,7 @@ const Bill = () => {
       return;
     }
     if (totalTime > freetime) {
-      toast.error("Your total time is less than your freetime");
+      toast.error("Your freetime is less than your total time");
       return;
     }
 

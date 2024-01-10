@@ -55,7 +55,7 @@ export default function Time() {
           min-h-[auto] w-[180px] md:w-full 
           rounded 
           bg-transparent 
-          px-3 py-[0.35rem] leading-[1.6]
+          px-3 py-[0.35rem] leading-[2]
           outline-none transition-all duration-200 ease-linear 
           focus:placeholder:opacity-100  
           data-[te-input-state-active]:placeholder:opacity-100 border-2  ${

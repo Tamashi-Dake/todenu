@@ -10,6 +10,8 @@ html {
   background-size: 200% 200%;
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth;
+  scroll-padding: 5rem;
 }
 
 .styleScroll::-webkit-scrollbar {
@@ -50,4 +52,37 @@ div[disabled] {
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.heroBtn::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(63 131 248);
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  animation-name: zoomInOut;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  border-radius: 50%;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
 }

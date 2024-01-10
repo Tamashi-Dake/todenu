@@ -5,7 +5,8 @@ import HeroSection from "../components/home/HeroSection";
 import { useDispatch, useSelector } from "react-redux";
 import { motion, useInView } from "framer-motion";
 import Counter from "../components/home/Counter";
-import { use, useEffect, useRef } from "react";
+import AnimateSection from "../components/AnimateSection";
+import TutorialSection from "../components/home/TutorialSection";
 export default function Home() {
   const counter = useSelector((state) => state.time.counter);
 
@@ -22,11 +23,12 @@ export default function Home() {
       </AnimateSection>
       <AnimateSection>
         <motion.div
+          id="playground"
           variants={animations}
           initial="initial"
           animate="animate"
           exit="exit"
-          className="flex flex-col justify-center items-center gap-4"
+          className="flex flex-col justify-center items-center gap-4 mt-[5rem] md:mt-12"
         >
           <h1 className="text-4xl font-bold text-center">
             Go ahead and try it!
@@ -58,29 +60,13 @@ export default function Home() {
       >
         <Counter />
       </motion.div>
+      <AnimateSection>
+        <TutorialSection />
+      </AnimateSection>
     </>
   );
 }
-const AnimateSection = ({ children }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, {
-    margin: "0px 200px -100px 0px",
-    // once: true,
-  });
-  return (
-    <section
-      className=" xl:max-w-2000px xl:m-auto"
-      ref={ref}
-      style={{
-        transform: isInView ? "none" : "",
-        opacity: isInView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
-      }}
-    >
-      {children}
-    </section>
-  );
-};
+
 // i think this is bad practice, but i don't know how to do best practice anyway
 // set static title
 Home.title = "Home";
