@@ -17,26 +17,26 @@ const WhyUs = () => {
         Why Todenu?
       </h2>
       <div className="reason grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="flex flex-col justify-center items-center gap-4 bg-[#e8eefd] rounded-md p-4">
+        <div className="flex flex-col justify-start items-center gap-4 bg-[#e8eefd] rounded-md p-4">
           <AlarmClock size={100} color="#60a5fa" />
           <h5 className="text-xl font-bold text-gray-800">Save Time</h5>
-          <p className="text-sm">
+          <p className="text-sm poppins">
             No need to waste hours figuring out how to manage your time. Choose
             Todenu right away!
           </p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-4 bg-[#e8eefd] rounded-md p-4">
+        <div className="flex flex-col justify-start items-center gap-4 bg-[#e8eefd] rounded-md p-4">
           <ShieldCheck size={100} color="#60a5fa" />
           <h5 className="text-xl font-bold text-gray-800">Absolute Privacy</h5>
-          <p className="text-sm">
-            NO information about you or your tasks is collected. And i don't
-            know how to do that anyway.
+          <p className="text-sm poppins">
+            NO information about you or your tasks is collected. Your data can
+            only be accessed by you.
           </p>
         </div>
-        <div className="flex flex-col justify-center items-center gap-4 bg-[#e8eefd] rounded-md p-4">
+        <div className="flex flex-col justify-start items-center gap-4 bg-[#e8eefd] rounded-md p-4">
           <BadgeCheck size={100} color="#60a5fa" />
           <h5 className="text-xl font-bold text-gray-800">It's Simple</h5>
-          <p className="text-sm">
+          <p className="text-sm poppins">
             Fill the times, select your tasks, and there you have it! Your own
             timings schedule for a brand new day!
           </p>

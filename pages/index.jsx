@@ -9,6 +9,7 @@ import AnimateSection from "../components/AnimateSection";
 import TutorialSection from "../components/home/TutorialSection";
 import { useSession } from "next-auth/react";
 import WhyUs from "../components/home/WhyUs";
+import FaqAccordion from "../components/home/FaqAccordion";
 export default function Home() {
   const counter = useSelector((state) => state.time.counter);
   const { data: session, status } = useSession();
@@ -117,6 +118,9 @@ export default function Home() {
           </AnimateSection>
           <AnimateSection>
             <WhyUs />
+          </AnimateSection>
+          <AnimateSection>
+            <FaqAccordion />
           </AnimateSection>
         </>
       )}
