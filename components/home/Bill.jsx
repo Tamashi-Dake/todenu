@@ -187,7 +187,7 @@ const Bill = () => {
                 <SortableItem key={item.key} id={item.key} index={index}>
                   <div className="subMenu  min-w-full grid grid-cols-[2fr,1fr] border-dotted border-2 rounded-md border-sky-950 p-3 bg-[#F5F8FF]">
                     <h2
-                      className="text-xl font-bold col-span uppercase font-title text-left text-ellipsis overflow-hidden"
+                      className="text-xl font-bold col-span uppercase font-title text-left text-ellipsis overflow-hidden whitespace-nowrap"
                       onClick={() => console.log("clicked")}
                     >
                       {item.name}
@@ -195,7 +195,7 @@ const Bill = () => {
                     <p className="text-right font-body font-bold">
                       {formatTime(item.time)}
                     </p>
-                    <p className="text-left font-body text-ellipsis overflow-hidden">
+                    <p className="my-auto text-left font-body text-ellipsis overflow-hidden whitespace-nowrap">
                       {item.description}
                     </p>
                     <button

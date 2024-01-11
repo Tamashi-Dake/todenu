@@ -188,7 +188,7 @@ const Counter = () => {
   };
   return (
     <>
-      <div className="flex flex-col-reverse justify-center items-center  w-full lg:max-w-[80%] lg:h-[600px]  m-auto bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
+      <div className="flex flex-col-reverse justify-center items-center md:h-[600px] lg:max-w-[80%] m-auto bg-[#8ccce2] rounded-t-md overflow-x-hidden styleScroll ">
         <div
           className={
             "flex flex-col w-full lg:w-1/2 ml-5 items-center " +

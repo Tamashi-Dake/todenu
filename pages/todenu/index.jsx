@@ -114,7 +114,7 @@ export default function Todenu() {
               {getCurrentPageData().map((item) => (
                 <tr
                   key={item._id}
-                  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  class="bg-white border-b h-[60px] text-ellipsis overflow-hidden dark:bg-gray-800 dark:border-gray-700"
                 >
                   <td
                     scope="row"

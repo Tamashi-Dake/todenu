@@ -55,14 +55,14 @@ const Menu = () => {
             // onDragEnd={() => {              setIsDraging(false);            }}
             key={item._id}
             className={
-              "subMenu  w-full grid grid-cols-[2fr,1fr] border-dotted border-2 border-sky-950 bg-slate-50 rounded-md p-3 hover:cursor-pointer"
+              "subMenu  w-full grid grid-cols-[1fr,0.7fr] border-dotted border-2 border-sky-950 h-[6rem] bg-slate-50 rounded-md p-3 hover:cursor-pointer"
               // + (isDraging ? " draging" : "")
             }
           >
-            <h2 className=" text-left text-xl font-bold col-span-2 uppercase font-title break-all text-ellipsis overflow-hidden">
+            <h2 className="h-[2rem] text-left text-xl font-bold col-span-2 uppercase font-title text-ellipsis overflow-hidden whitespace-nowrap">
               {item.name}
             </h2>
-            <p className="text-left font-body break-all text-ellipsis overflow-hidden">
+            <p className="text-left font-body text-ellipsis overflow-hidden whitespace-nowrap">
               {item.description}
             </p>
             <p className="text-right font-body font-bold">
@@ -104,14 +104,14 @@ const Menu = () => {
         </TabList>
         <div className="md:h-[600px] h-[500px] overflow-auto styleScroll">
           <TabPanel>
-            <div className="menu-wrapper m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
+            <div className="menu-wrapper m-auto flex flex-col grow gap-2 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData && menuData.filter((item) => userEmail === item.email)
               )}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-2 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
@@ -121,7 +121,7 @@ const Menu = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
+            <div className="menu-wrapper m-auto flex flex-col grow gap-2 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
@@ -133,7 +133,7 @@ const Menu = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="menu-wrapper  m-auto flex flex-col grow gap-4 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
+            <div className="menu-wrapper  m-auto flex flex-col grow gap-2 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
