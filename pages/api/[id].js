@@ -20,12 +20,12 @@ const handler = nc().use((req, res, next) => {
 async function handlePut(req, res) {
   try {
     const { id } = req.query;
-    const { newName, newDescription, newTime } = req.body;
+    const { name, description, time } = req.body;
     await connectMongo();
     await Job.findByIdAndUpdate(id, {
-      name: newName,
-      description: newDescription,
-      time: newTime,
+      name: name,
+      description: description,
+      time: time,
     });
     return res.json({ message: "Job updated" });
   } catch (error) {

@@ -42,10 +42,10 @@ export default function Time() {
 
   return (
     <>
-      <section className=" flex flex-col gap-5 lg:flex-row justify-between  my-5 max-w-[80%] m-auto">
+      <section className=" flex flex-col gap-5 lg:flex-row justify-between  my-5 md:max-w-[80%] m-auto">
         <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg ">
-          <p className="text-lg md:text-3xl font-extrabold mb-5">
-            YOUR FREETIME
+          <p className="text-lg md:text-xl lg:text-3xl font-extrabold m-2 md:mb-4">
+            FREETIME
           </p>
           <div className="relative lg:w-full">
             <input
@@ -68,17 +68,19 @@ export default function Time() {
             />
             <label
               htmlFor="timepickerFreetime"
-              className={`absolute left-3 top-0 mb-0 max-w-[90%] hover:cursor-text origin-[0_0] truncate pt-[0.35rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
-                freeTime !== "" ? "hidden" : ""
+              className={`absolute text-base md:text-xl left-3 top-0 mb-0 max-w-[90%] hover:cursor-text origin-[0_0] truncate pt-4 md:pt-[0.7rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
+                freeTime !== ""
+                  ? "-translate-y-[1.1rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[1.1rem] peer-data-[te-input-state-active]:scale-[0.8] bg-[#f5f8ff] "
+                  : ""
               }`}
             >
-              Type a time (hour:minute)
+              Your Freetime
             </label>
           </div>
         </div>
         <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg">
-          <p className="text-lg md:text-3xl font-extrabold mb-5">
-            YOUR BREAKTIME
+          <p className="text-lg md:text-xl lg:text-3xl font-extrabold m-2 md:mb-4">
+            BREAKTIME
           </p>
           <div className="relative lg:w-full">
             <input
@@ -101,11 +103,13 @@ export default function Time() {
             />
             <label
               htmlFor="timepickerBreaktime"
-              className={`absolute left-3 top-0 mb-0 max-w-[90%] hover:cursor-text origin-[0_0] truncate pt-[0.35rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
-                breakTime !== "" ? "hidden" : ""
+              className={`absolute text-base md:text-xl left-3 top-0 mb-0 max-w-[90%] hover:cursor-text origin-[0_0] truncate pt-4 md:pt-[0.7rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
+                breakTime !== ""
+                  ? "-translate-y-[1.1rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[1.1rem] peer-data-[te-input-state-active]:scale-[0.8] bg-[#f5f8ff] "
+                  : ""
               }`}
             >
-              Type a time (hour:minute)
+              Your Breaktime
             </label>
           </div>
         </div>

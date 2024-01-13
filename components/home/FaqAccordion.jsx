@@ -23,7 +23,7 @@ const FaqAccordion = () => {
     },
   ]);
   return (
-    <div className="faq-accordion flex flex-col lg:flex-row justify-between  gap-4 p-4  rounded-lg max-w-[80%] m-auto">
+    <div className="faq-accordion flex flex-col lg:flex-row justify-between  gap-4   rounded-lg md:max-w-[80%] m-auto">
       <div className="faqTitle pt-8 flex flex-col lg:max-w-[400px] gap-5 md:pl-4 ">
         <h2 className="text-2xl md:text-5xl popin font-extrabold text-cyan-500">
           FAQ
@@ -32,7 +32,7 @@ const FaqAccordion = () => {
           Answers to some questions you might have.
         </p>
       </div>
-      <div className="faqQuestions md:p-8 flex flex-col lg:w-[60%] gap-2 poppins ">
+      <div className="faqQuestions lg:pl-8 flex flex-col lg:w-[60%] gap-2 poppins ">
         {Faqs.map((faq, index) => (
           <div
             key={index}

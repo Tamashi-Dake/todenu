@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mouse } from "lucide-react";
@@ -17,43 +16,25 @@ const buttonVariants = {
 const MyComponent = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className="flex flex-col gap-5 md:gap-20 md:flex-row justify-around  items-center h-[450px] md:h-[80vh] md:max-h-[1000px] mt-5 mx-auto md:max-w-[80%] mb-4">
-      {/* <motion.div
-        className="absolute top-0 left-0 right-0 bottom-0 z-[-1]"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-          className="w-full transform rotate-180"
-        >
-          <path
-            fill="#ffffff"
-            fill-opacity="1"
-            d="M0,192L48,192C96,192,192,192,288,181.3C384,171,480,149,576,154.7C672,160,768,192,864,186.7C960,181,1056,139,1152,144C1248,149,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-      </motion.div> */}
-      <div className="hero-text w-full lg:w-[500px] flex flex-col justify-center gap-4 md:gap-14 ">
-        <h1 className="flex flex-col justify-center  text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-ellipsis overflow-hidden gap-4">
+    <div className="grid md:grid-cols-2 gap-5 gap-x-20  md:max-h-[1000px] mt-5 mx-auto md:max-w-[80%] ">
+      <div className="hero-text  flex flex-col justify-center gap-4 md:gap-14 ">
+        <h1 className="flex flex-col justify-center  text-5xl lg:text-6xl font-bold text-center md:text-left text-ellipsis overflow-hidden gap-4 ">
           <span className="font-extrabold text-transparent  bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
             TODENU
           </span>
-          <div className="hero-info ">
+          <div className="hero-info h-28 md:h-auto">
             Easily Manage Your{" "}
             <TypeAnimation
               sequence={[
                 // Same substring at the start will only be typed once, initially
                 "Time",
-                2000,
+                2500,
                 "Tasks",
-                2000,
+                2500,
                 "Progress",
-                2000,
+                2500,
                 "Workflow",
-                3000,
+                3500,
               ]}
               speed={20}
               style={{ fontSize: "1em", lineHeight: "1.3" }}
@@ -61,68 +42,46 @@ const MyComponent = () => {
             />
           </div>
         </h1>
-        <p className="text-center text-xl ml-4 pt-2 tracking-tight md:tracking-wider">
+        <p className="text-center md:text-left text-xl pt-2 tracking-tight md:tracking-wider">
           Maintain your workflow with ease
         </p>
 
-        <div className="heroBtns flex justify-around items-center">
+        <div className="heroBtns flex justify-evenly md:justify-start gap-8 items-center">
           <Link
             href="#tutorial"
             className="
-          bg-blue-400  text-white px-4 py-2 rounded-md font-semibold text-sm md:text-base"
+          bg-blue-400  text-white px-4 py-4 rounded-md font-semibold text-sm md:text-base tranform hover:-translate-y-1 hover:shadow-xl transition duration-500 ease-in-out
+          "
           >
             How does it work?
           </Link>
-
-          {/* scroll down animation */}
-          <motion.div
-            className=" w-10 h-10 rounded-full cursor-pointer hidden md:block"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-          >
-            <Link href="#playground" title="Scroll to see more">
-              <Mouse size={30} />
-            </Link>
-          </motion.div>
+          <div className="btnPlayWrapper relative">
+            <button
+              className="heroBtn  bg-blue-500 text-white p-4 rounded-full tranform hover:rotate-[360deg] hover:scale-110 transition duration-500 ease-in-out"
+              onClick={() => setOpenModal(true)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 inline-block "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              {/* <span className="
+              hidden md:inline-block">Play Video
+              </span> */}
+            </button>
+          </div>
         </div>
       </div>
-      <div className="hero-img w-full lg:w-[400px] relative h-[50%] flex items-center">
+      <div className="hero-img w-full relative  flex items-center">
         <img
           src="https://i.pinimg.com/originals/2a/53/65/2a53651a35816f499270d8275fd5318f.gif"
           alt=""
-          className="w-full mt-10 md:mt-0 h-[300px] md:h-[400px] object-cover object-center opacity-90 rounded-md"
+          className="w-full mt-10 md:mt-0 h-[300px] md:h-[500px] object-cover object-center opacity-90 rounded-md"
         />
-        <button
-          className="heroBtn absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500 text-white p-1 md:px-4 md:py-4 rounded-full "
-          onClick={() => setOpenModal(true)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 inline-block "
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
-        {/* <motion.button
-          className="absolute overflow-hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 after:inset-0 p-1 md:px-4 md:py-4 rounded-full bg-slate-50 after:bg-blue-500 after:opacity-50"
-          variants={buttonVariants}
-          initial="animate"
-          animate="animate"
-          onClick={() => setOpenModal(true)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 inline-block "
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </motion.button> */}
       </div>
       {openModal ? (
         <div
@@ -175,25 +134,23 @@ const MyComponent = () => {
       ) : (
         ""
       )}
-
-      {/* <motion.div
-        className="absolute bottom-0 left-0 right-0 z-[-1]"
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        // transition={{ duration: 0.5 }}
+      {/* scroll down animation */}
+      <motion.div
+        className="col-span-2 h-10 rounded-full cursor-pointer hidden md:block"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 5.5, duration: 0.5 }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-          className="w-full"
+        <motion.div
+          animate={{ y: [0, 15, 15, 0], opacity: [0, 1, 1, 0] }}
+          // whileHover={{ scale: 1.1, opacity: 1 }}
+          transition={{ repeat: 7, duration: 3 }}
         >
-          <path
-            fill="#ffffff"
-            fill-opacity="1"
-            d="M0,192L48,192C96,192,192,192,288,181.3C384,171,480,149,576,154.7C672,160,768,192,864,186.7C960,181,1056,139,1152,144C1248,149,1344,203,1392,229.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-          ></path>
-        </svg>
-      </motion.div> */}
+          <Link href="#playground" title="Scroll to see more">
+            <Mouse size={30} className="mx-auto" />
+          </Link>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

@@ -201,8 +201,8 @@ const Counter = () => {
               key={index}
               className={`${
                 index === 0 ? "md:w-[620px]  w-10/12" : "md:w-[600px] w-9/12 "
-              } max-w-[650px] item-wrapper flex transition-all duration-100 ${
-                index === 0 ? "h-[84px]" : "h-[90px] ml-8"
+              } max-w-[650px] item-wrapper flex transition-all duration-100  ${
+                index === 0 ? "h-[84px]" : "h-[90px] md:ml-8"
               } ease-linear`}
               whileHover={{
                 x: index === 0 ? 0 : -10,
@@ -213,10 +213,10 @@ const Counter = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <div
-                className={`item flex w-full items-center justify-between p-5 ${
+                className={`item flex w-full items-center justify-between p-2 md:p-5 ${
                   index === 0
-                    ? "bg-slate-200 rounded-t-sm"
-                    : "bg-slate-300 max-w-[800px] rounded-l-sm tranform translate-x-2"
+                    ? "bg-white rounded-t-sm"
+                    : "bg-[#F5F8FF] max-w-[800px] rounded-l-sm tranform translate-x-2"
                 } z-20`}
               >
                 <div className="text-black">
@@ -225,14 +225,14 @@ const Counter = () => {
                       index === 0
                         ? "text-xl leading-5"
                         : "text-base md:text-xl leading-4"
-                    } font-bold max-w-[100px] lg:max-w-[300px]  text-ellipsis overflow-hidden whitespace-nowrap`}
+                    } font-bold max-w-[100px] md:max-w-[300px]  text-ellipsis overflow-hidden whitespace-nowrap`}
                   >
                     {item.name}
                   </h2>
                   <p
                     className={`${
                       index === 0 ? "h-8 pt-2" : " text-sm md:text-base h-10"
-                    } max-w-[100px] lg:max-w-[300px]  text-ellipsis overflow-hidden whitespace-nowrap text-gray-500`}
+                    } max-w-[100px] md:max-w-[300px]  text-ellipsis overflow-hidden whitespace-nowrap text-gray-500`}
                   >
                     {item.description}
                   </p>
@@ -246,7 +246,7 @@ const Counter = () => {
               <div
                 className={`flex justify-center items-center transition-all ease-linear z-10 p-4 ${
                   index === 0
-                    ? "bg-slate-200 hidden lg:inline-flex "
+                    ? "bg-white hidden lg:inline-flex "
                     : `bg-red-500  md:z-[-1] px-4 rounded-r-sm translate-x-2 ${
                         hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0"
                       }`
@@ -263,10 +263,10 @@ const Counter = () => {
               >
                 {index === 0 ? (
                   isCurrentActive ? (
-                    <Pause className="w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full" />
+                    <Pause className="w-10 h-10 p-2 text-white bg-blue-500 font-size  rounded-full" />
                   ) : (
                     <Play
-                      className="w-10 h-10 p-2 text-black font-size bg-gray-50 rounded-full"
+                      className="w-10 h-10 p-2 text-white bg-blue-500 font-size rounded-full"
                       onClick={isBreakActive ? null : handlePlayClick}
                     />
                   )

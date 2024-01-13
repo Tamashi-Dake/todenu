@@ -78,7 +78,7 @@ export default function Home() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="flex flex-col justify-center items-center gap-4 mt-[5rem] md:mt-12"
+              className="flex flex-col justify-center items-center gap-4 "
             >
               <h1 className="text-4xl font-bold text-center">
                 Go ahead and try it!

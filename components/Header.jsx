@@ -9,15 +9,13 @@ const Header = () => {
   return (
     <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 md:m-2 lg:m-8  lg:mb-0 rounded-sm ">
       <nav
-        className=" flex w-full items-center justify-between px-4 sm:px-6 lg:px-8 "
+        className=" flex w-full  justify-between px-4 sm:px-6 lg:px-0 lg:pl-8 "
         aria-label="Global"
       >
-        <div className="flex lg:flex-1 py-4">
-          <a href="/" className="flex items-center">
-            <Clock />
-            <span className=" font-bold font-logo text-2xl ">TODENU</span>
-          </a>
-        </div>
+        <a href="/" className="flex items-center py-4">
+          <Clock />
+          <span className=" font-bold tektur text-2xl ">TODENU</span>
+        </a>
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -51,7 +49,7 @@ const Header = () => {
             ABOUT US
           </a>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex items-center lg:pr-4 ">
           <SignInBtn></SignInBtn>
         </div>
       </nav>

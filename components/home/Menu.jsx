@@ -55,7 +55,7 @@ const Menu = () => {
             // onDragEnd={() => {              setIsDraging(false);            }}
             key={item._id}
             className={
-              "subMenu  w-full grid grid-cols-[1fr,0.7fr] border-dotted border-2 border-sky-950 h-[6rem] bg-slate-50 rounded-md p-3 hover:cursor-pointer"
+              "subMenu  w-full grid grid-cols-[1fr,0.7fr] border-dotted border-2 border-sky-950 h-[6rem] bg-white rounded-md p-3 hover:cursor-pointer"
               // + (isDraging ? " draging" : "")
             }
           >
