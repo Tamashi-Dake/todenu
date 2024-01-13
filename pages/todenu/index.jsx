@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useState } from "react";
 import { Edit, BadgePlus, Trash } from "lucide-react";
 import { useSession } from "next-auth/react";

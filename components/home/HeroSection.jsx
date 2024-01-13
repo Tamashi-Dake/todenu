@@ -23,7 +23,7 @@ const MyComponent = () => {
             TODENU
           </span>
           <div className="hero-info h-28 md:h-auto">
-            Easily Manage Your{" "}
+            <p>Manage Your</p>
             <TypeAnimation
               sequence={[
                 // Same substring at the start will only be typed once, initially
@@ -43,7 +43,7 @@ const MyComponent = () => {
           </div>
         </h1>
         <p className="text-center md:text-left text-xl pt-2 tracking-tight md:tracking-wider">
-          Maintain your workflow with ease
+          Enjoy the tasks you choose for the time you have
         </p>
 
         <div className="heroBtns flex justify-evenly md:justify-start gap-8 items-center">
@@ -142,9 +142,9 @@ const MyComponent = () => {
         transition={{ delay: 5.5, duration: 0.5 }}
       >
         <motion.div
-          animate={{ y: [0, 15, 15, 0], opacity: [0, 1, 1, 0] }}
+          animate={{ y: [0, 15, 15, 0], opacity: [1, 0, 0, 0] }}
           // whileHover={{ scale: 1.1, opacity: 1 }}
-          transition={{ repeat: 7, duration: 3 }}
+          transition={{ repeat: 7, duration: 3, ease: "easeInOut" }}
         >
           <Link href="#playground" title="Scroll to see more">
             <Mouse size={30} className="mx-auto" />
