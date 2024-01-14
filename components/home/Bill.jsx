@@ -78,7 +78,7 @@ const Bill = () => {
   const handleDeleteItem = (itemId) => {
     const updatedBillData = billData.filter((item) => item.key !== itemId);
     dispatch(setBillData(updatedBillData));
-    toast.success("Item deleted from Todo List!", {
+    toast.success("Item deleted from Bill!", {
       icon: "🗑️",
     });
   };
@@ -95,7 +95,7 @@ const Bill = () => {
       const newItem = { ...item, key: Date.now() };
       const updatedData = [...billData, newItem];
       dispatch(setBillData(updatedData));
-      toast.success("Item added to Todo List!", {
+      toast.success("Item added to Bill!", {
         icon: "📝",
       });
     }

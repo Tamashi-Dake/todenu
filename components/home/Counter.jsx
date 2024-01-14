@@ -68,6 +68,10 @@ const Counter = () => {
       }, 1000);
     }
     if (remainingTotalTime === 0 && counter) {
+      const audio = new Audio(
+        "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+      );
+      audio.play();
       dispatch(setCounter(!counter));
       toast.success("You've working hard! But the time is up!");
     }
@@ -83,7 +87,11 @@ const Counter = () => {
         intervalBreak = setInterval(() => {
           setRemainingBreakTime((prevTime) => prevTime - 1);
         }, 1000);
-      } else if (remainingBreakTime === 0) {
+      } else if (remainingBreakTime === 0 && isBreakActive) {
+        const audio = new Audio(
+          "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+        );
+        audio.play();
         setIsBreakActive(false);
         setIsCurrentActive(true);
       }
@@ -99,14 +107,18 @@ const Counter = () => {
           setCurrentCountdown((prevTime) => prevTime - 1);
         }, 1000);
       } else if (currentCountdown === 0) {
+        const audio = new Audio(
+          "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+        );
+        audio.play();
         if (billData.length > 1) {
-          handleDelete(0);
+          handleFirstDelete();
           setIsCurrentActive(false);
           setIsBreakActive(true);
           // Countdown hoàn thành, chuyển đến item tiếp theo
           setCurrentCountdown(billData[0].time * 60);
         } else {
-          handleDelete(0);
+          handleFirstDelete();
           toast.success("Well done! You've finished your works!");
           dispatch(setCounter(!counter));
         }

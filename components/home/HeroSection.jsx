@@ -43,7 +43,7 @@ const MyComponent = () => {
           </div>
         </h1>
         <p className="text-center md:text-left text-xl pt-2 tracking-tight md:tracking-wider">
-          Enjoy the tasks you choose for the time you have
+          Enjoy the tasks you choose for the time you have.
         </p>
 
         <div className="heroBtns flex justify-evenly md:justify-start gap-8 items-center">
