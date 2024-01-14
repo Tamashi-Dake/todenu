@@ -4,10 +4,10 @@ const TutorialSection = () => {
   return (
     <div
       id="tutorial"
-      className=" flex flex-col lg:flex-row justify-between md:items-center lg:items-start bg-[#dce5f9] gap-4 p-4 pt-8 rounded-lg md:max-w-[80%] m-auto"
+      className=" flex flex-col my-16 mx-5 lg:flex-row justify-between lg:items-start bg-[#dce5f9] gap-4 p-4 pt-8 rounded-lg md:max-w-[80%] md:mx-auto"
     >
       <div className="tutorialTitle flex flex-col lg:w-[50%] gap-5 md:pl-8 ">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-cyan-500">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-cyan-500">
           How Does it Work?
         </h2>
         <p className="poppins">Get your personalized workflow in 4 steps.</p>

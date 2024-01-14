@@ -7,7 +7,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50 md:m-2 lg:m-8  lg:mb-0 rounded-sm ">
+    <header className="bg-[#76ACFD] text-white md:sticky top-0 z-50  rounded-sm ">
       <nav
         className=" flex w-full  justify-between px-4 sm:px-6 lg:px-0 lg:pl-8 "
         aria-label="Global"
@@ -33,10 +33,10 @@ const Header = () => {
             HOME
           </a>
           <a
-            href="/todenu"
+            href="/tasks"
             className="grow w-[80px] text-center text-base font-extrabold leading-6 py-6 px-10 hover:bg-white hover:text-[#76ACFD] transition-all duration-300 ease-linears"
           >
-            TODENUS
+            TASKS
           </a>
 
           {/* <a href="#" className="text-lg font-extrabold leading-6 ">
@@ -91,10 +91,10 @@ const Header = () => {
                   HOME
                 </a>
                 <a
-                  href="/todenu"
+                  href="/tasks"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-extrabold leading-7  hover:bg-gray-50"
                 >
-                  YOUR TODENU
+                  YOUR TASKS
                 </a>
                 {/* <a
                   href="/profile"

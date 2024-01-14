@@ -11,12 +11,12 @@ const WhyUs = () => {
   return (
     <div
       id="whyus"
-      className=" flex flex-col  justify-between gap-4  pt-8 md:max-w-[80%] m-auto"
+      className="diffSection flex flex-col  justify-between gap-10 py-16   m-auto "
     >
       <h2 className="text-center text-5xl font-extrabold text-indigo-400">
         Why Todenu?
       </h2>
-      <div className="reason grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="reason px-5 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-4 md:max-w-[80%] md:mx-auto">
         <div className="flex flex-col justify-start items-center gap-4 bg-[#e8eefd] rounded-md p-4 tranform hover:-translate-y-1 hover:shadow-xl transition duration-500 ease-in-out group">
           <AlarmClock
             size={100}

@@ -66,7 +66,7 @@ div[disabled] {
   display: block;
   width: 50px;
   height: 50px;
-  background-color: rgb(63 131 248);
+  background-color: rgb(33 150 243);
   position: absolute;
   z-index: -1;
   top: 50%;
@@ -92,4 +92,8 @@ div[disabled] {
     transform: translate(-50%, -50%) scale(1.8);
     opacity: 0;
   }
+}
+
+.diffSection {
+  background-color: #24355d;
 }

@@ -144,6 +144,7 @@ const Counter = () => {
       (item, itemIndex) => itemIndex !== index
     );
     dispatch(setBillData(updatedBillData));
+    toast.success("Deleted!");
     if (billData.length === 1) {
       dispatch(setCounter(!counter));
     }
@@ -200,7 +201,7 @@ const Counter = () => {
             <motion.div
               key={index}
               className={`${
-                index === 0 ? "md:w-[620px]  w-10/12" : "md:w-[600px] w-9/12 "
+                index === 0 ? "md:w-[620px]  w-10/12" : "md:w-[600px] w-10/12 "
               } max-w-[650px] item-wrapper flex transition-all duration-100  ${
                 index === 0 ? "h-[84px]" : "h-[90px] md:ml-8"
               } ease-linear`}
@@ -216,7 +217,7 @@ const Counter = () => {
                 className={`item flex w-full items-center justify-between p-2 md:p-5 ${
                   index === 0
                     ? "bg-white rounded-t-sm"
-                    : "bg-[#F5F8FF] max-w-[800px] rounded-l-sm tranform translate-x-2"
+                    : "bg-[#F5F8FF] max-w-[800px] rounded-l-sm tranform md:translate-x-2"
                 } z-20`}
               >
                 <div className="text-black">
@@ -247,8 +248,10 @@ const Counter = () => {
                 className={`flex justify-center items-center transition-all ease-linear z-10 p-4 ${
                   index === 0
                     ? "bg-white hidden lg:inline-flex "
-                    : `bg-red-500  md:z-[-1] px-4 rounded-r-sm translate-x-2 ${
-                        hoveredItems[index] ? "opacity-1 md:z-10" : "opacity-0"
+                    : `bg-red-500  md:z-[-1] px-4 rounded-r-sm md:translate-x-2 ${
+                        hoveredItems[index]
+                          ? "opacity-1 md:z-10"
+                          : "md:opacity-0"
                       }`
                 }`}
                 onClick={
@@ -300,7 +303,7 @@ const Counter = () => {
             <div className="countdownTimer text-3xl text-green-500">
               Break time!
             </div>
-            <div className="countdownTimer text-7xl text-green-600  lg:translate-x-[0px]">
+            <div className="countdownTimer text-6xl text-green-600  ">
               {formatSeconds(remainingBreakTime)}
             </div>
           </motion.div>

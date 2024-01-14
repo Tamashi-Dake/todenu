@@ -1,19 +1,21 @@
+"use client";
 import { useEffect, useState } from "react";
 import { Edit, BadgePlus, Trash } from "lucide-react";
 import { useSession } from "next-auth/react";
-import Search from "../../components/todenu/Search";
+import Search from "../components/todenu/Search";
 import ReactPaginate from "react-paginate";
-import { formatTime } from "../../lib/timeUtils";
+import { formatTime } from "../lib/timeUtils";
 import { Button } from "@material-tailwind/react";
-import AddModal from "../../components/todenu/AddModal";
-import EditModal from "../../components/todenu/EditModal";
-import DeleteModal from "../../components/todenu/DeleteModal";
+import AddModal from "../components/todenu/AddModal";
+import EditModal from "../components/todenu/EditModal";
+import DeleteModal from "../components/todenu/DeleteModal";
 export default function Todenu() {
   // Get information of user
   const { data: session, status } = useSession({ required: true });
   const [menuData, setMenuData] = useState(null);
   const [searchParam, setSearchParam] = useState("");
-  const [itemID, setItemID] = useState();
+  const [editItemID, setEditItemID] = useState();
+  const [DeleteItemID, setDeleteItemID] = useState();
   const [itemName, setItemName] = useState();
   // Modal Add
   const [addOpen, setAddOpen] = useState(false);
@@ -23,13 +25,13 @@ export default function Todenu() {
   // Modal Edit
   const [editOpen, setEditOpen] = useState(false);
   const handleEditOpen = (id) => {
-    setItemID(id);
+    setEditItemID(id);
     setEditOpen((cur) => !cur);
   };
   // Modal Delete
   const [deleteOpen, setDeleteOpen] = useState(false);
   const handleDeleteOpen = (id, name) => {
-    setItemID(id);
+    setDeleteItemID(id);
     setItemName(name);
     setDeleteOpen((cur) => !cur);
   };
@@ -193,11 +195,15 @@ export default function Todenu() {
         handleAddOpen={handleAddOpen}
         session={session}
       />
-      <EditModal open={editOpen} handleEditOpen={handleEditOpen} id={itemID} />
+      <EditModal
+        open={editOpen}
+        handleEditOpen={handleEditOpen}
+        id={editItemID}
+      />
       <DeleteModal
         open={deleteOpen}
         handleDeleteOpen={handleDeleteOpen}
-        id={itemID}
+        id={DeleteItemID}
         name={itemName}
       />
       {/* Phân trang */}

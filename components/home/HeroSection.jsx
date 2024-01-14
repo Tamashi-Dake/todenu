@@ -16,7 +16,7 @@ const buttonVariants = {
 const MyComponent = () => {
   const [openModal, setOpenModal] = useState(false);
   return (
-    <div className="grid md:grid-cols-2 gap-5 gap-x-20  md:max-h-[1000px] mt-5 mx-auto md:max-w-[80%] ">
+    <div className="grid md:grid-cols-2 gap-5 gap-x-20 py-16 pt-5 px-5  md:max-h-[1000px] mt-5 mx-auto md:max-w-[90%] lg:max-w-[80%] ">
       <div className="hero-text  flex flex-col justify-center gap-4 md:gap-14 ">
         <h1 className="flex flex-col justify-center  text-5xl lg:text-6xl font-bold text-center md:text-left text-ellipsis overflow-hidden gap-4 ">
           <span className="font-extrabold text-transparent  bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
