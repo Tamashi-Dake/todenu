@@ -292,12 +292,12 @@ const Counter = () => {
             </motion.div>
           ))}
         </div>
-        <div className="flex flex-col justify-center items-center p-5 lg:w-1/2">
+        <div className="flex flex-col justify-center items-center p-5 ">
           <motion.div
             variants={animations}
             initial={isBreakActive ? "exit" : "initial"}
             animate={isBreakActive ? "exit" : "animate"}
-            className={isBreakActive ? "hidden" : ""}
+            className={isBreakActive ? "hidden" : "xl:min-w-[200px] "}
           >
             <div className="countdownTimer text-xl md:3xl text-white">
               Time remaining

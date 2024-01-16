@@ -70,11 +70,11 @@ export default function Time() {
               htmlFor="timepickerFreetime"
               className={`absolute text-base md:text-xl left-3 top-0 mb-0 max-w-[90%] hover:cursor-text origin-[0_0] truncate pt-4 md:pt-[0.7rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
                 freeTime !== ""
-                  ? "-translate-y-[1.1rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[1.1rem] peer-data-[te-input-state-active]:scale-[0.8] bg-[#f5f8ff] "
+                  ? "-translate-y-[1.1rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[1.1rem] peer-data-[te-input-state-active]:scale-[0.8] bg-[#f2f2fc] "
                   : ""
               }`}
             >
-              Your Freetime
+              {freeTime !== "" ? "Hour:Minute" : "Your Freetime"}
             </label>
           </div>
         </div>
@@ -105,11 +105,11 @@ export default function Time() {
               htmlFor="timepickerBreaktime"
               className={`absolute text-base md:text-xl left-3 top-0 mb-0 max-w-[90%] hover:cursor-text origin-[0_0] truncate pt-4 md:pt-[0.7rem] leading-[1.5] text-neutral-500 transition-all duration-200 ease-out ${
                 breakTime !== ""
-                  ? "-translate-y-[1.1rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[1.1rem] peer-data-[te-input-state-active]:scale-[0.8] bg-[#f5f8ff] "
+                  ? "-translate-y-[1.1rem] scale-[0.7] text-primary peer-data-[te-input-state-active]:-translate-y-[1.1rem] peer-data-[te-input-state-active]:scale-[0.8] bg-[#f2f2fc] "
                   : ""
               }`}
             >
-              Your Breaktime
+              {breakTime !== "" ? "Hour:Minute" : "Your Breaktime"}
             </label>
           </div>
         </div>

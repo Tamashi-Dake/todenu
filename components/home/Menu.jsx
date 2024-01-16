@@ -77,7 +77,7 @@ const Menu = () => {
 
   return (
     <div className="flex flex-col w-full  border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950  max-h-[800px] md:min-h-[800px] ">
-      <h1 className=" text-5xl font-extrabold m-5 font-sans">MENU</h1>
+      <h1 className=" text-3xl font-extrabold m-5 font-sans">MENU</h1>
 
       <Tabs className={"grow m-3"}>
         <TabList className={"flex mb-0"}>

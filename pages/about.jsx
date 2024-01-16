@@ -1,10 +1,12 @@
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+import { useState } from "react";
 import AnimateSection from "../components/AnimateSection";
-import { Mail } from "lucide-react";
+import Email from "../components/about/Email";
 const About = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("submit");
+  const [isSent, setIsSent] = useState(false);
+
+  const handleSent = () => {
+    setIsSent(!isSent);
+    console.log(isSent);
   };
   return (
     <>
@@ -13,9 +15,7 @@ const About = () => {
           <div className="flex flex-col-reverse md:flex-row justify-center items-center p-5 pb-0 ">
             <div className="md:w-[50%] md:h-96 overflow-hidden">
               <img
-                src="
-              /UI.jpg
-            "
+                src="https://i.imgur.com/PtcnmDg.jpeg"
                 alt=""
                 className="w-full h-full object-cover object-center overflow-clip hover:scale-110 transition duration-500 ease-in-out"
               />
@@ -65,67 +65,26 @@ const About = () => {
 
       {/* contact me section */}
       <AnimateSection>
-        <div
-          id="contact"
-          className="flex flex-col items-center justify-center py-5"
-        >
-          <div className="flex flex-col  p-5 gap-4 xl:max-w-[810px]">
-            <div className="flex flex-col gap-4">
-              <p className="m-4 text-xl text-center font-semibold ">
-                If you have any questions, feel free to contact me
-              </p>
-              <form className="email flex flex-col md:flex-row  md:items-start gap-10">
-                <div className="flex flex-col gap-5 md:w-[50%]">
-                  <Typography className="" variant="h6">
-                    Your Name
-                  </Typography>
-                  <Input
-                    type="text"
-                    color="lightBlue"
-                    size="md"
-                    outline={true}
-                    placeholder="Your name"
-                  />
-                  <Typography className="" variant="h6">
-                    Your Email
-                  </Typography>
-                  <Input
-                    type="email"
-                    color="lightBlue"
-                    size="md"
-                    outline={true}
-                    placeholder="Your email"
-                  />
-                </div>
-                <div className="flex flex-col gap-2 md:w-[50%]">
-                  <Typography className="" variant="h6">
-                    Your Message
-                  </Typography>
-                  <Textarea
-                    type="text"
-                    color="lightBlue"
-                    outline={true}
-                    className="min-h-40"
-                    placeholder="Your message"
-                  />
-                </div>
-              </form>
-            </div>
-            <div className=" flex flex-col md:flex-row">
-              <p className="md:w-[50%] text-gray-600">
-                We are committed to protecting your privacy. We will never
-                collect information about you without your explicit consent.
-              </p>
-              <Button
-                className="flex justify-center items-center gap-2 bg-blue-600 md:ml-auto"
-                onClick={handleSubmit}
-              >
-                <Mail />
-                <span className="text-sm leading-3">Send</span>
-              </Button>
-            </div>
+        {!isSent ? (
+          <div
+            id="contact"
+            className="flex flex-col items-center justify-center py-5"
+          >
+            <Email isSent={isSent} handleSent={handleSent} />
           </div>
-        </div>
+        ) : (
+          <div
+            id="contact"
+            className="flex flex-col items-center justify-center py-5"
+          >
+            <h1 className="text-3xl font-bold text-center">
+              Thank you for contacting me
+            </h1>
+            <p className="mt-4 text-xl text-center">
+              I will get back to you as soon as possible
+            </p>
+          </div>
+        )}
       </AnimateSection>
     </>
   );
