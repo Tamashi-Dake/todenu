@@ -74,7 +74,6 @@ const Email = ({ isSent, handleSent }) => {
               value={name}
               type="text"
               size="md"
-              placeholder="Your name"
               onChange={handleNameChange}
             />
             <Typography className="" variant="h6">
@@ -84,7 +83,6 @@ const Email = ({ isSent, handleSent }) => {
               className="bg-white"
               type="email"
               size="md"
-              placeholder="Your email"
               value={email}
               onChange={handleEmailChange}
             />
@@ -96,7 +94,6 @@ const Email = ({ isSent, handleSent }) => {
             <Textarea
               type="text"
               className="min-h-[158px] bg-white"
-              placeholder="Your message"
               value={message}
               onChange={handleMessageChange}
             />
@@ -109,7 +106,7 @@ const Email = ({ isSent, handleSent }) => {
           information about you without your explicit consent.
         </p>
         <Button
-          className="flex m-2 w-full md:m-0 md:w-auto p-2 h-10 justify-center items-center gap-2 bg-blue-600 md:ml-auto"
+          className="flex m-2 w-full md:m-0 md:w-auto p-4 h-10 justify-center items-center gap-2 bg-blue-600 md:ml-auto"
           onClick={handleSubmit}
         >
           {isLoading ? (

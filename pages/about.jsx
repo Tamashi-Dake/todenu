@@ -68,7 +68,7 @@ const About = () => {
         {!isSent ? (
           <div
             id="contact"
-            className="flex flex-col items-center justify-center py-5"
+            className="flex flex-col items-center justify-center py-5 md:max-w-[80%] md:m-auto"
           >
             <Email isSent={isSent} handleSent={handleSent} />
           </div>

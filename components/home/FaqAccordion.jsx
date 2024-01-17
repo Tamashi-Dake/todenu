@@ -23,10 +23,10 @@ const FaqAccordion = () => {
     },
   ]);
   return (
-    <div className=" diffSection faq-accordion  py-16   ">
+    <div className=" diffSection faq-accordion  py-16  p-4 pt-8 ">
       <div className="md:max-w-[80%] flex flex-col lg:flex-row justify-between  gap-4 m-auto">
         <div className="faqTitle pt-8 flex flex-col lg:max-w-[400px] gap-5 md:pl-4 ">
-          <h2 className="text-2xl md:text-5xl popin font-extrabold text-cyan-500">
+          <h2 className="text-3xl md:text-5xl popin font-extrabold text-cyan-500">
             FAQ
           </h2>
           <p className="poppins text-xl">

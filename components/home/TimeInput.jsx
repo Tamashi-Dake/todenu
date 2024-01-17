@@ -42,9 +42,9 @@ export default function Time() {
 
   return (
     <>
-      <section className=" flex flex-col gap-5 lg:flex-row justify-between  my-5 md:max-w-[80%] m-auto">
-        <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg ">
-          <p className="text-lg md:text-xl lg:text-3xl font-extrabold m-2 md:mb-4">
+      <section className=" flex flex-col gap-5 lg:gap-10 lg:flex-row justify-between  my-5 md:max-w-[80%] m-auto">
+        <div className="flex flex-row justify-between  items-center sm:w-[85%] md:w-full  sm:m-auto lg:m-0 text-center text-2xl font-bold rounded-lg lg:gap-16">
+          <p className="text-lg md:text-xl  font-extrabold m-2 md:mb-4 lg:m-0">
             FREETIME
           </p>
           <div className="relative lg:w-full">
@@ -78,8 +78,8 @@ export default function Time() {
             </label>
           </div>
         </div>
-        <div className="flex flex-row justify-between lg:flex-col items-center sm:w-[85%] md:w-full lg:w-2/5 sm:m-auto text-center text-2xl font-bold rounded-lg">
-          <p className="text-lg md:text-xl lg:text-3xl font-extrabold m-2 md:mb-4">
+        <div className="flex flex-row justify-between  items-center sm:w-[85%] md:w-full  sm:m-auto lg:m-0 text-center text-2xl font-bold rounded-lg lg:gap-16">
+          <p className="text-lg md:text-xl  font-extrabold m-2 md:mb-4 lg:m-0">
             BREAKTIME
           </p>
           <div className="relative lg:w-full">

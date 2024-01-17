@@ -14,10 +14,14 @@ export default function handler(req, res) {
     // Create a transporter for sending emails
     const transporter = nodemailer.createTransport({
       // Configure your email provider here
-      service: "Gmail",
+      service: "gmail",
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
+      },
+      // temporary turn off rejectUnauthorized
+      tls: {
+        rejectUnauthorized: false,
       },
     });
 

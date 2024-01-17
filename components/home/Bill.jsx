@@ -163,9 +163,9 @@ const Bill = () => {
   return (
     <div
       id="bill"
-      className="flex flex-col w-full border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 ml-auto sm:h-auto max-h-[800px]  min-h-[800px]"
+      className="flex flex-col w-full border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950 ml-auto sm:h-auto max-h-[665px]  min-h-[665px]"
     >
-      <h1 className="font-sans text-3xl font-extrabold m-5">BILL</h1>
+      <h1 className="font-sans text-3xl font-extrabold m-2">BILL</h1>
       <span className="text-lg font-bold m-6"></span>
 
       <div

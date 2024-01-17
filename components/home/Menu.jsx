@@ -18,7 +18,7 @@ const Menu = () => {
       try {
         const response = await fetch("/api/jobs");
         const data = await response.json();
-        setMenuData(data.jobs);
+        setMenuData(data.jobs.sort((a, b) => a.time - b.time));
       } catch (error) {
         console.error("Error fetching menu data:", error);
       }
@@ -76,8 +76,8 @@ const Menu = () => {
     );
 
   return (
-    <div className="flex flex-col w-full  border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950  max-h-[800px] md:min-h-[800px] ">
-      <h1 className=" text-3xl font-extrabold m-5 font-sans">MENU</h1>
+    <div className="flex flex-col w-full  border-primary-400 border-2 bg-[#BDD7EE] rounded-3xl text-center  text-sky-950  max-h-[800px]  ">
+      <h1 className=" text-3xl font-extrabold m-2 font-sans">MENU</h1>
 
       <Tabs className={"grow m-3"}>
         <TabList className={"flex mb-0"}>
@@ -102,7 +102,7 @@ const Menu = () => {
             Long
           </Tab>
         </TabList>
-        <div className="md:h-[600px] h-[500px] overflow-auto styleScroll">
+        <div className="md:h-[550px] h-[500px] overflow-auto styleScroll">
           <TabPanel>
             <div className="menu-wrapper m-auto flex flex-col grow gap-2 p-5 bg-[#DEEBF7] rounded-b-sm active-content overflow-hidden">
               {renderMenuItems(
@@ -126,7 +126,7 @@ const Menu = () => {
                 menuData &&
                   menuData.filter((item) =>
                     userEmail === item.email
-                      ? item.time > 30 && item.time <= 60
+                      ? item.time > 30 && item.time <= 90
                       : null
                   )
               )}
@@ -137,7 +137,7 @@ const Menu = () => {
               {renderMenuItems(
                 menuData &&
                   menuData.filter((item) =>
-                    userEmail === item.email ? item.time > 60 : null
+                    userEmail === item.email ? item.time > 90 : null
                   )
               )}
             </div>
