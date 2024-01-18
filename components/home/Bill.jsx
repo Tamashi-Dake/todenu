@@ -233,7 +233,7 @@ const Bill = () => {
 
       <div id="checkout" className=" flex justify-between m-5 text-gray-50">
         <button
-          className="grow bg-cyan-500 p-5 rounded-lg"
+          className="grow bg-cyan-500 p-5 rounded-lg text-xl font-bold"
           onClick={handleStart}
         >
           Checkout

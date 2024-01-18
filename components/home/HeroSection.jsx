@@ -119,7 +119,7 @@ const MyComponent = () => {
                       height="100%"
                       className="shadow-[0_0_8px_rgba(0,0,0,0.06)]"
                       controls=""
-                      src="https://www.youtube.com/embed/tjXMrIx1yWE?autoplay=0&muted=1&si=z5e5JT6x5MsFRGds"
+                      src="https://www.youtube.com/embed/k5QN5hTCTn4?autoplay=1&muted=1&si=z5e5JT6x5MsFRGds"
                       title="YouTube video player"
                       frameborder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
